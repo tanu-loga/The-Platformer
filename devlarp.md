@@ -7,7 +7,7 @@ I'm going to be using Godot. Problem is, I didn't know Godot even existed until 
 To get that perfect white texture, just nose the No-face-
 
 <img width="1919" height="986" alt="image" src="https://github.com/user-attachments/assets/eb076296-eb7d-40ac-b380-8ad0d79ae307" />
-
-Random FAQ:
-Q: Why do you code? 
-A: Escapism
+ 
+Random FAQ:        
+Q: Why do you code?   
+A: Escapism           
