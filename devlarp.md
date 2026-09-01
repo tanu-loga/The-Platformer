@@ -1,4 +1,4 @@
-#Devlarp Intro
+# Devlarp Intro
 Whats up? The sky!      
 So apperentaly if I code for 50 hours, I can go to a 2 day hackathon in San Francisco. Of course, I HAD TO TRY. So from today on, whenever I feel like it, I shall larp my ragebait game, The Platformer - best name for real!  
 I'm going to be using Godot. Problem is, I didn't know Godot even existed until yesterday. Hey, every challenge is for learning.
