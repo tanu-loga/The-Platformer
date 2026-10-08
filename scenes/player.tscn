@@ -188,7 +188,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1l4js"]
-size = Vector2(46.333332, 74)
+size = Vector2(35, 74)
 
 [node name="Player" type="CharacterBody2D" unique_id=666496315]
 script = ExtResource("1_qlg0r")
@@ -198,10 +198,10 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_1l4js")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.9757759
+frame_progress = 0.34021646
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1091745054]
-position = Vector2(-2.166667, 0)
+position = Vector2(-1.499999, 0)
 shape = SubResource("RectangleShape2D_1l4js")
 
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="." unique_id=966528187]
