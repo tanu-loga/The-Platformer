@@ -11,9 +11,8 @@ config_version=5
 [application]
 
 config/name="The Platformer"
-run/main_scene="uid://ct6ngm1ei2ouq"
+run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.7", "Mobile")
-config/icon="res://icon.svg"
 
 [display]
 
