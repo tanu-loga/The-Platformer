@@ -1,24 +1,7 @@
 [gd_scene format=3 uid="uid://bmxfsrhapph3p"]
 
-[ext_resource type="PackedScene" uid="uid://nlafyvd0sw30" path="res://scenes/player.tscn" id="1_o5qli"]
-[ext_resource type="Texture2D" uid="uid://c6dr1erpx0cfe" path="res://tile.png" id="2_0wfyh"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1l4js"]
-size = Vector2(50.25, 40.5)
+[ext_resource type="PackedScene" uid="uid://b343k1tb53wt6" path="res://scenes/levels/level1.tscn" id="1_o5qli"]
 
 [node name="Main" type="Node2D" unique_id=871928944]
 
-[node name="Player" parent="." unique_id=666496315 instance=ExtResource("1_o5qli")]
-position = Vector2(612, 351)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=200262330]
-texture_filter = 1
-position = Vector2(608, 557)
-scale = Vector2(4, 4)
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1970470686]
-texture = ExtResource("2_0wfyh")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1698093575]
-position = Vector2(0.125, 0.25)
-shape = SubResource("RectangleShape2D_1l4js")
+[node name="LevelRoot" parent="." unique_id=596945868 instance=ExtResource("1_o5qli")]

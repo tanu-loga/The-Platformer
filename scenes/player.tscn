@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://c1i5g8rugpvns" path="res://scripts/player.gd" id="1_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://b6g8fwabeldni" path="res://assets/images/player/Jump.png" id="3_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://bashg6ykybanl" path="res://assets/images/player/running animation.png" id="4_tuyoq"]
+[ext_resource type="AudioStream" uid="uid://b6s7kv2kbkoly" path="res://assets/sounds/jump.wav" id="6_tuyoq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ur7pv"]
 atlas = ExtResource("1_dqkch")
@@ -190,16 +191,18 @@ animations = [{
 size = Vector2(46.333332, 74)
 
 [node name="Player" type="CharacterBody2D" unique_id=666496315]
-scale = Vector2(3, 3)
 script = ExtResource("1_qlg0r")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=978233093]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_1l4js")
-animation = &"dying"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.68646896
+frame_progress = 0.9757759
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1091745054]
 position = Vector2(-2.166667, 0)
 shape = SubResource("RectangleShape2D_1l4js")
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="." unique_id=966528187]
+stream = ExtResource("6_tuyoq")
