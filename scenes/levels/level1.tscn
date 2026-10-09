@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dwqtwpccdgtm0" path="res://assets/images/Tilemap/Terrain (16x16).png" id="1_4tcl0"]
 [ext_resource type="Texture2D" uid="uid://w6pyh2jn1xws" path="res://assets/images/Background/Brown.png" id="1_dd0lh"]
 [ext_resource type="PackedScene" uid="uid://nlafyvd0sw30" path="res://scenes/player.tscn" id="2_dd0lh"]
+[ext_resource type="PackedScene" uid="uid://bjyxemv3lyol2" path="res://scenes/snail.tscn" id="4_bfxgj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ypoqj"]
 texture = ExtResource("1_4tcl0")
@@ -189,3 +190,11 @@ tile_set = SubResource("TileSet_1l4js")
 
 [node name="Player" parent="." unique_id=666496315 instance=ExtResource("2_dd0lh")]
 position = Vector2(110, 472)
+
+[node name="Enemies" type="Node2D" parent="." unique_id=938877789]
+
+[node name="Snail" parent="Enemies" unique_id=1896067893 instance=ExtResource("4_bfxgj")]
+position = Vector2(622, 636)
+
+[node name="Snail2" parent="Enemies" unique_id=402783668 instance=ExtResource("4_bfxgj")]
+position = Vector2(1192, 636)
