@@ -18,3 +18,7 @@ func _process(delta: float) -> void:
 func _on_timer_timeout() -> void:
 	direction *= -1
 	animated_sprite_2d.flip_h = !animated_sprite_2d.flip_h
+
+
+func _on_body_entered(body: Node2D) -> void:
+	print(body)
