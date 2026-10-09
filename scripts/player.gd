@@ -1,6 +1,7 @@
 extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jump_sound: AudioStreamPlayer2D = $JumpSound
+@onready var death_sound: AudioStreamPlayer2D = $DeathSound
 
 
 
@@ -47,6 +48,7 @@ func _physics_process(delta: float) -> void:
 		animated_sprite_2d.flip_h = true
 		
 func die() -> void:
+	death_sound.play()
 	animated_sprite_2d.animation = "dying"
 	alive = false 
 	
