@@ -19,6 +19,9 @@ func _process(delta: float) -> void:
 # '-> void' is for making sure it doesnt return anything
 func _setup_level() -> void:
 	
+	#connect exit
+	
+	
 	#connect apples
 	var apples = $LevelRoot.get_node_or_null("Apples")
 	if apples:
