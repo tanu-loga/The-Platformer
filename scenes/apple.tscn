@@ -120,7 +120,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"collected",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -176,7 +176,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"idle",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dgdk7"]
@@ -189,7 +189,7 @@ script = ExtResource("1_3dmh2")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=370122164]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_1l4js")
-animation = &"idle"
+animation = &"collected"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=841104154]
@@ -201,3 +201,4 @@ stream = ExtResource("4_pg1xk")
 pitch_scale = 1.5
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
