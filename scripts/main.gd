@@ -36,7 +36,6 @@ func _setup_level() -> void:
 		for enemy in enemies.get_children():
 			enemy.player_died.connect(_on_player_died)
 
-
 # ------------------------ 
 # signal handlers
 # ------------------------ 
