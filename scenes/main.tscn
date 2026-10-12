@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bk1iat5wa7v88" path="res://scripts/main.gd" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://b343k1tb53wt6" path="res://scenes/levels/level1.tscn" id="1_o5qli"]
 [ext_resource type="FontFile" uid="uid://c0l0neflvct4d" path="res://assets/fonts/Square-Black.ttf" id="3_sugp2"]
+[ext_resource type="Texture2D" uid="uid://dxjf8xrimi3pp" path="res://assets/images/health/heart.png" id="4_jyhfs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1l4js"]
 bg_color = Color(0.45144242, 0.6006919, 0.6906805, 1)
@@ -25,14 +26,8 @@ script = ExtResource("1_0wfyh")
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1110231440]
 
 [node name="ScorePanel" type="Panel" parent="HUD" unique_id=75094199]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -80.0
-offset_top = 20.0
-offset_right = 80.0
-offset_bottom = 70.0
-grow_horizontal = 2
+offset_right = 160.0
+offset_bottom = 50.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_1l4js")
 
 [node name="ScoreLabel" type="Label" parent="HUD/ScorePanel" unique_id=1267454414]
@@ -51,3 +46,56 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_sugp2")
 theme_override_font_sizes/font_size = 32
 text = "SCORE: 0 "
+
+[node name="Hearts" type="Panel" parent="HUD" unique_id=1465477287]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 10.0
+offset_right = 140.0
+offset_bottom = 60.0
+grow_horizontal = 2
+
+[node name="Heart" type="TextureRect" parent="HUD/Hearts" unique_id=1768746707]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+texture = ExtResource("4_jyhfs")
+
+[node name="Heart2" type="TextureRect" parent="HUD/Hearts" unique_id=184053957]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_jyhfs")
+
+[node name="Heart3" type="TextureRect" parent="HUD/Hearts" unique_id=959782799]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("4_jyhfs")
