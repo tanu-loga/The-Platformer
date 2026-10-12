@@ -26,5 +26,11 @@ func _on_timer_timeout() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	#if snail touches player, broadcast aka signal that the player should die
 	if body.name == "Player" and body.alive:
-		emit_signal("player_died", body)
+		var y_delta = position.y - body.position.y
+		print(y_delta)
+		if (y_delta > 39):
+			print("destroy enemy")
+			queue_free()
+		else:
+			emit_signal("player_died", body)
 		

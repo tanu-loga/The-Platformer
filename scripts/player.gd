@@ -17,7 +17,6 @@ func _physics_process(delta: float) -> void:
 	if !alive:
 		return
 		
-		
 	#add animation
 	if velocity.x > 1 or velocity.x < -1:
 		animated_sprite_2d.animation = "running"
@@ -58,3 +57,5 @@ func die() -> void:
 	animated_sprite_2d.animation = "dying"
 	alive = false 
 	
+func jump():
+	velocity.y = JUMP_VELOCITY

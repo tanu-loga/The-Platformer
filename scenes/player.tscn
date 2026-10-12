@@ -210,3 +210,8 @@ stream = ExtResource("6_tuyoq")
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=1378570908]
 stream = ExtResource("7_fjrip")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=463353192]
+process_callback = 0
+limit_smoothed = true
+position_smoothing_enabled = true
