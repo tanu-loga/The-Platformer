@@ -24,9 +24,6 @@ func _process(delta: float) -> void:
 	position.x += direction * SPEED * delta
 
 func _on_timer_timeout() -> void:
-	if !alive_snail:
-		return
-	if can_move_snail:
 		#if its going left, turn it right or vice versa
 		direction *= -1
 		animated_sprite_2d.flip_h = !animated_sprite_2d.flip_h
@@ -39,22 +36,18 @@ func _on_body_entered(body: Node2D) -> void:
 		print(y_delta)
 		if (y_delta > 39):
 			print("destroy enemy")
-			animated_sprite_2d.animation = "dying"
 			hit_snail.emit()
 			call_deferred("_disabled_collision")
-			can_move_snail = false
-			alive_snail = false
+			queue_free()
 			body.jump()
 		else:
+			print("decrease player health")
 			emit_signal("player_died", body)
 			
 func _disabled_collision() -> void:
 	collision_shape_2d.disabled = true
 	collision_shape_2d_2.disabled = true
-	
-func _on_animated_sprite_2d_animation_looped() -> void:
-	if animated_sprite_2d.animation == "dying":
-		queue_free()
+
 		
 
 		

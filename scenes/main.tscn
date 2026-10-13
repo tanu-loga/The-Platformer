@@ -18,6 +18,40 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 shadow_size = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_552ro"]
+bg_color = Color(0.21823528, 0.6003449, 0.461464, 0.7607843)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eo0xc"]
+bg_color = Color(0.92941177, 0.8235294, 0.29411766, 0.6862745)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyhfs"]
+bg_color = Color(1, 0.31575465, 0.32362387, 0.7647059)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbgi4"]
+bg_color = Color(0.96862745, 0.57254905, 0.31764707, 0.78039217)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(1.1070073e-06, 0, 0.5306759, 0.6)
+shadow_size = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tefeu"]
+bg_color = Color(0.76862746, 0.54901963, 0.3137255, 0.5411765)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
 [node name="Main" type="Node2D" unique_id=871928944]
 script = ExtResource("1_0wfyh")
 
@@ -89,3 +123,67 @@ texture_filter = 1
 layout_mode = 2
 texture = ExtResource("4_jyhfs")
 expand_mode = 2
+
+[node name="Pause" type="Node" parent="HUD" unique_id=1224612751]
+
+[node name="Pause panel" type="Panel" parent="HUD/Pause" unique_id=1853625724]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_552ro")
+
+[node name="Label" type="Label" parent="HUD/Pause/Pause panel" unique_id=1403620709]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -135.0
+offset_top = 200.0
+offset_right = 135.0
+offset_bottom = 251.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_sugp2")
+theme_override_font_sizes/font_size = 50
+text = "GAME PAUSED
+Come back!"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Pause/Pause panel" unique_id=968544144]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.476
+anchor_right = 0.5
+anchor_bottom = 0.476
+offset_left = -163.0
+offset_top = 5.279999
+offset_right = 164.25
+offset_bottom = 159.28
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Button" type="Button" parent="HUD/Pause/Pause panel/VBoxContainer" unique_id=886823522]
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_sugp2")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_eo0xc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jyhfs")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tbgi4")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_tefeu")
+text = "Resume"
+
+[node name="Button2" type="Button" parent="HUD/Pause/Pause panel/VBoxContainer" unique_id=665552305]
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_sugp2")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_eo0xc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jyhfs")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tbgi4")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_tefeu")
+text = "Go to main menu"
