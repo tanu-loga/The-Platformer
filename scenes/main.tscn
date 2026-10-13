@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b343k1tb53wt6" path="res://scenes/levels/level1.tscn" id="1_o5qli"]
 [ext_resource type="FontFile" uid="uid://c0l0neflvct4d" path="res://assets/fonts/Square-Black.ttf" id="3_sugp2"]
 [ext_resource type="Texture2D" uid="uid://dxjf8xrimi3pp" path="res://assets/images/health/heart.png" id="4_jyhfs"]
+[ext_resource type="Script" uid="uid://cwr5jcdorxqeu" path="res://scripts/pause.gd" id="5_tbgi4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1l4js"]
 bg_color = Color(0.45144242, 0.6006919, 0.6906805, 1)
@@ -125,8 +126,11 @@ texture = ExtResource("4_jyhfs")
 expand_mode = 2
 
 [node name="Pause" type="Node" parent="HUD" unique_id=1224612751]
+unique_name_in_owner = true
+script = ExtResource("5_tbgi4")
 
 [node name="Pause panel" type="Panel" parent="HUD/Pause" unique_id=1853625724]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -166,7 +170,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="Button" type="Button" parent="HUD/Pause/Pause panel/VBoxContainer" unique_id=886823522]
+[node name="Resume" type="Button" parent="HUD/Pause/Pause panel/VBoxContainer" unique_id=886823522]
+process_mode = 3
 layout_mode = 2
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("3_sugp2")
@@ -177,7 +182,8 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_tbgi4")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_tefeu")
 text = "Resume"
 
-[node name="Button2" type="Button" parent="HUD/Pause/Pause panel/VBoxContainer" unique_id=665552305]
+[node name="Menu" type="Button" parent="HUD/Pause/Pause panel/VBoxContainer" unique_id=665552305]
+process_mode = 3
 layout_mode = 2
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("3_sugp2")
@@ -187,3 +193,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_jyhfs")
 theme_override_styles/hover = SubResource("StyleBoxFlat_tbgi4")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_tefeu")
 text = "Go to main menu"
+
+[connection signal="pressed" from="HUD/Pause/Pause panel/VBoxContainer/Resume" to="HUD/Pause" method="_on_resume_pressed"]
+[connection signal="pressed" from="HUD/Pause/Pause panel/VBoxContainer/Menu" to="HUD/Pause" method="_on_menu_pressed"]
