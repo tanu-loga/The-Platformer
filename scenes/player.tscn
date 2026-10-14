@@ -185,7 +185,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"running",
-"speed": 5.0
+"speed": 20.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1l4js"]
@@ -197,9 +197,9 @@ script = ExtResource("1_qlg0r")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=978233093]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_1l4js")
-animation = &"idle"
+animation = &"running"
 autoplay = "idle"
-frame_progress = 0.8902492
+frame_progress = 0.86601925
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1091745054]
 position = Vector2(-1.499999, 0)
