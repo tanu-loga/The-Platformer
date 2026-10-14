@@ -3,8 +3,6 @@ extends Node2D
 @onready var score_label: Label = $HUD/ScorePanel/ScoreLabel
 @export var hearts : Array[Node] = []
 
-
-
 var level: int = 1
 var score: int = 0
 var lives: int = 3
@@ -85,10 +83,7 @@ func decrease_health() -> void:
 			heart_to_remove.queue_free()
 			lives -= 1
 			print(lives)
-		print("abcd")
 		if lives == 0:
 			print("rip player")
 			var player = $LevelRoot/Player
 			player.die()
-		
-		
