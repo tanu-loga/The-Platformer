@@ -1,9 +1,11 @@
 extends Node2D
 
 @onready var score_label: Label = $HUD/ScorePanel/ScoreLabel
+@export var hearts : Array[Node]
 
 var level: int = 1
 var score: int = 0
+var lives: int = 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -34,7 +36,7 @@ func _setup_level() -> void:
 	var enemies = $LevelRoot.get_node_or_null("Enemies")
 	if enemies:
 		for enemy in enemies.get_children():
-			enemy.player_died.connect(_on_player_died)
+			enemy.player_died.connect(decrease_health)
 
 # ------------------------ 
 # signal handlers
@@ -59,3 +61,20 @@ func increase_score() -> void:
 	score += 1
 	#update score, the %s does the trick
 	score_label.text = "SCORE: %s" %score
+	
+	
+# ------------------------ 
+# health points
+# ------------------------ 
+
+func decrease_health(body: Node2D):
+	lives -= 1
+	print(lives)
+	for h in 3:
+		if (h < lives):
+			hearts[h].show
+		else:
+			hearts[h].hide 
+	if (lives == 0):
+		body.die()
+		

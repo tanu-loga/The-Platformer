@@ -53,8 +53,9 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[node name="Main" type="Node2D" unique_id=871928944]
+[node name="Main" type="Node2D" unique_id=871928944 node_paths=PackedStringArray("hearts")]
 script = ExtResource("1_0wfyh")
+hearts = [NodePath("HUD/Hearts/HBoxContainer/Heart"), NodePath("HUD/Hearts/HBoxContainer/Heart2"), NodePath("HUD/Hearts/HBoxContainer/Heart3")]
 
 [node name="LevelRoot" parent="." unique_id=596945868 instance=ExtResource("1_o5qli")]
 

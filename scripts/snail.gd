@@ -3,6 +3,8 @@ extends Area2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var collision_shape_2d_2: CollisionShape2D = $CollisionShape2D2
 
+@onready var main: Node2D = $"../../.."
+
 
 #custom signal aka broadcast
 signal player_died
@@ -43,6 +45,7 @@ func _on_body_entered(body: Node2D) -> void:
 		else:
 			print("decrease player health")
 			emit_signal("player_died", body)
+			main.decrease_health(body)
 			
 func _disabled_collision() -> void:
 	collision_shape_2d.disabled = true

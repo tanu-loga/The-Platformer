@@ -18,12 +18,11 @@ func _process(delta: float) -> void:
 		
 
 
-func _on_resume_pressed() -> void:
+func _on_resume_pressed():
 	pause_panel.hide()
 	get_tree().paused = false
 
 
-func _on_menu_pressed() -> void:
-	pause_panel.hide()
+func _on_menu_pressed():
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
