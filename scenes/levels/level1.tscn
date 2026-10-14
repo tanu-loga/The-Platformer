@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://df8twg4y0j13n" path="res://scenes/apple.tscn" id="5_dywbp"]
 [ext_resource type="Texture2D" uid="uid://dlmpt3na3wkxd" path="res://assets/images/Tilemap/Checkpoint (Flag Idle)(64x64).png" id="6_1seuy"]
 [ext_resource type="Script" uid="uid://78n0bjpr5hte" path="res://scripts/fall_area.gd" id="7_2r1tl"]
+[ext_resource type="Texture2D" uid="uid://dxjf8xrimi3pp" path="res://assets/images/health/heart.png" id="8_8a7m2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ypoqj"]
 texture = ExtResource("1_4tcl0")
@@ -373,5 +374,49 @@ offset_bottom = 1525.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="Hearts" type="Panel" parent="." unique_id=536230351]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 10.0
+offset_right = 140.0
+offset_bottom = 60.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Hearts" unique_id=769639131]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -19.0
+offset_right = 68.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Heart" type="TextureRect" parent="Hearts/HBoxContainer" unique_id=2040647346]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("8_8a7m2")
+expand_mode = 2
+
+[node name="Heart2" type="TextureRect" parent="Hearts/HBoxContainer" unique_id=1247393029]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("8_8a7m2")
+expand_mode = 2
+
+[node name="Heart3" type="TextureRect" parent="Hearts/HBoxContainer" unique_id=1489887730]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("8_8a7m2")
+expand_mode = 2
 
 [connection signal="body_entered" from="fall_area_" to="fall_area_" method="_on_body_entered"]

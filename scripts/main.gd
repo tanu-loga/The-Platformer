@@ -1,7 +1,9 @@
 extends Node2D
 
 @onready var score_label: Label = $HUD/ScorePanel/ScoreLabel
-@export var hearts : Array[Node]
+@export var hearts : Array[Node] = []
+
+
 
 var level: int = 1
 var score: int = 0
@@ -10,6 +12,14 @@ var lives: int = 3
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_setup_level()
+	
+	var container = $HUD/Hearts/HBoxContainer
+	
+	if container:
+		for child in container.get_children():
+			hearts.append(child)
+	else:
+		print("Error: Could not find HBoxContainer!")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -37,7 +47,8 @@ func _setup_level() -> void:
 	if enemies:
 		for enemy in enemies.get_children():
 			enemy.player_died.connect(decrease_health)
-
+			
+	
 # ------------------------ 
 # signal handlers
 # ------------------------ 
@@ -67,14 +78,17 @@ func increase_score() -> void:
 # health points
 # ------------------------ 
 
-func decrease_health(body: Node2D):
-	lives -= 1
-	print(lives)
-	for h in 3:
-		if (h < lives):
-			hearts[h].show
-		else:
-			hearts[h].hide 
-	if (lives == 0):
-		body.die()
+func decrease_health() -> void:
+	if hearts.size() > 0:
+		var heart_to_remove = hearts.pop_back()
+		if is_instance_valid(heart_to_remove):
+			heart_to_remove.queue_free()
+			lives -= 1
+			print(lives)
+		print("abcd")
+		if lives == 0:
+			print("rip player")
+			var player = $LevelRoot/Player
+			player.die()
+		
 		
