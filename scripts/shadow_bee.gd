@@ -9,12 +9,14 @@ extends CharacterBody2D
 signal player_died
 signal hit_snail
 
-const SPEED = 10
-var direction = -1.0
+const speed = 10
+var dir: Vector2
+var is_shadow_chase: bool = false
 var dead = false
 var taking_damage = false
 var dealing_damage = false
 
+const gravity = 2500
 var knockback_force = 200
 var is_roaming = true
 
@@ -25,17 +27,54 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	#maintain steady speed ig
-	position.x += direction * SPEED * delta
+func _process(delta):
+	if !is_on_floor():
+		velocity.y += gravity * delta
+		velocity.x = 0
+	move(delta)
+	handle_animation()
+	move_and_slide()
+	
+func move(delta):
+	if !dead:
+		if !is_shadow_chase:
+			velocity += dir * speed * delta
+		is_roaming = true
+	elif dead:
+		velocity.x = 0
 
-func _on_timer_timeout() -> void:
-		#if its going left, turn it right or vice versa
-		direction *= -1
-		animated_sprite_2d.flip_h = !animated_sprite_2d.flip_h
+func handle_animation():
+	if !dead and !taking_damage and !dealing_damage:
+		animated_sprite_2d.animation = "idle-bee"
+		if dir.x == 1.0:
+			animated_sprite_2d.flip_h = false
+		if dir.x == -1.0:
+			animated_sprite_2d.flip_h = true
+
+func _on_direction_timer_timeout() -> void:
+	$DirectionTimer.wait_time = choose([1.5,2.0,2.5])
+	if !is_shadow_chase:
+		dir = choose([Vector2.RIGHT, Vector2.LEFT])
+		velocity.x = 0 
+		
+
+func choose(array):
+	array.shuffle()
+	return array.front()
 
 
-func _on_body_entered(body: Node2D) -> void:
+
+
+
+
+
+
+
+
+
+
+
+var abcdefg = """func _on_body_entered(body: Node2D) -> void:
 	#if snail touches player, broadcast aka signal that the player should die
 	if body.name == "Player" and body.alive:
 		var y_delta = position.y - body.position.y
@@ -51,7 +90,4 @@ func _on_body_entered(body: Node2D) -> void:
 			emit_signal("player_died")
 			
 func _disabled_collision() -> void:
-	collision_shape_2d.disabled = true
-
-func _on_direction_timer_timeout() -> void:
-	pass # Replace with function body.
+	collision_shape_2d.disabled = true """

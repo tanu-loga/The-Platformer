@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dxjf8xrimi3pp" path="res://assets/images/health/heart.png" id="8_8a7m2"]
 [ext_resource type="Script" uid="uid://cwr5jcdorxqeu" path="res://scripts/pause.gd" id="9_5ntmo"]
 [ext_resource type="FontFile" uid="uid://c0l0neflvct4d" path="res://assets/fonts/Square-Black.ttf" id="10_nkeig"]
+[ext_resource type="PackedScene" uid="uid://co67o1nxiyayo" path="res://scenes/shadow_bee.tscn" id="11_nkeig"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ypoqj"]
 texture = ExtResource("1_4tcl0")
@@ -525,6 +526,10 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_jprdt")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ps2vj")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_sbmf2")
 text = "Go to main menu"
+
+[node name="Shadow-bee" parent="." unique_id=1661676737 instance=ExtResource("11_nkeig")]
+position = Vector2(363, 480)
+scale = Vector2(3, 3)
 
 [connection signal="body_entered" from="fall_area_" to="fall_area_" method="_on_body_entered"]
 [connection signal="pressed" from="DISPLAY/Pause/Pause panel/VBoxContainer/Resume" to="DISPLAY/Pause" method="_on_resume_pressed"]

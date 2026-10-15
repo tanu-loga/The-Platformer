@@ -1,0 +1,129 @@
+[gd_scene format=3 uid="uid://co67o1nxiyayo"]
+
+[ext_resource type="Script" uid="uid://crxhvmf4nrl0f" path="res://scripts/shadow_bee.gd" id="1_0pr0v"]
+[ext_resource type="Texture2D" uid="uid://cjwkof8jkchho" path="res://assets/images/Bee/Attack-Sheet.png" id="2_ll17n"]
+[ext_resource type="Texture2D" uid="uid://du575kmdkhf6h" path="res://assets/images/Bee/Hit-Sheet.png" id="3_5g8hx"]
+[ext_resource type="Texture2D" uid="uid://1a224bjb6g7o" path="res://assets/images/Bee/Fly-Sheet.png" id="4_qomy5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwgas"]
+atlas = ExtResource("2_ll17n")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dlhpv"]
+atlas = ExtResource("2_ll17n")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pakms"]
+atlas = ExtResource("2_ll17n")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mjxo"]
+atlas = ExtResource("2_ll17n")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjo1v"]
+atlas = ExtResource("3_5g8hx")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_136mu"]
+atlas = ExtResource("3_5g8hx")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_osgqi"]
+atlas = ExtResource("3_5g8hx")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evxgc"]
+atlas = ExtResource("3_5g8hx")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vp7lr"]
+atlas = ExtResource("4_qomy5")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5jw2"]
+atlas = ExtResource("4_qomy5")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtwxm"]
+atlas = ExtResource("4_qomy5")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jeg2e"]
+atlas = ExtResource("4_qomy5")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1l4js"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwgas")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dlhpv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pakms")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mjxo")
+}],
+"loop": 1,
+"name": &"deal_damage",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjo1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_136mu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_osgqi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evxgc")
+}],
+"loop": 1,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vp7lr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i5jw2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jtwxm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jeg2e")
+}],
+"loop": 1,
+"name": &"idle-bee",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1l4js"]
+radius = 9.0
+
+[node name="Shadow-bee" type="CharacterBody2D" unique_id=1661676737]
+script = ExtResource("1_0pr0v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1583943431]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_1l4js")
+animation = &"idle-bee"
+autoplay = "idle-bee"
+frame_progress = 0.6125025
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=541284803]
+shape = SubResource("CircleShape2D_1l4js")
+
+[node name="DirectionTimer" type="Timer" parent="." unique_id=248709062]
+autostart = true
+
+[connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]
