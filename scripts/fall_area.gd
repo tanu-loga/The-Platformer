@@ -14,4 +14,7 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		print("player fell")
-		get_tree().reload_current_scene()
+		call_deferred("reload_scene")
+		
+func reload_scene():
+	get_tree().reload_current_scene()

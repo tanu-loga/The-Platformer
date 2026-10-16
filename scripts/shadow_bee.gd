@@ -1,6 +1,7 @@
 extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var player: CharacterBody2D = $"../Player"
 
 
 
@@ -9,9 +10,9 @@ extends CharacterBody2D
 signal player_died
 signal hit_snail
 
-const speed = 10
+const speed = 100
 var dir: Vector2
-var is_shadow_chase: bool = false
+var is_shadow_chase: bool = true
 var dead = false
 var taking_damage = false
 var dealing_damage = false
@@ -32,13 +33,18 @@ func _process(delta):
 		velocity.y += gravity * delta
 		velocity.x = 0
 	move(delta)
+	print_x()
 	handle_animation()
 	move_and_slide()
+	
 	
 func move(delta):
 	if !dead:
 		if !is_shadow_chase:
 			velocity += dir * speed * delta
+		elif is_shadow_chase and !taking_damage:
+			var dir_to_player = position.direction_to(player.position) * speed
+			velocity.x = dir_to_player.x
 		is_roaming = true
 	elif dead:
 		velocity.x = 0
@@ -46,10 +52,25 @@ func move(delta):
 func handle_animation():
 	if !dead and !taking_damage and !dealing_damage:
 		animated_sprite_2d.animation = "idle-bee"
-		if dir.x == 1.0:
+		if dir.x > 0:
 			animated_sprite_2d.flip_h = false
-		if dir.x == -1.0:
+		elif dir.x < 0:
 			animated_sprite_2d.flip_h = true
+	elif !dead and taking_damage and !dealing_damage:
+		animated_sprite_2d.animation = "hurt"
+		await get_tree().create_timer(0.8).timeout
+		taking_damage = false
+	elif dead and is_roaming:
+		is_roaming = false
+		await get_tree().create_timer(1).timeout
+		handle_death()
+
+func handle_death():
+	self.queue_free()
+
+func print_x():
+	await get_tree().create_timer(1).timeout
+	print(velocity.x)
 
 func _on_direction_timer_timeout() -> void:
 	$DirectionTimer.wait_time = choose([1.5,2.0,2.5])

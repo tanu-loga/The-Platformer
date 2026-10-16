@@ -118,7 +118,7 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_1l4js")
 animation = &"idle-bee"
 autoplay = "idle-bee"
-frame_progress = 0.6125025
+frame_progress = 0.19742891
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=541284803]
 shape = SubResource("CircleShape2D_1l4js")
