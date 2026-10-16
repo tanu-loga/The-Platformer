@@ -4,12 +4,6 @@ extends CharacterBody2D
 @onready var player: CharacterBody2D = $"../Player"
 
 
-
-
-#custom signal aka broadcast
-signal player_died
-signal hit_snail
-
 const speed = 100
 var dir: Vector2
 var is_shadow_chase: bool = true
@@ -33,7 +27,6 @@ func _process(delta):
 		velocity.y += gravity * delta
 		velocity.x = 0
 	move(delta)
-	print_x()
 	handle_animation()
 	move_and_slide()
 	
@@ -45,6 +38,10 @@ func move(delta):
 		elif is_shadow_chase and !taking_damage:
 			var dir_to_player = position.direction_to(player.position) * speed
 			velocity.x = dir_to_player.x
+			dir.x = abs(velocity.x) / velocity.x
+			velocity.y = dir_to_player.y
+			dir.y = abs(velocity.y) / velocity.y 
+			
 		is_roaming = true
 	elif dead:
 		velocity.x = 0
@@ -52,9 +49,9 @@ func move(delta):
 func handle_animation():
 	if !dead and !taking_damage and !dealing_damage:
 		animated_sprite_2d.animation = "idle-bee"
-		if dir.x > 0:
+		if dir.x == -1:
 			animated_sprite_2d.flip_h = false
-		elif dir.x < 0:
+		elif dir.x == 1:
 			animated_sprite_2d.flip_h = true
 	elif !dead and taking_damage and !dealing_damage:
 		animated_sprite_2d.animation = "hurt"
