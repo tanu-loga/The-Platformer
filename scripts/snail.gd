@@ -44,9 +44,9 @@ func _on_body_entered(body: Node2D) -> void:
 			print("decrease player health")
 			emit_signal("player_died")
 			body.jump_x()
-			_disabled_collision()
+			call_deferred("_disabled_collision")
 			await get_tree().create_timer(1).timeout
-			_enabled_collision()
+			call_deferred("_enabled_collision")
 			
 func _disabled_collision() -> void:
 	collision_shape_2d.disabled = true
