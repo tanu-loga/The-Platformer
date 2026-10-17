@@ -4,7 +4,6 @@ extends Area2D
 @onready var collision_shape_2d_2: CollisionShape2D = $CollisionShape2D2
 
 
-
 #custom signal aka broadcast
 signal player_died
 signal hit_snail
@@ -44,11 +43,17 @@ func _on_body_entered(body: Node2D) -> void:
 		else:
 			print("decrease player health")
 			emit_signal("player_died")
+			body.jump_x()
+			_disabled_collision()
+			await get_tree().create_timer(1).timeout
+			_enabled_collision()
 			
 func _disabled_collision() -> void:
 	collision_shape_2d.disabled = true
 	collision_shape_2d_2.disabled = true
 
-		
+func _enabled_collision() -> void:
+	collision_shape_2d.disabled = false
+	collision_shape_2d_2.disabled = false
 
 		

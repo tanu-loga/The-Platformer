@@ -29,6 +29,9 @@ func _process(delta: float) -> void:
 # '-> void' is for making sure it doesnt return anything
 func _setup_level() -> void:
 	
+	var player = $LevelRoot.get_node_or_null("Player")
+	if player:
+		player.player_died_spikes.connect(decrease_health)
 	#connect exit
 	var exit = $LevelRoot.get_node_or_null("Exit")
 	if exit:

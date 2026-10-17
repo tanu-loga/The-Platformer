@@ -16,7 +16,7 @@
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lgguw"]
 texture = ExtResource("2_nfihu")
 0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4.856186, 0.5395775, -0.71943474, 5.935339, 3.7770329, 0.71943474, 8, 8, -8, 8)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4.856186, 0.5395775, -0.71943474, 5.935339, 3.7770329, 0.71943474, 6.4749146, 8, -6.4749146, 8)
 
 [sub_resource type="TileSet" id="TileSet_jprdt"]
 physics_layer_0/collision_layer = 1

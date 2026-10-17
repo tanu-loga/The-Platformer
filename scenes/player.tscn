@@ -215,3 +215,6 @@ stream = ExtResource("7_fjrip")
 process_callback = 0
 limit_smoothed = true
 position_smoothing_enabled = true
+
+[node name="ImmuneTimer" type="Timer" parent="." unique_id=742627192]
+one_shot = true

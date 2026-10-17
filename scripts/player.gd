@@ -2,6 +2,10 @@ extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jump_sound: AudioStreamPlayer2D = $JumpSound
 @onready var death_sound: AudioStreamPlayer2D = $DeathSound
+@onready var immune_timer: Timer = $ImmuneTimer
+@onready var main: Node2D = $"../.."
+
+
 
 #psst, if ur reading this, ur cool
 #if ur a reviewer, 
@@ -10,8 +14,12 @@ extends CharacterBody2D
 #if u read this, say 'Waow, thanos (pun on my name)' in a way i can see it 
 #so that i know i can hereby comment for secret stuff on my code
 
+
+signal player_died_spikes
+
 const SPEED = 300.0
 const JUMP_VELOCITY = -850.0
+const JUMP_VELOCITY_X = -1000
 var alive = true
 var can_move = true
 
@@ -21,18 +29,6 @@ func _physics_process(delta: float) -> void:
 	#if player aint alive, end this whole function
 	if !alive:
 		return
-	#checkin if player touches spikes
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		#if player touches anythin drawn in tilemapspikes-
-		if collision.get_collider().name == "TileMapSpikes":
-			if alive == true:
-				alive = false
-				can_move = false
-				print("player rip")
-				print(alive)
-				print(can_move)
-	
 	
 	#add animation
 	if velocity.x > 1 or velocity.x < -1:
@@ -67,14 +63,28 @@ func _physics_process(delta: float) -> void:
 			animated_sprite_2d.flip_h = false
 		if direction == -1.0:
 			animated_sprite_2d.flip_h = true
-			
-
-
+	
+	#checkin if player touches spikes
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		#if player touches anythin drawn in tilemapspikes-
+		if collision.get_collider().name == "TileMapSpikes":
+			if alive == true and immune_timer.is_stopped():
+				immune_timer.start()
+				print("player rip")
+				player_died_spikes.emit()
+				jump()
 
 func die() -> void:
-	death_sound.play()
-	animated_sprite_2d.animation = "dying"
 	alive = false 
+	can_move = false
+	death_sound.play()
+	animated_sprite_2d.play("dying")
 	
 func jump():
 	velocity.y = JUMP_VELOCITY
+	
+func jump_x():
+	velocity.x = JUMP_VELOCITY_X
+	velocity.y = JUMP_VELOCITY
+	print("jumped")
