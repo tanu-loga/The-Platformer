@@ -126,4 +126,5 @@ shape = SubResource("CircleShape2D_1l4js")
 [node name="DirectionTimer" type="Timer" parent="." unique_id=248709062]
 autostart = true
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]

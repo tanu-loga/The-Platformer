@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dwqtwpccdgtm0" path="res://assets/images/Tilemap/Terrain (16x16).png" id="1_4tcl0"]
 [ext_resource type="Texture2D" uid="uid://w6pyh2jn1xws" path="res://assets/images/Background/Brown.png" id="1_dd0lh"]
 [ext_resource type="PackedScene" uid="uid://nlafyvd0sw30" path="res://scenes/player.tscn" id="2_dd0lh"]
+[ext_resource type="Texture2D" uid="uid://dhoekojn6kbw5" path="res://assets/images/traps/Idle.png" id="2_nfihu"]
 [ext_resource type="PackedScene" uid="uid://bjyxemv3lyol2" path="res://scenes/snail.tscn" id="4_bfxgj"]
 [ext_resource type="PackedScene" uid="uid://df8twg4y0j13n" path="res://scenes/apple.tscn" id="5_dywbp"]
 [ext_resource type="Texture2D" uid="uid://dlmpt3na3wkxd" path="res://assets/images/Tilemap/Checkpoint (Flag Idle)(64x64).png" id="6_1seuy"]
@@ -11,6 +12,15 @@
 [ext_resource type="Script" uid="uid://cwr5jcdorxqeu" path="res://scripts/pause.gd" id="9_5ntmo"]
 [ext_resource type="FontFile" uid="uid://c0l0neflvct4d" path="res://assets/fonts/Square-Black.ttf" id="10_nkeig"]
 [ext_resource type="PackedScene" uid="uid://co67o1nxiyayo" path="res://scenes/shadow_bee.tscn" id="11_nkeig"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lgguw"]
+texture = ExtResource("2_nfihu")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4.856186, 0.5395775, -0.71943474, 5.935339, 3.7770329, 0.71943474, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_jprdt"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_lgguw")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ypoqj"]
 texture = ExtResource("1_4tcl0")
@@ -340,6 +350,13 @@ offset_right = 1280.0
 offset_bottom = 720.0
 texture = ExtResource("1_dd0lh")
 stretch_mode = 1
+
+[node name="TileMapSpikes" type="TileMap" parent="." unique_id=780076802]
+texture_filter = 1
+scale = Vector2(3, 3)
+tile_set = SubResource("TileSet_jprdt")
+format = 2
+layer_0/tile_data = PackedInt32Array(655367, 0, 0, 655368, 0, 0, 655366, 0, 0)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1476553912]
 texture_filter = 1

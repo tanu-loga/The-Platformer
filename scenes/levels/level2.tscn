@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://cc7uncwgvcdlr"]
 
 [ext_resource type="Texture2D" uid="uid://w6pyh2jn1xws" path="res://assets/images/Background/Brown.png" id="1_oyk6k"]
-[ext_resource type="Texture2D" uid="uid://dhoekojn6kbw5" path="res://assets/images/traps/Idle.png" id="2_8i1lk"]
 [ext_resource type="Texture2D" uid="uid://dwqtwpccdgtm0" path="res://assets/images/Tilemap/Terrain (16x16).png" id="2_gycjm"]
 [ext_resource type="PackedScene" uid="uid://nlafyvd0sw30" path="res://scenes/player.tscn" id="3_8i1lk"]
 [ext_resource type="PackedScene" uid="uid://bjyxemv3lyol2" path="res://scenes/snail.tscn" id="4_hgky1"]
@@ -12,13 +11,6 @@
 [ext_resource type="Script" uid="uid://cwr5jcdorxqeu" path="res://scripts/pause.gd" id="9_yhrca"]
 [ext_resource type="FontFile" uid="uid://c0l0neflvct4d" path="res://assets/fonts/Square-Black.ttf" id="10_4eecq"]
 [ext_resource type="PackedScene" uid="uid://co67o1nxiyayo" path="res://scenes/shadow_bee.tscn" id="12_hgky1"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b4tpv"]
-texture = ExtResource("2_8i1lk")
-0:0/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_eo0xc"]
-sources/0 = SubResource("TileSetAtlasSource_b4tpv")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ypoqj"]
 texture = ExtResource("2_gycjm")
@@ -348,10 +340,6 @@ offset_right = 1280.0
 offset_bottom = 720.0
 texture = ExtResource("1_oyk6k")
 stretch_mode = 1
-
-[node name="TileMapSpikes" type="TileMap" parent="." unique_id=1847217963]
-tile_set = SubResource("TileSet_eo0xc")
-format = 2
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1476553912]
 texture_filter = 1

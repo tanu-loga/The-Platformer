@@ -27,6 +27,7 @@ func _process(delta):
 		velocity.y += gravity * delta
 		velocity.x = 0
 	move(delta)
+	hide_bee()
 	handle_animation()
 	move_and_slide()
 	
@@ -69,6 +70,14 @@ func print_x():
 	await get_tree().create_timer(1).timeout
 	print(velocity.x)
 
+#hide shadow bee for playtesting cuz it interupted my playtest ALOT
+func hide_bee():
+	var x = 1
+	if x == 1:
+		queue_free()
+	
+	
+
 func _on_direction_timer_timeout() -> void:
 	$DirectionTimer.wait_time = choose([1.5,2.0,2.5])
 	if !is_shadow_chase:
@@ -109,3 +118,7 @@ var abcdefg = """func _on_body_entered(body: Node2D) -> void:
 			
 func _disabled_collision() -> void:
 	collision_shape_2d.disabled = true """
+
+
+func _on_visibility_changed() -> void:
+	pass # Replace with function body.

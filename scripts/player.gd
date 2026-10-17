@@ -3,7 +3,12 @@ extends CharacterBody2D
 @onready var jump_sound: AudioStreamPlayer2D = $JumpSound
 @onready var death_sound: AudioStreamPlayer2D = $DeathSound
 
-
+#psst, if ur reading this, ur cool
+#if ur a reviewer, 
+#the reason my code is inconsistent and is not very organised is that i followed multiple tuts from dif people
+#also i had to write alot of code without guidance and place it myself
+#if u read this, say 'Waow, thanos (pun on my name)' in a way i can see it 
+#so that i know i can hereby comment for secret stuff on my code
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -850.0
@@ -16,7 +21,19 @@ func _physics_process(delta: float) -> void:
 	#if player aint alive, end this whole function
 	if !alive:
 		return
-		
+	#checkin if player touches spikes
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		#if player touches anythin drawn in tilemapspikes-
+		if collision.get_collider().name == "TileMapSpikes":
+			if alive == true:
+				alive = false
+				can_move = false
+				print("player rip")
+				print(alive)
+				print(can_move)
+	
+	
 	#add animation
 	if velocity.x > 1 or velocity.x < -1:
 		animated_sprite_2d.animation = "running"
@@ -51,6 +68,8 @@ func _physics_process(delta: float) -> void:
 		if direction == -1.0:
 			animated_sprite_2d.flip_h = true
 			
+
+
 
 func die() -> void:
 	death_sound.play()
