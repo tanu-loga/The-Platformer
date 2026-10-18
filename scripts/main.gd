@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var player: CharacterBody2D = $Player
 @onready var score_label: Label = $HUD/ScorePanel/ScoreLabel
 @export var hearts : Array[Node] = []
 
@@ -13,7 +14,7 @@ var current_level_root: Node = null
 func _ready() -> void:
 	
 	current_level_root = get_node("LevelRoot")
-	_setup_level()
+	_load_level(level)
 	
 	var container = $HUD/Hearts/HBoxContainer
 	
@@ -34,29 +35,32 @@ func _load_level(level_number: int) -> void:
 		
 	#change level
 	var level_path = "res://scenes/levels/level%s.tscn" % level_number
-	
+	current_level_root = load(level_path).instantiate()
+	add_child(current_level_root)
+	current_level_root.name = "LevelRoot"
+	_setup_level(current_level_root)
 
 #if i have many snails in a level, how do i link each of them into the main scene from the snail scene? 
 # well, i create a new function for this
 # '-> void' is for making sure it doesnt return anything
-func _setup_level() -> void:
+func _setup_level(level_root: Node) -> void:
 	
-	var player = $LevelRoot.get_node_or_null("Player")
+	var player = level_root.get_node_or_null("Player")
 	if player:
 		player.player_died_spikes.connect(decrease_health)
 	#connect exit
-	var exit = $LevelRoot.get_node_or_null("Exit")
+	var exit = level_root.get_node_or_null("Exit")
 	if exit:
 		exit.body_entered.connect(_on_exit_body_entered)
 	
 	#connect apples
-	var apples = $LevelRoot.get_node_or_null("Apples")
+	var apples = level_root.get_node_or_null("Apples")
 	if apples:
 		for apple in apples.get_children():
 			apple.collected.connect(increase_score)
 	
 	#connect enemies
-	var enemies = $LevelRoot.get_node_or_null("Enemies")
+	var enemies = level_root.get_node_or_null("Enemies")
 	if enemies:
 		for enemy in enemies.get_children():
 			enemy.player_died.connect(decrease_health)
@@ -71,7 +75,7 @@ func _on_exit_body_entered(body: Node2D) -> void:
 		level += 1
 		print(level)
 		body.can_move = false
-
+		call_deferred("_load_level" ,level)
 
 func _on_player_died(body):
 	body.die()
@@ -100,5 +104,5 @@ func decrease_health() -> void:
 			print(lives)
 		if lives == 0:
 			print("rip player")
-			var player = $LevelRoot/Player
+			var player = $level_root/Player
 			player.die()
