@@ -111,6 +111,7 @@ animations = [{
 radius = 14.035668
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dgdk7"]
+radius = 8.0
 
 [node name="Shadow-bee" type="CharacterBody2D" unique_id=1661676737]
 script = ExtResource("1_0pr0v")
@@ -120,7 +121,7 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_1l4js")
 animation = &"idle-bee"
 autoplay = "idle-bee"
-frame_progress = 0.19742891
+frame_progress = 0.56385577
 
 [node name="Area2D" type="Area2D" parent="." unique_id=701403309]
 
@@ -133,6 +134,11 @@ autostart = true
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=407196720]
 shape = SubResource("CircleShape2D_dgdk7")
 
+[node name="change_timer" type="Timer" parent="." unique_id=765177162]
+wait_time = 0.5
+autostart = true
+
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]
+[connection signal="timeout" from="change_timer" to="." method="_on_change_timer_timeout"]

@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var trigger: CollisionShape2D = $Area2D/Trigger
 @onready var collider: CollisionShape2D = $Collider
 @onready var player: CharacterBody2D = $"../Player"
+@onready var change_timer: Timer = $change_timer
 
 
 @export var speed: float = 100.0
@@ -11,6 +12,9 @@ var is_shadow_chase: bool = true
 var dead = false
 var taking_damage = false
 var dealing_damage = false
+
+
+var random_offset: Vector2 = Vector2.ZERO
 
 const gravity = 2500
 var knockback_force = 200
@@ -33,16 +37,22 @@ func _process(delta):
 	move_and_slide()
 	
 	
+func _on_change_timer_timeout() -> void:
+	_random_dir()
+	
 func move(delta):
 	if !dead:
 		if !is_shadow_chase:
 			velocity += dir * speed * delta
 		elif is_shadow_chase and !taking_damage:
-			var dir_to_player = position.direction_to(player.position) * speed 
-			velocity.x = dir_to_player.x
-			dir.x = abs(velocity.x) / velocity.x
-			velocity.y = dir_to_player.y
-			dir.y = abs(velocity.y) / velocity.y 
+			var perfect_dir_to_player = position.direction_to(player.position) 
+			var dir_to_player = (perfect_dir_to_player + random_offset).normalized()
+			velocity.x = dir_to_player.x * speed
+			velocity.y = dir_to_player.y * speed
+			dir.x = sign(velocity.x)
+			dir.y = sign(velocity.y)
+			if dir.x != 0:
+				animated_sprite_2d.flip_h = (dir.x < 0)
 			
 		is_roaming = true
 	elif dead:
@@ -86,8 +96,12 @@ func _on_direction_timer_timeout() -> void:
 		velocity.x = 0 
 		
 
-func _add_random_dir():
-	var random = choose([1.0,2.0,3.0])
+func _random_dir():
+	var random_x = randf_range(-1.5, 1.5)
+	var random_y = randf_range(-1.5, 1.5)
+	
+	random_offset = Vector2(random_x, random_y)
+
 	
 
 func choose(array):
