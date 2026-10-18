@@ -22,6 +22,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	#maintain steady speed ig
 	position.x += direction * SPEED * delta
+	hide_snail()
 
 func _on_timer_timeout() -> void:
 		#if its going left, turn it right or vice versa
@@ -56,4 +57,8 @@ func _enabled_collision() -> void:
 	collision_shape_2d.disabled = false
 	collision_shape_2d_2.disabled = false
 
-		
+#hiding snail for playtesting. if i dont do this, player keeps getting hit by invis snails...
+func hide_snail():
+	var x = 1
+	if x == 1:
+		queue_free()

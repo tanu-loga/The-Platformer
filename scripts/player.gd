@@ -23,6 +23,8 @@ const JUMP_VELOCITY_X = -1000
 var alive = true
 var can_move = true
 
+func _ready():
+	Global.player = self
 
 func _physics_process(delta: float) -> void:
 	

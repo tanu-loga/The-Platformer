@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var player: CharacterBody2D = $Player
+
 @onready var score_label: Label = $HUD/ScorePanel/ScoreLabel
 @export var hearts : Array[Node] = []
 
@@ -104,5 +104,5 @@ func decrease_health() -> void:
 			print(lives)
 		if lives == 0:
 			print("rip player")
-			var player = $level_root/Player
-			player.die()
+			#var player = $level_root/Player
+			Global.player.die()
