@@ -1,10 +1,11 @@
 extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var trigger: CollisionShape2D = $Area2D/Trigger
+@onready var collider: CollisionShape2D = $Collider
 @onready var player: CharacterBody2D = $"../Player"
 
 
-const speed = 100
+@export var speed: float = 100.0
 var dir: Vector2
 var is_shadow_chase: bool = true
 var dead = false
@@ -37,7 +38,7 @@ func move(delta):
 		if !is_shadow_chase:
 			velocity += dir * speed * delta
 		elif is_shadow_chase and !taking_damage:
-			var dir_to_player = position.direction_to(player.position) * speed
+			var dir_to_player = position.direction_to(player.position) * speed 
 			velocity.x = dir_to_player.x
 			dir.x = abs(velocity.x) / velocity.x
 			velocity.y = dir_to_player.y
@@ -72,7 +73,7 @@ func print_x():
 
 #hide shadow bee for playtesting cuz it interupted my playtest ALOT
 func hide_bee():
-	var x = 1
+	var x = 0
 	if x == 1:
 		queue_free()
 	
@@ -85,11 +86,25 @@ func _on_direction_timer_timeout() -> void:
 		velocity.x = 0 
 		
 
+func _add_random_dir():
+	var random = choose([1.0,2.0,3.0])
+	
+
 func choose(array):
 	array.shuffle()
 	return array.front()
 
+func _on_visibility_changed() -> void:
+	pass # Replace with function body.
 
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.name == "Player" and body.alive:
+		var y_delta = position.y - body.position.y
+		print(y_delta)
+		print(dir.x)
+		if (y_delta > 39):
+			print("aaa")
 
 
 
@@ -118,7 +133,3 @@ var abcdefg = """func _on_body_entered(body: Node2D) -> void:
 			
 func _disabled_collision() -> void:
 	collision_shape_2d.disabled = true """
-
-
-func _on_visibility_changed() -> void:
-	pass # Replace with function body.
