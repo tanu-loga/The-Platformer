@@ -7,8 +7,12 @@ var level: int = 1
 var score: int = 0
 var lives: int = 3
 
+var current_level_root: Node = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
+	current_level_root = get_node("LevelRoot")
 	_setup_level()
 	
 	var container = $HUD/Hearts/HBoxContainer
@@ -20,10 +24,18 @@ func _ready() -> void:
 		print("Error: Could not find HBoxContainer!")
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+# -----------------
+# Level management
+# -----------------
+
+func _load_level(level_number: int) -> void:
+	if current_level_root:
+		current_level_root.queue_free()
+		
+	#change level
+	var level_path = "res://scenes/levels/level%s.tscn" % level_number
 	
+
 #if i have many snails in a level, how do i link each of them into the main scene from the snail scene? 
 # well, i create a new function for this
 # '-> void' is for making sure it doesnt return anything
