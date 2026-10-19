@@ -195,5 +195,14 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_tbgi4")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_tefeu")
 text = "Go to main menu"
 
+[node name="Fade" type="ColorRect" parent="HUD" unique_id=104757583]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(5.4147094e-08, 0.14592406, 0.17484528, 1)
+
 [connection signal="pressed" from="HUD/Pause/Pause panel/VBoxContainer/Resume" to="HUD/Pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="HUD/Pause/Pause panel/VBoxContainer/Menu" to="HUD/Pause" method="_on_menu_pressed"]
