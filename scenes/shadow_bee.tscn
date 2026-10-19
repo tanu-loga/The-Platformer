@@ -121,7 +121,7 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_1l4js")
 animation = &"idle-bee"
 autoplay = "idle-bee"
-frame_progress = 0.56385577
+frame_progress = 0.37505293
 
 [node name="Area2D" type="Area2D" parent="." unique_id=701403309]
 
