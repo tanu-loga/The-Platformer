@@ -115,8 +115,6 @@ func _on_visibility_changed() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "Player" and body.alive:
 		var y_delta = position.y - body.position.y
-		print(y_delta)
-		print(dir.x)
 		if (y_delta > 39):
 			print("aaa")
 
