@@ -4,9 +4,10 @@ extends Node2D
 @onready var score_label: Label = $HUD/ScorePanel/ScoreLabel
 @export var hearts : Array[Node] = []
 
+var max_lives: int = 3
 var level: int = 1
 var score: int = 0
-var lives: int = 3
+var lives = max_lives
 
 var current_level_root: Node = null
 
@@ -15,14 +16,7 @@ func _ready() -> void:
 	fade.modulate.a = 1.0
 	current_level_root = get_node("LevelRoot")
 	await _load_level(level, true, false)
-	
-	var container = $HUD/Hearts/HBoxContainer
-	
-	if container:
-		for child in container.get_children():
-			hearts.append(child)
-	else:
-		print("Error: Could not find HBoxContainer!")
+	initialise_hearts()
 
 
 # -----------------
@@ -57,6 +51,7 @@ func _setup_level(level_root: Node) -> void:
 	var player = level_root.get_node_or_null("Player")
 	if player:
 		player.player_died_spikes.connect(decrease_health)
+		player.died.connect(decrease_health)
 	#connect exit
 	var exit = level_root.get_node_or_null("Exit")
 	if exit:
@@ -87,8 +82,8 @@ func _on_exit_body_entered(body: Node2D) -> void:
 		await _load_level(level, false, false)
 
 func _on_player_died(body):
-	body.die()
-	await _load_level(level, false, true)
+	decrease_health()
+
 
 # ------------------------ 
 # score
@@ -108,13 +103,16 @@ func decrease_health() -> void:
 	if hearts.size() > 0:
 		var heart_to_remove = hearts.pop_back()
 		if is_instance_valid(heart_to_remove):
-			heart_to_remove.queue_free()
+			if "heart" in heart_to_remove.name.to_lower() or heart_to_remove is TextureRect:
+				heart_to_remove.hide() 
 			lives -= 1
 			print(lives)
-		if lives == 0:
-			print("rip player")
-			#var player = $level_root/Player
-			Global.player.die()
+	if lives == 0:
+		print("rip player")
+		#var player = $level_root/Player
+		Global.player.die()
+		await Global.player.died
+		await _load_level(level, false, true)
 
 # ---------------
 # fade
@@ -124,3 +122,13 @@ func _fade(to_alpha: float) -> void:
 	var tween := create_tween()
 	tween.tween_property(fade, "modulate:a", to_alpha, 1.5)
 	await tween.finished
+
+func initialise_hearts():
+	lives = max_lives
+	hearts.clear()
+	var container = $HUD/Hearts/HBoxContainer
+	if is_instance_valid(container):
+		for heart in container.get_children():
+			if "heart" in heart.name.to_lower():
+				heart.show() 
+				hearts.append(heart)

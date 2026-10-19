@@ -14,7 +14,7 @@ extends CharacterBody2D
 #if u read this, say 'Waow, thanos (pun on my name)' in a way i can see it 
 #so that i know i can hereby comment for secret stuff on my code
 
-
+signal died
 signal player_died_spikes
 
 const SPEED = 300.0
@@ -73,7 +73,7 @@ func _physics_process(delta: float) -> void:
 		if collision.get_collider().name == "TileMapSpikes":
 			if alive == true and immune_timer.is_stopped():
 				immune_timer.start()
-				print("player rip")
+				print("is getting hit")
 				player_died_spikes.emit()
 				jump()
 
@@ -82,6 +82,8 @@ func die() -> void:
 	can_move = false
 	death_sound.play()
 	animated_sprite_2d.play("dying")
+	await animated_sprite_2d.animation_finished
+	emit_signal("died")
 	
 func jump():
 	velocity.y = JUMP_VELOCITY
