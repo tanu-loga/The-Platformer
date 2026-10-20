@@ -3,10 +3,17 @@
 [ext_resource type="Texture2D" uid="uid://clyfc0i6676op" path="res://assets/images/player/Idle_Animation.png" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://cww2wknbbk4qk" path="res://assets/images/player/hit.png" id="1_dqkch"]
 [ext_resource type="Script" uid="uid://c1i5g8rugpvns" path="res://scripts/player.gd" id="1_qlg0r"]
+[ext_resource type="Shader" uid="uid://ceqor368mneb5" path="res://shader/player.gdshader" id="2_smehm"]
 [ext_resource type="Texture2D" uid="uid://b6g8fwabeldni" path="res://assets/images/player/Jump.png" id="3_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://bashg6ykybanl" path="res://assets/images/player/running animation.png" id="4_tuyoq"]
 [ext_resource type="AudioStream" uid="uid://b6s7kv2kbkoly" path="res://assets/sounds/jump.wav" id="6_tuyoq"]
 [ext_resource type="AudioStream" uid="uid://dwr2i1q2r1q5j" path="res://assets/sounds/death.wav" id="7_fjrip"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1l4js"]
+shader = ExtResource("2_smehm")
+shader_parameter/original_color = Color(0.8352941, 0.9843137, 0.8392157, 1)
+shader_parameter/replace_color = Color(0.93497336, 0.8267682, 0.8712605, 1)
+shader_parameter/tolerance = 0.05
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ur7pv"]
 atlas = ExtResource("1_dqkch")
@@ -196,6 +203,7 @@ script = ExtResource("1_qlg0r")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=978233093]
 texture_filter = 1
+material = SubResource("ShaderMaterial_1l4js")
 sprite_frames = SubResource("SpriteFrames_1l4js")
 animation = &"running"
 autoplay = "idle"
