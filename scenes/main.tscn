@@ -210,59 +210,104 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(5.4147094e-08, 0.14592406, 0.17484528, 1)
 
-[node name="Node2D" type="Node2D" parent="." unique_id=1804894395]
+[node name="Parallax" type="Node2D" parent="." unique_id=1804894395]
 z_index = -4000
 position = Vector2(640, 360)
 
-[node name="Parallax2D" type="Parallax2D" parent="Node2D" unique_id=456122140]
+[node name="Parallax2D" type="Parallax2D" parent="Parallax" unique_id=456122140]
 texture_filter = 1
+scale = Vector2(1.2, 1.2)
 scroll_scale = Vector2(0.2, 0.2)
 ignore_camera_scroll = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Node2D/Parallax2D" unique_id=1098436357]
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Parallax2D" unique_id=1098436357]
 scale = Vector2(9.840625, 9.070834)
 texture = ExtResource("6_ya4ey")
 
-[node name="Parallax2D2" type="Parallax2D" parent="Node2D" unique_id=447655235]
+[node name="Parallax2D2" type="Parallax2D" parent="Parallax" unique_id=447655235]
 texture_filter = 1
 scroll_scale = Vector2(0.3, 0.3)
 
-[node name="Sprite2D" type="Sprite2D" parent="Node2D/Parallax2D2" unique_id=899349830]
-scale = Vector2(14.562499, 4)
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Parallax2D2" unique_id=899349830]
+position = Vector2(-1243, -614)
+scale = Vector2(19.742188, 4.6458335)
 texture = ExtResource("7_eb6dy")
+centered = false
 
-[node name="Parallax2D5" type="Parallax2D" parent="Node2D" unique_id=1362656674]
+[node name="Parallax2D5" type="Parallax2D" parent="Parallax" unique_id=1362656674]
 texture_filter = 1
 scroll_scale = Vector2(0.4, 0.4)
 
-[node name="Sprite2D" type="Sprite2D" parent="Node2D/Parallax2D5" unique_id=151295138]
-scale = Vector2(12.979167, 4.233333)
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Parallax2D5" unique_id=151295138]
+position = Vector2(-1233, -539)
+scale = Vector2(17.243053, 4.233333)
 texture = ExtResource("8_trceg")
+centered = false
 
-[node name="Parallax2D3" type="Parallax2D" parent="Node2D" unique_id=1301068034]
+[node name="Parallax2D3" type="Parallax2D" parent="Parallax" unique_id=1301068034]
 texture_filter = 1
 scroll_scale = Vector2(0.5, 0.5)
 
-[node name="Sprite2D" type="Sprite2D" parent="Node2D/Parallax2D3" unique_id=2064028751]
-scale = Vector2(11.800001, 4)
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Parallax2D3" unique_id=2064028751]
+position = Vector2(-1188, -387)
+scale = Vector2(14.281251, 4)
 texture = ExtResource("9_a8y0u")
+centered = false
 
-[node name="Parallax2D4" type="Parallax2D" parent="Node2D" unique_id=1528367591]
+[node name="Parallax2D4" type="Parallax2D" parent="Parallax" unique_id=1528367591]
 texture_filter = 1
-scroll_scale = Vector2(0.6, 0.6)
+scale = Vector2(1.3, 1.3)
+scroll_scale = Vector2(0.7, 0.7)
 
-[node name="Sprite2D" type="Sprite2D" parent="Node2D/Parallax2D4" unique_id=827830501]
-scale = Vector2(5.9093747, 3.55)
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Parallax2D4" unique_id=827830501]
+position = Vector2(-960, -283.07693)
+scale = Vector2(6.218751, 4.227564)
 texture = ExtResource("10_jkv2x")
+centered = false
 
-[node name="Parallax2D6" type="Parallax2D" parent="Node2D" unique_id=377882989]
+[node name="Parallax2D6" type="Parallax2D" parent="Parallax" unique_id=377882989]
 texture_filter = 1
-scroll_scale = Vector2(0.6, 0.6)
+scroll_scale = Vector2(0.8, 0.8)
 scroll_offset = Vector2(-531, 17)
 
-[node name="Sprite2D" type="Sprite2D" parent="Node2D/Parallax2D6" unique_id=268509243]
-scale = Vector2(8.195833, 3.9750004)
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Parallax2D6" unique_id=268509243]
+position = Vector2(-723, -235)
+scale = Vector2(10.762499, 5.125)
 texture = ExtResource("11_jbj1t")
+centered = false
+
+[node name="Parallax2D7" type="Parallax2D" parent="Parallax" unique_id=235976952]
+texture_filter = 1
+scroll_scale = Vector2(0.99, 0.99)
+scroll_offset = Vector2(-531, 17)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Parallax2D7" unique_id=1375507621]
+position = Vector2(-737, 24.999992)
+scale = Vector2(10.966667, 4.154166)
+texture = ExtResource("11_jbj1t")
+centered = false
+flip_h = true
+
+[node name="Parallax2D8" type="Parallax2D" parent="Parallax" unique_id=866988767]
+texture_filter = 1
+scroll_offset = Vector2(-531, 17)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Parallax2D8" unique_id=513813443]
+position = Vector2(190.99998, 245)
+scale = Vector2(8.058333, 4.154166)
+texture = ExtResource("11_jbj1t")
+centered = false
+
+[node name="Parallax2D9" type="Parallax2D" parent="Parallax" unique_id=551862147]
+texture_filter = 1
+scroll_scale = Vector2(1.1, 1.1)
+scroll_offset = Vector2(-531, 17)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Parallax2D9" unique_id=1598170762]
+position = Vector2(-793.99994, 271)
+scale = Vector2(10.4875, 4.154166)
+texture = ExtResource("11_jbj1t")
+centered = false
 
 [connection signal="pressed" from="HUD/Pause/Pause panel/VBoxContainer/Resume" to="HUD/Pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="HUD/Pause/Pause panel/VBoxContainer/Menu" to="HUD/Pause" method="_on_menu_pressed"]
