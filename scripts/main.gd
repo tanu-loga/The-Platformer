@@ -10,6 +10,7 @@ var score: int = 0
 var lives = max_lives
 
 var current_level_root: Node = null
+var testing = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -39,7 +40,13 @@ func _load_level(level_number: int, first_load: bool, reset_score: bool, reset_l
 		
 	#change level
 	var level_path = "res://scenes/levels/level%s.tscn" % level_number
-	current_level_root = load(level_path).instantiate()
+	#current_level_root = load(level_path).instantiate()
+	#basically test if it returns null, if so, go back to level one. else, load the next level. this helps for unfinished levels and just a general safegaurd
+	testing = load(level_path)
+	if testing == null:
+		current_level_root = load("res://scenes/levels/level1.tscn").instantiate()
+	else:
+		current_level_root = load(level_path).instantiate()
 	add_child(current_level_root)
 	current_level_root.name = "LevelRoot"
 	_setup_level(current_level_root)
