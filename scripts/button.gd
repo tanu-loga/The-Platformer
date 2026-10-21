@@ -29,10 +29,9 @@ func _disabled_collision_button() -> void:
 
 func _on_animated_sprite_2d_animation_looped() -> void:
 	if animated_sprite_2d.animation == "hit":
-		animated_sprite_2d.pause()
 		print("fooled!")
 		
 func hide_chest():
-	var x = 1
+	var x = 0
 	if x == 1:
 		queue_free()
