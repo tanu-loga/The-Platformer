@@ -412,6 +412,7 @@ offset_right = 3979.0
 offset_bottom = 2892.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Hearts" type="Panel" parent="." unique_id=536230351]

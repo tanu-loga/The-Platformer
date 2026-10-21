@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://duil0qgwy46wk" path="res://assets/images/Background/parallax/far-mountains.png" id="9_a8y0u"]
 [ext_resource type="Texture2D" uid="uid://d12co2owxaj63" path="res://assets/images/Background/parallax/mountains.png" id="10_jkv2x"]
 [ext_resource type="Texture2D" uid="uid://cey0mmhvb3xh8" path="res://assets/images/Background/parallax/trees.png" id="11_jbj1t"]
+[ext_resource type="PackedScene" uid="uid://y388rkmvtwwm" path="res://scenes/button.tscn" id="12_eb6dy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1l4js"]
 bg_color = Color(0.45144242, 0.6006919, 0.6906805, 1)
@@ -62,6 +63,9 @@ corner_radius_bottom_left = 6
 [node name="Main" type="Node2D" unique_id=871928944 node_paths=PackedStringArray("hearts")]
 script = ExtResource("1_0wfyh")
 hearts = [NodePath("HUD/Hearts/HBoxContainer/Heart"), NodePath("HUD/Hearts/HBoxContainer/Heart2"), NodePath("HUD/Hearts/HBoxContainer/Heart3")]
+
+[node name="button" parent="." unique_id=1741355629 instance=ExtResource("12_eb6dy")]
+position = Vector2(179, 521)
 
 [node name="LevelRoot" parent="." unique_id=596945868 instance=ExtResource("1_o5qli")]
 
@@ -208,6 +212,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(5.4147094e-08, 0.14592406, 0.17484528, 1)
 
 [node name="Parallax" type="Node2D" parent="." unique_id=1804894395]
@@ -226,7 +231,7 @@ texture = ExtResource("6_ya4ey")
 
 [node name="Parallax2D2" type="Parallax2D" parent="Parallax" unique_id=447655235]
 texture_filter = 1
-scroll_scale = Vector2(0.3, 0.3)
+scroll_scale = Vector2(0.2, 0.2)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax/Parallax2D2" unique_id=899349830]
 position = Vector2(-1243, -614)
