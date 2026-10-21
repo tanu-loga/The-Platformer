@@ -34,7 +34,7 @@ func _load_level(level_number: int, first_load: bool, reset_score: bool, reset_l
 	if reset_score:
 		score = 0
 		score_label.text = "SCORE: 0"
-	
+
 	if current_level_root:
 		current_level_root.queue_free()
 		
@@ -56,6 +56,10 @@ func _load_level(level_number: int, first_load: bool, reset_score: bool, reset_l
 # well, i create a new function for this
 # '-> void' is for making sure it doesnt return anything
 func _setup_level(level_root: Node) -> void:
+	
+	var area_button = level_root.get_node_or_null("button")
+	if area_button:
+		area_button.player_died_button.connect(decrease_health)
 	
 	var player = level_root.get_node_or_null("Player")
 	if player:

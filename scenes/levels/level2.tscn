@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dxjf8xrimi3pp" path="res://assets/images/health/heart.png" id="8_sqrei"]
 [ext_resource type="Script" uid="uid://cwr5jcdorxqeu" path="res://scripts/pause.gd" id="9_yhrca"]
 [ext_resource type="FontFile" uid="uid://c0l0neflvct4d" path="res://assets/fonts/Square-Black.ttf" id="10_4eecq"]
+[ext_resource type="PackedScene" uid="uid://y388rkmvtwwm" path="res://scenes/button.tscn" id="11_gycjm"]
 [ext_resource type="PackedScene" uid="uid://co67o1nxiyayo" path="res://scenes/shadow_bee.tscn" id="12_hgky1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ypoqj"]
@@ -533,6 +534,9 @@ text = "Go to main menu"
 [node name="Shadow-bee" parent="." unique_id=1661676737 instance=ExtResource("12_hgky1")]
 position = Vector2(219, 375)
 scale = Vector2(3, 3)
+
+[node name="button" parent="." unique_id=1741355629 instance=ExtResource("11_gycjm")]
+position = Vector2(240, 566)
 
 [connection signal="body_entered" from="fall_area_" to="fall_area_" method="_on_body_entered"]
 [connection signal="pressed" from="DISPLAY/Pause/Pause panel/VBoxContainer/Resume" to="DISPLAY/Pause" method="_on_resume_pressed"]
