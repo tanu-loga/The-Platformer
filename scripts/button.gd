@@ -13,6 +13,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	hide_chest()
 	if collision_shape_2d.disabled == false:
 		animated_sprite_2d.show()
 	
@@ -28,4 +29,10 @@ func _disabled_collision_button() -> void:
 
 func _on_animated_sprite_2d_animation_looped() -> void:
 	if animated_sprite_2d.animation == "hit":
-		animated_sprite_2d.hide()
+		animated_sprite_2d.pause()
+		print("fooled!")
+		
+func hide_chest():
+	var x = 1
+	if x == 1:
+		queue_free()

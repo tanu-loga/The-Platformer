@@ -1,30 +1,51 @@
 [gd_scene format=3 uid="uid://y388rkmvtwwm"]
 
 [ext_resource type="Script" uid="uid://ddlhmoqw7e0ad" path="res://scripts/button.gd" id="1_rhj8v"]
-[ext_resource type="Texture2D" uid="uid://diov8c0jd4thl" path="res://assets/images/Circle/circle_hit.png" id="2_3q610"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rhj8v"]
-atlas = ExtResource("2_3q610")
-region = Rect2(0, 0, 100, 100)
+[ext_resource type="Texture2D" uid="uid://backhmrbwc3ji" path="res://assets/images/Circle/Chests.png" id="2_rhj8v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3q610"]
-atlas = ExtResource("2_3q610")
-region = Rect2(100, 0, 100, 100)
+atlas = ExtResource("2_rhj8v")
+region = Rect2(0, 128, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i7y4x"]
-atlas = ExtResource("2_3q610")
-region = Rect2(200, 0, 100, 100)
+atlas = ExtResource("2_rhj8v")
+region = Rect2(48, 128, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1bdt2"]
-atlas = ExtResource("2_3q610")
-region = Rect2(300, 0, 100, 100)
+atlas = ExtResource("2_rhj8v")
+region = Rect2(96, 128, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8m7bo"]
+atlas = ExtResource("2_rhj8v")
+region = Rect2(144, 128, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t81cg"]
+atlas = ExtResource("2_rhj8v")
+region = Rect2(192, 128, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_is61r"]
+atlas = ExtResource("2_rhj8v")
+region = Rect2(0, 160, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iw4ej"]
+atlas = ExtResource("2_rhj8v")
+region = Rect2(48, 160, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkx8l"]
+atlas = ExtResource("2_rhj8v")
+region = Rect2(96, 160, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8r4pl"]
+atlas = ExtResource("2_rhj8v")
+region = Rect2(144, 160, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0xya"]
+atlas = ExtResource("2_rhj8v")
+region = Rect2(192, 160, 48, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1l4js"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rhj8v")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3q610")
 }, {
@@ -33,25 +54,49 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1bdt2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8m7bo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t81cg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_is61r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iw4ej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkx8l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8r4pl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0xya")
 }],
 "loop": 1,
 "name": &"hit",
-"speed": 5.0
+"speed": 15.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1l4js"]
-radius = 24.020824
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8i1lk"]
+size = Vector2(26, 20)
 
 [node name="button" type="StaticBody2D" unique_id=1741355629]
+scale = Vector2(3, 3)
 input_pickable = true
 script = ExtResource("1_rhj8v")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1590991131]
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_1l4js")
 animation = &"hit"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1216076157]
-shape = SubResource("CircleShape2D_1l4js")
+position = Vector2(-8, 6)
+shape = SubResource("RectangleShape2D_8i1lk")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
