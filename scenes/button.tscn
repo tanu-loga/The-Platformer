@@ -76,7 +76,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_s0xya")
 }],
-"loop": 2,
+"loop": 0,
 "name": &"hit",
 "speed": 15.0
 }]
@@ -93,6 +93,8 @@ script = ExtResource("1_rhj8v")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_1l4js")
 animation = &"hit"
+frame = 9
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1216076157]
 position = Vector2(-8, 6)

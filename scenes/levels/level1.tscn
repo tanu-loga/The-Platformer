@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://78n0bjpr5hte" path="res://scripts/fall_area.gd" id="7_2r1tl"]
 [ext_resource type="Texture2D" uid="uid://dxjf8xrimi3pp" path="res://assets/images/health/heart.png" id="8_8a7m2"]
 [ext_resource type="Script" uid="uid://cwr5jcdorxqeu" path="res://scripts/pause.gd" id="9_5ntmo"]
+[ext_resource type="Script" uid="uid://b051doa3v21pv" path="res://scripts/hearts/heart.gd" id="9_lgguw"]
+[ext_resource type="Texture2D" uid="uid://cfk7loi3n3pt7" path="res://assets/images/health/heart-gone.png" id="10_jprdt"]
 [ext_resource type="FontFile" uid="uid://c0l0neflvct4d" path="res://assets/fonts/Square-Black.ttf" id="10_nkeig"]
 [ext_resource type="PackedScene" uid="uid://co67o1nxiyayo" path="res://scenes/shadow_bee.tscn" id="11_nkeig"]
 [ext_resource type="PackedScene" uid="uid://y388rkmvtwwm" path="res://scenes/button.tscn" id="12_nfihu"]
@@ -309,6 +311,35 @@ size = Vector2(49, 96)
 normal = Vector2(0.0065701604, -0.9999784)
 distance = -759.00336
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xax6"]
+atlas = ExtResource("10_jprdt")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7tkf"]
+atlas = ExtResource("10_jprdt")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fww7"]
+atlas = ExtResource("10_jprdt")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lgguw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1xax6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7tkf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4fww7")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 1.0
+}]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nfihu"]
 bg_color = Color(0.21823528, 0.6003449, 0.461464, 0.7607843)
 
@@ -373,7 +404,7 @@ position = Vector2(110, 472)
 position = Vector2(638, 650)
 
 [node name="Snail2" parent="Enemies" unique_id=402783668 instance=ExtResource("4_bfxgj")]
-position = Vector2(1161, 650)
+position = Vector2(1044, 648)
 
 [node name="Apples" type="Node2D" parent="." unique_id=372043145]
 
@@ -426,7 +457,6 @@ color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
 [node name="Hearts" type="Panel" parent="." unique_id=536230351]
-visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -454,8 +484,12 @@ alignment = 1
 [node name="Heart" type="TextureRect" parent="Hearts/HBoxContainer" unique_id=2040647346]
 texture_filter = 1
 layout_mode = 2
-texture = ExtResource("8_8a7m2")
+texture = SubResource("AtlasTexture_1xax6")
 expand_mode = 2
+script = ExtResource("9_lgguw")
+sprites = SubResource("SpriteFrames_lgguw")
+auto_play = true
+playing = true
 
 [node name="Heart2" type="TextureRect" parent="Hearts/HBoxContainer" unique_id=1247393029]
 texture_filter = 1
@@ -545,7 +579,7 @@ position = Vector2(219, 375)
 scale = Vector2(3, 3)
 
 [node name="button" parent="." unique_id=1741355629 instance=ExtResource("12_nfihu")]
-position = Vector2(954, 626)
+position = Vector2(1238, 627)
 
 [connection signal="body_entered" from="fall_area_" to="fall_area_" method="_on_body_entered"]
 [connection signal="pressed" from="DISPLAY/Pause/Pause panel/VBoxContainer/Resume" to="DISPLAY/Pause" method="_on_resume_pressed"]

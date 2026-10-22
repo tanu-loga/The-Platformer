@@ -8,6 +8,7 @@ signal player_died_button
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	animated_sprite_2d.frame = 0
 	animated_sprite_2d.show()
 
 
@@ -29,7 +30,9 @@ func _disabled_collision_button() -> void:
 
 func _on_animated_sprite_2d_animation_looped() -> void:
 	if animated_sprite_2d.animation == "hit":
-		print("fooled!")
+		#note to myself - click arrow symbol near frame rate to enable looping or disable it
+		print("fooled")
+		#queue_free()
 		
 func hide_chest():
 	var x = 0

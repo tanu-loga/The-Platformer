@@ -536,6 +536,7 @@ position = Vector2(219, 375)
 scale = Vector2(3, 3)
 
 [node name="button" parent="." unique_id=1741355629 instance=ExtResource("11_gycjm")]
+visible = false
 position = Vector2(240, 566)
 
 [connection signal="body_entered" from="fall_area_" to="fall_area_" method="_on_body_entered"]
