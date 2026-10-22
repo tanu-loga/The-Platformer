@@ -1,12 +1,26 @@
 @tool
 
 class_name AnimatedTextureRect extends TextureRect
-@export var sprites : SpriteFrames
-@export var current_animation = "default"
-@export var frame_index:= 0
+
+@export var sprites : SpriteFrames:
+	set(value):
+		sprites = value
+		update_editor_preview()
+@export var current_animation: String = "default":
+	set(value):
+		current_animation = value
+		update_editor_preview()
+@export var frame_index:= 0:
+	set(value):
+		frame_index = value
+		update_editor_preview()
 @export_range(0.0, INF, 0.001) var speed_scale := 1.0
 @export var auto_play := false
-@export var playing := false
+@export var playing := false:
+	set(value):
+		playing = value
+		if playing:
+			frame_delta = 0.0
 
 var refresh_rate = 1.0
 var fps = 30.0
@@ -30,7 +44,6 @@ func _process(delta: float) -> void:
 	get_animation_data(current_animation)
 	frame_delta += (speed_scale * delta)
 	if frame_delta >= refresh_rate/(fps if fps > 0 else 1.0):
-		#frame_delta -= frame_time
 		texture = get_next_frame()
 
 
@@ -63,7 +76,7 @@ func update_editor_preview():
 		get_animation_data(current_animation)
 		texture = sprites.get_frame_texture(current_animation, frame_index)
 		queue_redraw()
-		
+
 func resume():
 	playing = true
 
