@@ -1,22 +1,31 @@
 @tool
-
 class_name AnimatedTextureRect extends TextureRect
 
 @export var sprites : SpriteFrames:
 	set(value):
-		sprites = value
-		update_editor_preview()
-@export var current_animation: String = "default":
+		if sprites != value:
+			sprites = value
+			update_editor_preview()
+
+@export var current_animation: String = "normal": 
 	set(value):
-		current_animation = value
-		update_editor_preview()
-@export var frame_index:= 0:
+		if current_animation != value:
+			current_animation = value
+			if sprites and sprites.has_animation(current_animation):
+				_frame_index = 0
+			update_editor_preview()
+
+var _frame_index:= 0
+@export var frame_index: int:
+	get: return _frame_index
 	set(value):
-		frame_index = value
-		update_editor_preview()
+		if _frame_index != value:
+			_frame_index = value
+			update_editor_preview()
+
 @export_range(0.0, INF, 0.001) var speed_scale := 1.0
-@export var auto_play := false
-@export var playing := false:
+@export var auto_play := true 
+@export var playing := true:  
 	set(value):
 		playing = value
 		if playing:
@@ -24,58 +33,86 @@ class_name AnimatedTextureRect extends TextureRect
 
 var refresh_rate = 1.0
 var fps = 30.0
-var frame_delta = 0
+var frame_delta = 0.0
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	fps = sprites.get_animation_speed(current_animation)
-	refresh_rate = sprites.get_frame_duration(current_animation, frame_index)
-	if auto_play:
-		play()
+	if sprites and sprites.has_animation(current_animation):
+		get_animation_data(current_animation)
+		
+	update_editor_preview()
+	
+	if not Engine.is_editor_hint():
+
+		var decrease = get_tree().root.find_child("Main", true, false)
+		
+		if decrease:
+			decrease.heart_decrease.connect(woosh)
+		else:
+			push_error("cant find main")
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if sprites == null or playing == false:
 		return
-	if sprites.has_animation(current_animation) == false:
+		
+	if not sprites.has_animation(current_animation):
 		playing = false
-		assert(false,"Animation %s, Doesn't Exist" %current_animation)
+		return 
+		
 	get_animation_data(current_animation)
 	frame_delta += (speed_scale * delta)
-	if frame_delta >= refresh_rate/(fps if fps > 0 else 1.0):
-		texture = get_next_frame()
+	
+	var frame_time = refresh_rate / (fps if fps > 0.0 else 1.0)
+	if frame_delta >= frame_time:
+		frame_delta -= frame_time 
+		advance_frame()
 
-
-func play(animation_name :String= current_animation):
-	frame_index = 0
+func play(animation_name : String = current_animation):
+	_frame_index = 0
 	frame_delta = 0.0
 	current_animation = animation_name
-	get_animation_data(current_animation)
-	playing = true
+	if sprites and sprites.has_animation(current_animation):
+		get_animation_data(current_animation)
+		playing = true
 
-func get_animation_data(animation):
-	fps = sprites.get_animation_speed(current_animation)
-	refresh_rate = sprites.get_frame_duration(current_animation, frame_index)
+func get_animation_data(animation: String):
+	if sprites and sprites.has_animation(animation):
+		fps = sprites.get_animation_speed(animation)
+		var frame_count = sprites.get_frame_count(animation)
+		var safe_frame = clampi(_frame_index, 0, max(0, frame_count - 1))
+		if frame_count > 0:
+			refresh_rate = sprites.get_frame_duration(animation, safe_frame)
 
-func get_next_frame():
-	frame_index += 1
+func advance_frame():
+	if not sprites or not sprites.has_animation(current_animation):
+		return
+		
 	var frame_count = sprites.get_frame_count(current_animation)
-	if frame_index >= frame_count:
-		frame_index = 0
-		if not sprites.get_animation_loop(current_animation):
+	if frame_count <= 0:
+		return
+		
+	_frame_index += 1
+	if _frame_index >= frame_count:
+		if sprites.get_animation_loop(current_animation):
+			_frame_index = 0
+		else:
+			_frame_index = frame_count - 1
 			playing = false
+			
 	get_animation_data(current_animation)
-	return sprites.get_frame_texture(current_animation, frame_index)
+	texture = sprites.get_frame_texture(current_animation, _frame_index)
 
 func update_editor_preview():
 	if sprites and sprites.has_animation(current_animation):
 		var frame_count = sprites.get_frame_count(current_animation)
-		if frame_index >= frame_count:
-			frame_index = 0
-		get_animation_data(current_animation)
-		texture = sprites.get_frame_texture(current_animation, frame_index)
-		queue_redraw()
+		if frame_count > 0:
+			if _frame_index >= frame_count or _frame_index < 0:
+				_frame_index = 0
+			get_animation_data(current_animation)
+			texture = sprites.get_frame_texture(current_animation, _frame_index)
+			queue_redraw()
+	else:
+		texture = null
 
 func resume():
 	playing = true
@@ -84,5 +121,12 @@ func pause():
 	playing = false
 
 func stop():
-	frame_index = 0
+	_frame_index = 0
 	playing = false
+	update_editor_preview()
+
+func woosh():
+	play("default")
+	
+
+	

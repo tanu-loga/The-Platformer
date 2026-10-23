@@ -5,6 +5,8 @@
 [ext_resource type="FontFile" uid="uid://c0l0neflvct4d" path="res://assets/fonts/Square-Black.ttf" id="3_sugp2"]
 [ext_resource type="Texture2D" uid="uid://dxjf8xrimi3pp" path="res://assets/images/health/heart.png" id="4_jyhfs"]
 [ext_resource type="Script" uid="uid://cwr5jcdorxqeu" path="res://scripts/pause.gd" id="5_tbgi4"]
+[ext_resource type="Script" uid="uid://b051doa3v21pv" path="res://scripts/hearts/heart.gd" id="5_trceg"]
+[ext_resource type="Texture2D" uid="uid://cfk7loi3n3pt7" path="res://assets/images/health/heart-gone.png" id="6_a8y0u"]
 [ext_resource type="Texture2D" uid="uid://djl27pv5311o4" path="res://assets/images/Background/parallax/sky.png" id="6_ya4ey"]
 [ext_resource type="Texture2D" uid="uid://1ei6esqpuhbi" path="res://assets/images/Background/parallax/far-clouds.png" id="7_eb6dy"]
 [ext_resource type="Texture2D" uid="uid://fulqiidxrb4i" path="res://assets/images/Background/parallax/near-clouds.png" id="8_trceg"]
@@ -24,6 +26,47 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 shadow_size = 5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trceg"]
+atlas = ExtResource("4_jyhfs")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkv2x"]
+atlas = ExtResource("6_a8y0u")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbj1t"]
+atlas = ExtResource("6_a8y0u")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_muem4"]
+atlas = ExtResource("6_a8y0u")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1l4js"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkv2x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbj1t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_muem4")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trceg")
+}],
+"loop": 1,
+"name": &"normal",
+"speed": 5.0
+}]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_552ro"]
 bg_color = Color(0.21823528, 0.6003449, 0.461464, 0.7607843)
@@ -117,8 +160,11 @@ alignment = 1
 [node name="Heart" type="TextureRect" parent="HUD/Hearts/HBoxContainer" unique_id=1768746707]
 texture_filter = 1
 layout_mode = 2
-texture = ExtResource("4_jyhfs")
+texture = SubResource("AtlasTexture_trceg")
 expand_mode = 2
+script = ExtResource("5_trceg")
+sprites = SubResource("SpriteFrames_1l4js")
+playing = false
 
 [node name="Heart2" type="TextureRect" parent="HUD/Hearts/HBoxContainer" unique_id=184053957]
 texture_filter = 1
@@ -210,6 +256,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(5.4147094e-08, 0.14592406, 0.17484528, 1)
+metadata/_edit_lock_ = true
 
 [node name="Parallax" type="Node2D" parent="." unique_id=1804894395]
 z_index = -4000
@@ -224,6 +271,7 @@ ignore_camera_scroll = true
 [node name="Sprite2D" type="Sprite2D" parent="Parallax/Parallax2D" unique_id=1098436357]
 scale = Vector2(9.840625, 9.070834)
 texture = ExtResource("6_ya4ey")
+metadata/_edit_lock_ = true
 
 [node name="Parallax2D2" type="Parallax2D" parent="Parallax" unique_id=447655235]
 texture_filter = 1

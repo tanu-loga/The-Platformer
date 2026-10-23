@@ -12,6 +12,8 @@ var lives = max_lives
 var current_level_root: Node = null
 var testing = null
 
+signal heart_decrease
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	fade.modulate.a = 1.0
@@ -117,6 +119,7 @@ func decrease_health() -> void:
 		var heart_to_remove = hearts.pop_back()
 		if is_instance_valid(heart_to_remove):
 			if "heart" in heart_to_remove.name.to_lower() or heart_to_remove is TextureRect:
+				heart_decrease.emit()
 				heart_to_remove.hide() 
 			lives -= 1
 			print(lives)

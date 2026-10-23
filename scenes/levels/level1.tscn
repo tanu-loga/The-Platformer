@@ -7,10 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://df8twg4y0j13n" path="res://scenes/apple.tscn" id="5_dywbp"]
 [ext_resource type="Texture2D" uid="uid://dlmpt3na3wkxd" path="res://assets/images/Tilemap/Checkpoint (Flag Idle)(64x64).png" id="6_1seuy"]
 [ext_resource type="Script" uid="uid://78n0bjpr5hte" path="res://scripts/fall_area.gd" id="7_2r1tl"]
-[ext_resource type="Texture2D" uid="uid://dxjf8xrimi3pp" path="res://assets/images/health/heart.png" id="8_8a7m2"]
 [ext_resource type="Script" uid="uid://cwr5jcdorxqeu" path="res://scripts/pause.gd" id="9_5ntmo"]
-[ext_resource type="Script" uid="uid://b051doa3v21pv" path="res://scripts/hearts/heart.gd" id="9_lgguw"]
-[ext_resource type="Texture2D" uid="uid://cfk7loi3n3pt7" path="res://assets/images/health/heart-gone.png" id="10_jprdt"]
 [ext_resource type="FontFile" uid="uid://c0l0neflvct4d" path="res://assets/fonts/Square-Black.ttf" id="10_nkeig"]
 [ext_resource type="PackedScene" uid="uid://co67o1nxiyayo" path="res://scenes/shadow_bee.tscn" id="11_nkeig"]
 [ext_resource type="PackedScene" uid="uid://y388rkmvtwwm" path="res://scenes/button.tscn" id="12_nfihu"]
@@ -311,132 +308,6 @@ size = Vector2(49, 96)
 normal = Vector2(0.0065701604, -0.9999784)
 distance = -759.00336
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1xax6"]
-atlas = ExtResource("10_jprdt")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g7tkf"]
-atlas = ExtResource("10_jprdt")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4fww7"]
-atlas = ExtResource("10_jprdt")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_lgguw"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1xax6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_g7tkf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4fww7")
-}],
-"loop": 1,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="GDScript" id="GDScript_jprdt"]
-script/source = "@tool
-#class_name AnimatedTextureRect 
-extends TextureRect
-
-@export var sprites : SpriteFrames:
-	set(value):
-		sprites = value
-		update_editor_preview()
-
-@export var current_animation: String = \"default\":
-	set(value):
-		current_animation = value
-		update_editor_preview()
-
-@export var frame_index := 0:
-	set(value):
-		frame_index = value
-		update_editor_preview()
-
-@export_range(0.0, INF, 0.001) var speed_scale := 1.0
-
-@export var auto_play := false
-@export var playing := false:
-	set(value):
-		playing = value
-		if playing:
-			frame_delta = 0.0
-
-var refresh_rate = 1.0
-var fps = 30.0
-var frame_delta = 0.0
-
-func _ready() -> void:
-
-	if sprites == null:
-		return
-		
-	if sprites.has_animation(current_animation):
-		fps = sprites.get_animation_speed(current_animation)
-		refresh_rate = sprites.get_frame_duration(current_animation, frame_index)
-
-	if auto_play and not Engine.is_editor_hint():
-		play()
-
-func _process(delta: float) -> void:
-	if sprites == null or not playing:
-		return
-		
-	if not sprites.has_animation(current_animation):
-		playing = false
-
-		push_error(\"Animation %s, Doesn't Exist\" % current_animation)
-		return
-		
-	get_animation_data(current_animation)
-	frame_delta += (speed_scale * delta)
-	
-
-	var frame_time = refresh_rate / (fps if fps > 0 else 1.0)
-	
-	if frame_delta >= frame_time:
-		frame_delta -= frame_time 
-		texture = get_next_frame()
-
-func play(animation_name: String = current_animation):
-	frame_index = 0
-	frame_delta = 0.0
-	current_animation = animation_name
-	get_animation_data(current_animation)
-	playing = true
-
-func get_animation_data(animation):
-	if sprites and sprites.has_animation(animation):
-		fps = sprites.get_animation_speed(animation)
-		refresh_rate = sprites.get_frame_duration(animation, frame_index)
-
-func get_next_frame():
-	frame_index += 1
-	var frame_count = sprites.get_frame_count(current_animation)
-	if frame_index >= frame_count:
-		frame_index = 0
-		if not sprites.get_animation_loop(current_animation):
-			playing = false
-	get_animation_data(current_animation)
-	return sprites.get_frame_texture(current_animation, frame_index)
-
-func update_editor_preview():
-	if sprites and sprites.has_animation(current_animation):
-		var frame_count = sprites.get_frame_count(current_animation)
-		if frame_index >= frame_count:
-			frame_index = 0
-		get_animation_data(current_animation)
-		texture = sprites.get_frame_texture(current_animation, frame_index)
-		queue_redraw()
-"
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nfihu"]
 bg_color = Color(0.21823528, 0.6003449, 0.461464, 0.7607843)
 
@@ -552,54 +423,6 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
-
-[node name="Hearts" type="Panel" parent="." unique_id=536230351]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_top = 10.0
-offset_right = 140.0
-offset_bottom = 60.0
-grow_horizontal = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Hearts" unique_id=769639131]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -72.0
-offset_top = -19.0
-offset_right = 68.0
-offset_bottom = 21.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="Heart" type="TextureRect" parent="Hearts/HBoxContainer" unique_id=2040647346]
-texture_filter = 1
-layout_mode = 2
-texture = SubResource("AtlasTexture_1xax6")
-expand_mode = 2
-script = ExtResource("9_lgguw")
-sprites = SubResource("SpriteFrames_lgguw")
-auto_play = true
-playing = true
-
-[node name="Heart2" type="TextureRect" parent="Hearts/HBoxContainer" unique_id=1247393029]
-texture_filter = 1
-layout_mode = 2
-texture = ExtResource("8_8a7m2")
-expand_mode = 2
-script = SubResource("GDScript_jprdt")
-
-[node name="Heart3" type="TextureRect" parent="Hearts/HBoxContainer" unique_id=1489887730]
-texture_filter = 1
-layout_mode = 2
-texture = ExtResource("8_8a7m2")
-expand_mode = 2
 
 [node name="DISPLAY" type="CanvasLayer" parent="." unique_id=1708392258]
 
