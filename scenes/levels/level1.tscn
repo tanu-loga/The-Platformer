@@ -390,14 +390,14 @@ position = Vector2(1129, 199.00002)
 
 [node name="Flag" type="AnimatedSprite2D" parent="." unique_id=1453416526]
 texture_filter = 1
-position = Vector2(1239, 177)
+position = Vector2(1261, 179)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_1l4js")
 autoplay = "default"
 frame_progress = 0.57213545
 
 [node name="Exit" type="Area2D" parent="." unique_id=815970274]
-position = Vector2(1291, 165)
+position = Vector2(1286, 166)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Exit" unique_id=1552780852]

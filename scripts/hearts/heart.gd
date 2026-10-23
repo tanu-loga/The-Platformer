@@ -126,7 +126,7 @@ func stop():
 	update_editor_preview()
 
 func woosh():
-	play("default")
+	play("hit")
 	
 
 	
