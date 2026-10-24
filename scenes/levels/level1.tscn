@@ -214,14 +214,14 @@ texture = ExtResource("1_4tcl0")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ypoqj")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lgguw"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nkeig"]
 texture = ExtResource("2_nfihu")
 0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4.856186, 0.5395775, -0.71943474, 5.935339, 3.7770329, 0.71943474, 6.4749146, 8, -6.4749146, 8)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4.6763268, 1.0791531, -0.5395756, 8, 3.5971737, 1.0791531, 8, 8, -8, 8)
 
-[sub_resource type="TileSet" id="TileSet_jprdt"]
+[sub_resource type="TileSet" id="TileSet_rx0xw"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_lgguw")
+sources/0 = SubResource("TileSetAtlasSource_nkeig")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2r1tl"]
 atlas = ExtResource("6_1seuy")
@@ -356,12 +356,11 @@ scale = Vector2(3, 3)
 tile_map_data = PackedByteArray("AAAUAAYAAAAHAAQAAgAVAAYAAAAHAAQAAgAWAAYAAAAIAAQAAgATAAYAAAAGAAQAAgA=")
 tile_set = SubResource("TileSet_1l4js")
 
-[node name="TileMapSpikes" type="TileMap" parent="." unique_id=780076802]
+[node name="TileMapSpikes" type="TileMapLayer" parent="." unique_id=720821474]
 texture_filter = 1
 scale = Vector2(3, 3)
-tile_set = SubResource("TileSet_jprdt")
-format = 2
-layer_0/tile_data = PackedInt32Array(655367, 0, 0, 655368, 0, 0, 655366, 0, 0)
+tile_map_data = PackedByteArray("AAAFAAoAAAAAAAAAAAAGAAoAAAAAAAAAAAAHAAoAAAAAAAAAAAAJAAoAAAAAAAAAAAAIAAoAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_rx0xw")
 
 [node name="Player" parent="." unique_id=666496315 instance=ExtResource("2_dd0lh")]
 position = Vector2(110, 472)

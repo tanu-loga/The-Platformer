@@ -17,7 +17,7 @@ var current_level_root: Node = null
 var testing = null
 
 signal heart_decrease
-signal die_animation
+#signal die_animation
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -120,23 +120,28 @@ func increase_score() -> void:
 # ------------------------ 
 
 func decrease_health() -> void:
+	if hit:
+		return
 	if hearts.size() > 0:
 		var heart_to_remove = hearts.pop_back()
 		if is_instance_valid(heart_to_remove):
 			if "heart" in heart_to_remove.name.to_lower() or heart_to_remove is TextureRect:
 				heart_to_remove.play("hit")
-				die_animation.emit()
+				#die_animation.emit()
 				await get_tree().create_timer(0.3).timeout
 				heart_to_remove.hide() 
 				heart_to_remove.play("normal")
 			lives -= 1
 			print(lives)
 	if lives == 0:
+		hit = true
 		print("rip player")
 		#var player = $level_root/Player
 		Global.player.die()
 		#await Global.player.died
 		await _load_level(level, false, true, true)
+		initialise_hearts()
+		hit = false
 
 # ---------------
 # fade
@@ -146,6 +151,7 @@ func _fade(to_alpha: float) -> void:
 	var tween := create_tween()
 	tween.tween_property(fade, "modulate:a", to_alpha, 1.5)
 	await tween.finished
+	
 
 func initialise_hearts():
 	lives = max_lives
