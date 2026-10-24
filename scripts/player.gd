@@ -22,7 +22,7 @@ const JUMP_VELOCITY = -850.0
 const JUMP_VELOCITY_X = -1000
 var alive = true
 var can_move = true
-
+var invincible = false
 func _ready():
 	Global.player = self
 	#var main_guy = get_node_or_null("/root/Main")
@@ -78,7 +78,9 @@ func _physics_process(delta: float) -> void:
 		#if player touches anythin drawn in tilemapspikes-
 		if collision.get_collider().name == "TileMapSpikes":
 			if alive == true and immune_timer.is_stopped():
+				invincible = true
 				immune_timer.start()
+				invincible = false
 				print("is getting hit")
 				player_died_spikes.emit()
 				#animated_sprite_2d.play("dying")

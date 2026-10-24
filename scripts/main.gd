@@ -37,7 +37,7 @@ func _load_level(level_number: int, first_load: bool, reset_score: bool, reset_l
 		await _fade(1.0)
 	if reset_life:
 		lives = 3
-		initialise_hearts()
+		#initialise_hearts()
 	if reset_score:
 		score = 0
 		score_label.text = "SCORE: 0"
@@ -122,6 +122,9 @@ func increase_score() -> void:
 func decrease_health() -> void:
 	if hit:
 		return
+	if is_instance_valid(Global.player):
+		if Global.player.invincible:
+			return
 	if hearts.size() > 0:
 		var heart_to_remove = hearts.pop_back()
 		if is_instance_valid(heart_to_remove):
@@ -140,6 +143,7 @@ func decrease_health() -> void:
 		Global.player.die()
 		#await Global.player.died
 		await _load_level(level, false, true, true)
+		await get_tree().process_frame
 		initialise_hearts()
 		hit = false
 
@@ -154,11 +158,20 @@ func _fade(to_alpha: float) -> void:
 	
 
 func initialise_hearts():
-	lives = max_lives
+	#lives = max_lives
+	#print(lives)
 	hearts.clear()
 	var container = $HUD/Hearts/HBoxContainer
 	if is_instance_valid(container):
+		var count_hearts = 0
 		for heart in container.get_children():
 			if "heart" in heart.name.to_lower():
-				heart.show() 
-				hearts.append(heart)
+				if count_hearts < 3:
+					heart.show() 
+					hearts.append(heart)
+					count_hearts += 1
+				else:
+					heart.free()
+	lives = max_lives
+	max_lives = 3
+	print(lives)
