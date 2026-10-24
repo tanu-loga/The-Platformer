@@ -120,7 +120,7 @@ func decrease_health() -> void:
 		if is_instance_valid(heart_to_remove):
 			if "heart" in heart_to_remove.name.to_lower() or heart_to_remove is TextureRect:
 				heart_to_remove.play("hit")
-				await get_tree().create_timer(0.5).timeout
+				#await get_tree().create_timer(0.5).timeout
 				heart_to_remove.hide() 
 				heart_to_remove.play("normal")
 			lives -= 1

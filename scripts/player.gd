@@ -76,6 +76,9 @@ func _physics_process(delta: float) -> void:
 				print("is getting hit")
 				player_died_spikes.emit()
 				jump()
+				animated_sprite_2d.play("dying")
+				await animated_sprite_2d.animation_finished
+				print("abcd")
 
 func die() -> void:
 	alive = false 

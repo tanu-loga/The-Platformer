@@ -27,6 +27,10 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 shadow_size = 5
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_trceg"]
+atlas = ExtResource("4_jyhfs")
+region = Rect2(0, 0, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_jkv2x"]
 atlas = ExtResource("6_a8y0u")
 region = Rect2(0, 0, 16, 16)
@@ -38,10 +42,6 @@ region = Rect2(16, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_muem4"]
 atlas = ExtResource("6_a8y0u")
 region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_trceg"]
-atlas = ExtResource("4_jyhfs")
-region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1l4js"]
 animations = [{
@@ -68,6 +68,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqmmt"]
+atlas = ExtResource("4_jyhfs")
+region = Rect2(0, 0, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_a8y0u"]
 atlas = ExtResource("6_a8y0u")
 region = Rect2(0, 0, 16, 16)
@@ -79,10 +83,6 @@ region = Rect2(16, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ld40"]
 atlas = ExtResource("6_a8y0u")
 region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gqmmt"]
-atlas = ExtResource("4_jyhfs")
-region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_trceg"]
 animations = [{
@@ -109,6 +109,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6deb"]
+atlas = ExtResource("4_jyhfs")
+region = Rect2(0, 0, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_yc10j"]
 atlas = ExtResource("6_a8y0u")
 region = Rect2(0, 0, 16, 16)
@@ -120,10 +124,6 @@ region = Rect2(16, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_pm3ni"]
 atlas = ExtResource("6_a8y0u")
 region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y6deb"]
-atlas = ExtResource("4_jyhfs")
-region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_a8y0u"]
 animations = [{
@@ -242,7 +242,7 @@ alignment = 1
 [node name="Heart" type="TextureRect" parent="HUD/Hearts/HBoxContainer" unique_id=1768746707]
 texture_filter = 1
 layout_mode = 2
-texture = ExtResource("4_jyhfs")
+texture = SubResource("AtlasTexture_trceg")
 expand_mode = 2
 script = ExtResource("5_trceg")
 sprites = SubResource("SpriteFrames_1l4js")
@@ -251,7 +251,7 @@ playing = false
 [node name="Heart2" type="TextureRect" parent="HUD/Hearts/HBoxContainer" unique_id=184053957]
 texture_filter = 1
 layout_mode = 2
-texture = ExtResource("4_jyhfs")
+texture = SubResource("AtlasTexture_gqmmt")
 expand_mode = 2
 script = ExtResource("5_trceg")
 sprites = SubResource("SpriteFrames_trceg")
@@ -259,7 +259,7 @@ sprites = SubResource("SpriteFrames_trceg")
 [node name="Heart3" type="TextureRect" parent="HUD/Hearts/HBoxContainer" unique_id=959782799]
 texture_filter = 1
 layout_mode = 2
-texture = ExtResource("4_jyhfs")
+texture = SubResource("AtlasTexture_y6deb")
 expand_mode = 2
 script = ExtResource("5_trceg")
 sprites = SubResource("SpriteFrames_a8y0u")
