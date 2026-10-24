@@ -184,6 +184,11 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
+[sub_resource type="LabelSettings" id="LabelSettings_1l4js"]
+font = ExtResource("3_sugp2")
+font_size = 50
+font_color = Color(1.5161187e-06, 0.35676274, 0.34053567, 1)
+
 [node name="Main" type="Node2D" unique_id=871928944 node_paths=PackedStringArray("hearts")]
 script = ExtResource("1_0wfyh")
 hearts = [NodePath("HUD/Hearts/HBoxContainer/Heart"), NodePath("HUD/Hearts/HBoxContainer/Heart2"), NodePath("HUD/Hearts/HBoxContainer/Heart3")]
@@ -343,6 +348,30 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(5.4147094e-08, 0.14592406, 0.17484528, 1)
 metadata/_edit_lock_ = true
+
+[node name="LoadingScreen" type="ColorRect" parent="HUD" unique_id=612740174]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.99999946, 0.8717093, 0.3915085, 1)
+
+[node name="Label" type="Label" parent="HUD/LoadingScreen" unique_id=1379525633]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.5
+offset_top = -25.5
+offset_right = 82.5
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "LOADING"
+label_settings = SubResource("LabelSettings_1l4js")
 
 [node name="Parallax" type="Node2D" parent="." unique_id=1804894395]
 z_index = -4000

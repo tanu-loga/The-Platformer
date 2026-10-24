@@ -14,6 +14,8 @@ shader = ExtResource("2_smehm")
 shader_parameter/original_color = Color(0.8352941, 0.9843137, 0.8392157, 1)
 shader_parameter/replace_color = Color(0.88113296, 0.89574534, 0.64217156, 1)
 shader_parameter/tolerance = 0.05
+shader_parameter/flash_modifier = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ur7pv"]
 atlas = ExtResource("1_dqkch")

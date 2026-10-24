@@ -31,6 +31,11 @@ func _ready():
 		#main_guy.die_animation.connect(hit_animation)
 	#else:
 		#print("main not found")
+	var main = get_node_or_null("/root/Main")
+	if main:
+		main.player_declare_global.connect(declare_global)
+	else:
+		print("main not found")
 
 func _physics_process(delta: float) -> void:
 	
@@ -102,6 +107,10 @@ func jump_x():
 	velocity.x = JUMP_VELOCITY_X
 	velocity.y = JUMP_VELOCITY
 	print("jumped")
+
+func declare_global():
+	Global.player = self
+
 
 var abcddd = """func hit_animation():
 	#turn flash on

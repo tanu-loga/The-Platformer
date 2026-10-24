@@ -5,6 +5,7 @@ extends Node2D
 @export var hearts : Array[Node] = []
 @onready var animated_sprite_2d: AnimatedSprite2D = $LevelRoot/Player/AnimatedSprite2D 
 @onready var player_animated: CharacterBody2D = $LevelRoot/Player
+@onready var loading_screen: ColorRect = $HUD/LoadingScreen
 
 
 var max_lives: int = 3
@@ -16,11 +17,13 @@ var hit: bool = false
 var current_level_root: Node = null
 var testing = null
 
+signal player_declare_global
 signal heart_decrease
 #signal die_animation
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	loading_screen.modulate.a = 0.0
 	fade.modulate.a = 1.0
 	current_level_root = get_node("LevelRoot")
 	await _load_level(level, true, false, true, true)
@@ -122,11 +125,14 @@ func increase_score() -> void:
 # ------------------------ 
 
 func decrease_health() -> void:
+	if lives <= 0:
+		return
 	if hit:
 		return
 	if is_instance_valid(Global.player):
 		if Global.player.invincible:
 			return
+	hit = true
 	if hearts.size() > 0:
 		var heart_to_remove = hearts.pop_back()
 		if is_instance_valid(heart_to_remove):
@@ -136,17 +142,33 @@ func decrease_health() -> void:
 				await get_tree().create_timer(0.3).timeout
 				heart_to_remove.hide() 
 				heart_to_remove.play("normal")
+				hit = false
 			lives -= 1
 			print(lives)
+			if lives > 0:
+				hit = false
 	if lives == 0:
-		hit = true
+		#Global.player.set_deferred("invincible", false)
+		#hit = true
 		print("rip player")
 		#var player = $level_root/Player
-		Global.player.die()
+		if is_instance_valid(Global.player):
+			Global.player.set_deferred("invincible", false)
+			Global.player.die()
+			Global.player = null
+			
 		#await Global.player.died
+		#initialise_hearts()
+		if has_node("HUD/LoadingScreen"):
+			$HUD/LoadingScreen.modulate.a = 1.0
 		await _load_level(level, false, true, true, false)
-		await get_tree().process_frame
+		player_declare_global.emit()
+		#await get_tree().process_frame
 		initialise_hearts()
+		if has_node("HUD/LoadingScreen"):
+			$HUD/LoadingScreen.modulate.a = 0.0
+		else:
+			hit = false
 		hit = false
 
 # ---------------
@@ -161,8 +183,11 @@ func _fade(to_alpha: float) -> void:
 
 func initialise_hearts():
 	#lives = max_lives
-	#print(lives)
 	hearts.clear()
+	max_lives = 3
+	lives = max_lives
+	print("this is the lives")
+	print(lives)
 	var container = $HUD/Hearts/HBoxContainer
 	if is_instance_valid(container):
 		var count_hearts = 0
@@ -173,7 +198,4 @@ func initialise_hearts():
 					hearts.append(heart)
 					count_hearts += 1
 				else:
-					heart.free()
-	lives = max_lives
-	max_lives = 3
-	print(lives)
+					heart.queue_free()
