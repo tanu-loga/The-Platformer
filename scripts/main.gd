@@ -19,7 +19,7 @@ var testing = null
 
 signal player_declare_global
 signal heart_decrease
-#signal die_animation
+signal die_animation
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -138,7 +138,7 @@ func decrease_health() -> void:
 		if is_instance_valid(heart_to_remove):
 			if "heart" in heart_to_remove.name.to_lower() or heart_to_remove is TextureRect:
 				heart_to_remove.play("hit")
-				#die_animation.emit()
+				die_animation.emit()
 				await get_tree().create_timer(0.3).timeout
 				heart_to_remove.hide() 
 				heart_to_remove.play("normal")
@@ -152,24 +152,29 @@ func decrease_health() -> void:
 		#hit = true
 		print("rip player")
 		#var player = $level_root/Player
-		if is_instance_valid(Global.player):
-			Global.player.set_deferred("invincible", false)
-			Global.player.die()
-			Global.player = null
+		#if is_instance_valid(Global.player):
+			#Global.player.set_deferred("invincible", false)
+			#Global.player.die()
+			#Global.player = null
 			
 		#await Global.player.died
 		#initialise_hearts()
-		if has_node("HUD/LoadingScreen"):
-			$HUD/LoadingScreen.modulate.a = 1.0
-		await _load_level(level, false, true, true, false)
-		player_declare_global.emit()
+		#if has_node("HUD/LoadingScreen"):
+			#$HUD/LoadingScreen.modulate.a = 1.0
+		#await _load_level(level, false, true, true, false)
+		#player_declare_global.emit()
 		#await get_tree().process_frame
 		initialise_hearts()
-		if has_node("HUD/LoadingScreen"):
-			$HUD/LoadingScreen.modulate.a = 0.0
-		else:
-			hit = false
-		hit = false
+		call_deferred("reload_scene")
+		#if has_node("HUD/LoadingScreen"):
+			#$HUD/LoadingScreen.modulate.a = 0.0
+		#else:
+			#hit = false
+		#hit = false
+
+
+func reload_scene():
+	get_tree().reload_current_scene()
 
 # ---------------
 # fade
