@@ -3,16 +3,21 @@ extends Node2D
 @onready var fade: ColorRect = $HUD/Fade
 @onready var score_label: Label = $HUD/ScorePanel/ScoreLabel
 @export var hearts : Array[Node] = []
+@onready var animated_sprite_2d: AnimatedSprite2D = $LevelRoot/Player/AnimatedSprite2D 
+@onready var player_animated: CharacterBody2D = $LevelRoot/Player
+
 
 var max_lives: int = 3
 var level: int = 1
 var score: int = 0
 var lives = max_lives
+var hit: bool = false 
 
 var current_level_root: Node = null
 var testing = null
 
 signal heart_decrease
+signal die_animation
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -120,7 +125,8 @@ func decrease_health() -> void:
 		if is_instance_valid(heart_to_remove):
 			if "heart" in heart_to_remove.name.to_lower() or heart_to_remove is TextureRect:
 				heart_to_remove.play("hit")
-				#await get_tree().create_timer(0.5).timeout
+				die_animation.emit()
+				await get_tree().create_timer(0.3).timeout
 				heart_to_remove.hide() 
 				heart_to_remove.play("normal")
 			lives -= 1

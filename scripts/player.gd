@@ -25,6 +25,12 @@ var can_move = true
 
 func _ready():
 	Global.player = self
+	var main_guy = get_node_or_null("/root/Main")
+
+	if main_guy:
+		main_guy.die_animation.connect(hit_animation)
+	else:
+		print("main not found")
 
 func _physics_process(delta: float) -> void:
 	
@@ -75,10 +81,9 @@ func _physics_process(delta: float) -> void:
 				immune_timer.start()
 				print("is getting hit")
 				player_died_spikes.emit()
+				#animated_sprite_2d.play("dying")
+				hit_animation()
 				jump()
-				animated_sprite_2d.play("dying")
-				await animated_sprite_2d.animation_finished
-				print("abcd")
 
 func die() -> void:
 	alive = false 
@@ -95,3 +100,12 @@ func jump_x():
 	velocity.x = JUMP_VELOCITY_X
 	velocity.y = JUMP_VELOCITY
 	print("jumped")
+
+func hit_animation():
+	#turn flash on
+	animated_sprite_2d.material.set_shader_parameter("flash_modifier", 1.0)
+	
+	await get_tree().create_timer(0.15).timeout
+	
+	#turn it off
+	animated_sprite_2d.material.set_shader_parameter("flash_modifier", 0.0)

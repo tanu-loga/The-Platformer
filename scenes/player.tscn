@@ -127,7 +127,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_oprun")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"dying",
 "speed": 5.0
 }, {
@@ -205,9 +205,8 @@ script = ExtResource("1_qlg0r")
 texture_filter = 1
 material = SubResource("ShaderMaterial_1l4js")
 sprite_frames = SubResource("SpriteFrames_1l4js")
-animation = &"running"
+animation = &"dying"
 autoplay = "idle"
-frame_progress = 0.86601925
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1091745054]
 position = Vector2(-1.499999, 0)
