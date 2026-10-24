@@ -23,7 +23,7 @@ signal heart_decrease
 func _ready() -> void:
 	fade.modulate.a = 1.0
 	current_level_root = get_node("LevelRoot")
-	await _load_level(level, true, false, true)
+	await _load_level(level, true, false, true, true)
 	#initialise_hearts()
 
 
@@ -31,13 +31,15 @@ func _ready() -> void:
 # Level management
 # -----------------
 
-func _load_level(level_number: int, first_load: bool, reset_score: bool, reset_life: bool) -> void:
+func _load_level(level_number: int, first_load: bool, reset_score: bool, reset_life: bool, initialise: bool) -> void:
 	#fade out, but dont do so in the first level
 	if not first_load:
 		await _fade(1.0)
 	if reset_life:
 		lives = 3
 		#initialise_hearts()
+	if initialise:
+		initialise_hearts()
 	if reset_score:
 		score = 0
 		score_label.text = "SCORE: 0"
@@ -99,7 +101,7 @@ func _on_exit_body_entered(body: Node2D) -> void:
 		level += 1
 		print(level)
 		body.can_move = false
-		await _load_level(level, false, false, false)
+		await _load_level(level, false, false, false, false)
 
 func _on_player_died(body):
 	decrease_health()
@@ -142,7 +144,7 @@ func decrease_health() -> void:
 		#var player = $level_root/Player
 		Global.player.die()
 		#await Global.player.died
-		await _load_level(level, false, true, true)
+		await _load_level(level, false, true, true, false)
 		await get_tree().process_frame
 		initialise_hearts()
 		hit = false
