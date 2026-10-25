@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ddlhmoqw7e0ad" path="res://scripts/button.gd" id="1_rhj8v"]
 [ext_resource type="Texture2D" uid="uid://backhmrbwc3ji" path="res://assets/images/Circle/Chests.png" id="2_rhj8v"]
+[ext_resource type="Texture2D" uid="uid://dctypy5cpl25k" path="res://assets/images/vfx/big_hit_6x5.png" id="3_3q610"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3q610"]
 atlas = ExtResource("2_rhj8v")
@@ -84,6 +85,91 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8i1lk"]
 size = Vector2(26, 20)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tupn"]
+atlas = ExtResource("3_3q610")
+region = Rect2(557, 0, 557, 553)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dogef"]
+atlas = ExtResource("3_3q610")
+region = Rect2(1114, 0, 557, 553)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vk00k"]
+atlas = ExtResource("3_3q610")
+region = Rect2(1671, 0, 557, 553)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0m74"]
+atlas = ExtResource("3_3q610")
+region = Rect2(2228, 0, 557, 553)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fuovr"]
+atlas = ExtResource("3_3q610")
+region = Rect2(2785, 0, 557, 553)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hvc6"]
+atlas = ExtResource("3_3q610")
+region = Rect2(0, 553, 557, 553)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exjkt"]
+atlas = ExtResource("3_3q610")
+region = Rect2(557, 553, 557, 553)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64bf4"]
+atlas = ExtResource("3_3q610")
+region = Rect2(1114, 553, 557, 553)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pihgu"]
+atlas = ExtResource("3_3q610")
+region = Rect2(1671, 553, 557, 553)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tefns"]
+atlas = ExtResource("3_3q610")
+region = Rect2(2228, 553, 557, 553)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcgud"]
+atlas = ExtResource("3_3q610")
+region = Rect2(2785, 553, 557, 553)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dgdk7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tupn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dogef")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vk00k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0m74")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fuovr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1hvc6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exjkt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64bf4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pihgu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tefns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcgud")
+}],
+"loop": 0,
+"name": &"pop",
+"speed": 10.0
+}]
+
 [node name="button" type="StaticBody2D" unique_id=1741355629]
 scale = Vector2(3, 3)
 input_pickable = true
@@ -99,6 +185,14 @@ frame_progress = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1216076157]
 position = Vector2(-8, 6)
 shape = SubResource("RectangleShape2D_8i1lk")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=795648177]
+position = Vector2(-8.666667, -1.3333335)
+scale = Vector2(0.13, 0.13)
+sprite_frames = SubResource("SpriteFrames_dgdk7")
+animation = &"pop"
+frame = 10
+frame_progress = 1.0
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

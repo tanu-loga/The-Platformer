@@ -35,7 +35,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player" and body.alive:
 		var y_delta = position.y - body.position.y
 		print(y_delta)
-		if (y_delta > 39):
+		if (y_delta > 38):
 			print("destroy enemy")
 			hit_snail.emit()
 			call_deferred("_disabled_collision")

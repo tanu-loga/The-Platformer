@@ -359,7 +359,7 @@ tile_set = SubResource("TileSet_1l4js")
 [node name="TileMapSpikes" type="TileMapLayer" parent="." unique_id=720821474]
 texture_filter = 1
 scale = Vector2(3, 3)
-tile_map_data = PackedByteArray("AAAFAAoAAAAAAAAAAAAGAAoAAAAAAAAAAAAHAAoAAAAAAAAAAAAJAAoAAAAAAAAAAAAIAAoAAAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAGAAoAAAAAAAAAAAAHAAoAAAAAAAAAAAAIAAoAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_rx0xw")
 
 [node name="Player" parent="." unique_id=666496315 instance=ExtResource("2_dd0lh")]
