@@ -30,7 +30,6 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 		animated_sprite_2d.play("hit")
 		animated_sprite_2d_2.play("pop")
 		call_deferred("_disabled_collision_button")
-		animated_sprite_2d_2.hide()
 
 func _disabled_collision_button() -> void:
 	collision_shape_2d.disabled = true
