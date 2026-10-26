@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cwr5jcdorxqeu" path="res://scripts/pause.gd" id="9_5ntmo"]
 [ext_resource type="FontFile" uid="uid://c0l0neflvct4d" path="res://assets/fonts/Square-Black.ttf" id="10_nkeig"]
 [ext_resource type="PackedScene" uid="uid://co67o1nxiyayo" path="res://scenes/shadow_bee.tscn" id="11_nkeig"]
+[ext_resource type="PackedScene" uid="uid://emqf4e24h48v" path="res://scenes/golem_boss.tscn" id="12_lgguw"]
 [ext_resource type="PackedScene" uid="uid://y388rkmvtwwm" path="res://scenes/button.tscn" id="12_nfihu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ypoqj"]
@@ -500,6 +501,9 @@ scale = Vector2(3, 3)
 
 [node name="button" parent="." unique_id=1741355629 instance=ExtResource("12_nfihu")]
 position = Vector2(1238, 627)
+
+[node name="GolemBoss" parent="." unique_id=1877823637 instance=ExtResource("12_lgguw")]
+position = Vector2(532, 347)
 
 [connection signal="body_entered" from="fall_area_" to="fall_area_" method="_on_body_entered"]
 [connection signal="pressed" from="DISPLAY/Pause/Pause panel/VBoxContainer/Resume" to="DISPLAY/Pause" method="_on_resume_pressed"]
