@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnrww7cqf2gfi"
-path="res://.godot/imported/Mario.png-fa0711de997cf2238b2d25266dc5ac86.ctex"
+uid="uid://bw7jpwrm4xpr8"
+path="res://.godot/imported/luffy.png-05eb14bd513fff71802c7ed0213853f7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/boss/Mario.png"
-dest_files=["res://.godot/imported/Mario.png-fa0711de997cf2238b2d25266dc5ac86.ctex"]
+source_file="res://assets/images/boss/unused/luffy.png"
+dest_files=["res://.godot/imported/luffy.png-05eb14bd513fff71802c7ed0213853f7.ctex"]
 
 [params]
 

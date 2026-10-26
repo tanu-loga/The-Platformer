@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crymw076c31wv"
-path="res://.godot/imported/mario_and_items.png-b41afb5174fe0eb20d4346819f10e874.ctex"
+uid="uid://deh1vhue6ibo6"
+path="res://.godot/imported/LCD Handhelds - Vital Bracelet BE - BEM#0275_ Jujutsu Kaisen - Satoru Gojo (Phase 5).png-64ac458c525b761dff20c6b6b938809c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/boss/mario_and_items.png"
-dest_files=["res://.godot/imported/mario_and_items.png-b41afb5174fe0eb20d4346819f10e874.ctex"]
+source_file="res://assets/images/boss/unused/LCD Handhelds - Vital Bracelet BE - BEM#0275_ Jujutsu Kaisen - Satoru Gojo (Phase 5).png"
+dest_files=["res://.godot/imported/LCD Handhelds - Vital Bracelet BE - BEM#0275_ Jujutsu Kaisen - Satoru Gojo (Phase 5).png-64ac458c525b761dff20c6b6b938809c.ctex"]
 
 [params]
 
