@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://c0l0neflvct4d" path="res://assets/fonts/Square-Black.ttf" id="3_5raa4"]
 [ext_resource type="Script" uid="uid://i4a70nb1kiuf" path="res://scripts/boss/finite_state_machine.gd" id="4_5raa4"]
 [ext_resource type="Script" uid="uid://djo61v0iok2x" path="res://scripts/boss/state.gd" id="5_jidqh"]
+[ext_resource type="Script" uid="uid://fythpom4e45e" path="res://scripts/boss/idle.gd" id="5_jiwok"]
 
 [sub_resource type="Animation" id="Animation_wnd63"]
 length = 0.001
@@ -339,7 +340,7 @@ radius = 15.0
 height = 46.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1l4js"]
-radius = 100.0
+radius = 34.84
 
 [node name="GolemBoss" type="CharacterBody2D" unique_id=1877823637]
 texture_filter = 1
@@ -440,7 +441,7 @@ shape = SubResource("CircleShape2D_1l4js")
 script = ExtResource("4_5raa4")
 
 [node name="Idle" type="Node2D" parent="FiniteStateMachine" unique_id=1716852633]
-script = ExtResource("5_jidqh")
+script = ExtResource("5_jiwok")
 
 [node name="Follow" type="Node2D" parent="FiniteStateMachine" unique_id=2020321958]
 script = ExtResource("5_jidqh")
@@ -459,3 +460,5 @@ script = ExtResource("5_jidqh")
 
 [node name="Death" type="Node2D" parent="FiniteStateMachine" unique_id=1503511175]
 script = ExtResource("5_jidqh")
+
+[connection signal="body_entered" from="PlayerDetection" to="FiniteStateMachine/Idle" method="_on_player_detection_body_entered"]

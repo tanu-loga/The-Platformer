@@ -503,7 +503,8 @@ scale = Vector2(3, 3)
 position = Vector2(1238, 627)
 
 [node name="GolemBoss" parent="." unique_id=1877823637 instance=ExtResource("12_lgguw")]
-position = Vector2(532, 347)
+position = Vector2(556.00006, 326)
+scale = Vector2(3, 3)
 
 [connection signal="body_entered" from="fall_area_" to="fall_area_" method="_on_body_entered"]
 [connection signal="pressed" from="DISPLAY/Pause/Pause panel/VBoxContainer/Resume" to="DISPLAY/Pause" method="_on_resume_pressed"]
