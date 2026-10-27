@@ -7,6 +7,7 @@ func _ready():
 	current_state = get_child(0) as State
 	previous_state = current_state
 	current_state.enter()
+	#print(current_state)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -19,3 +20,4 @@ func change_state(state):
 	
 	previous_state.exit()
 	previous_state = current_state
+	#print(current_state)

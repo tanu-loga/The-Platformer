@@ -3,7 +3,6 @@ extends CharacterBody2D
 @onready var jump_sound: AudioStreamPlayer2D = $JumpSound
 @onready var death_sound: AudioStreamPlayer2D = $DeathSound
 @onready var immune_timer: Timer = $ImmuneTimer
-@onready var main: Node2D = $"../.."
 
 
 

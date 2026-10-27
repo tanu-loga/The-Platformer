@@ -1,4 +1,5 @@
 extends Node
+@onready var main = $"/root/Main"
 
 
 # Called when the node enters the scene tree for the first time.
@@ -12,7 +13,8 @@ func _process(delta: float) -> void:
 
 
 func _on_level_1_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/levels/level1.tscn")
+	main._load_level(1, true, false, true, true)
+	#get_tree().change_scene_to_file("res://scenes/levels/level1.tscn")
 
 
 func _on_level_2_pressed() -> void:
