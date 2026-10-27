@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://b343k1tb53wt6" path="res://scenes/levels/level1.tscn" id="1_o5qli"]
 [ext_resource type="FontFile" uid="uid://c0l0neflvct4d" path="res://assets/fonts/Square-Black.ttf" id="3_sugp2"]
 [ext_resource type="Texture2D" uid="uid://dxjf8xrimi3pp" path="res://assets/images/health/heart.png" id="4_jyhfs"]
-[ext_resource type="Script" uid="uid://cwr5jcdorxqeu" path="res://scripts/pause.gd" id="5_tbgi4"]
 [ext_resource type="Script" uid="uid://b051doa3v21pv" path="res://scripts/hearts/heart.gd" id="5_trceg"]
 [ext_resource type="Texture2D" uid="uid://cfk7loi3n3pt7" path="res://assets/images/health/heart-gone.png" id="6_a8y0u"]
 [ext_resource type="Texture2D" uid="uid://djl27pv5311o4" path="res://assets/images/Background/parallax/sky.png" id="6_ya4ey"]
@@ -150,45 +149,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_552ro"]
-bg_color = Color(0.21823528, 0.6003449, 0.461464, 0.7607843)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eo0xc"]
-bg_color = Color(0.92941177, 0.8235294, 0.29411766, 0.6862745)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-corner_detail = 6
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyhfs"]
-bg_color = Color(1, 0.31575465, 0.32362387, 0.7647059)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbgi4"]
-bg_color = Color(0.96862745, 0.57254905, 0.31764707, 0.78039217)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-shadow_color = Color(1.1070073e-06, 0, 0.5306759, 0.6)
-shadow_size = 1
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tefeu"]
-bg_color = Color(0.76862746, 0.54901963, 0.3137255, 0.5411765)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-
-[sub_resource type="LabelSettings" id="LabelSettings_1l4js"]
-font = ExtResource("3_sugp2")
-font_size = 50
-font_color = Color(1.5161187e-06, 0.35676274, 0.34053567, 1)
-
 [node name="Main" type="Node2D" unique_id=871928944 node_paths=PackedStringArray("hearts")]
 script = ExtResource("1_0wfyh")
 hearts = [NodePath("HUD/Hearts/HBoxContainer/Heart"), NodePath("HUD/Hearts/HBoxContainer/Heart2"), NodePath("HUD/Hearts/HBoxContainer/Heart3")]
@@ -269,75 +229,6 @@ expand_mode = 2
 script = ExtResource("5_trceg")
 sprites = SubResource("SpriteFrames_a8y0u")
 
-[node name="Pause" type="Node" parent="HUD" unique_id=1224612751]
-unique_name_in_owner = true
-script = ExtResource("5_tbgi4")
-
-[node name="Pause panel" type="Panel" parent="HUD/Pause" unique_id=1853625724]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_552ro")
-
-[node name="Label" type="Label" parent="HUD/Pause/Pause panel" unique_id=1403620709]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -135.0
-offset_top = 200.0
-offset_right = 135.0
-offset_bottom = 251.0
-grow_horizontal = 2
-theme_override_fonts/font = ExtResource("3_sugp2")
-theme_override_font_sizes/font_size = 50
-text = "GAME PAUSED
-Come back!"
-horizontal_alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Pause/Pause panel" unique_id=968544144]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.476
-anchor_right = 0.5
-anchor_bottom = 0.476
-offset_left = -163.0
-offset_top = 5.279999
-offset_right = 164.25
-offset_bottom = 159.28
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 10
-
-[node name="Resume" type="Button" parent="HUD/Pause/Pause panel/VBoxContainer" unique_id=886823522]
-process_mode = 3
-layout_mode = 2
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("3_sugp2")
-theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = SubResource("StyleBoxFlat_eo0xc")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jyhfs")
-theme_override_styles/hover = SubResource("StyleBoxFlat_tbgi4")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_tefeu")
-text = "Resume"
-
-[node name="Menu" type="Button" parent="HUD/Pause/Pause panel/VBoxContainer" unique_id=665552305]
-process_mode = 3
-layout_mode = 2
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("3_sugp2")
-theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = SubResource("StyleBoxFlat_eo0xc")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jyhfs")
-theme_override_styles/hover = SubResource("StyleBoxFlat_tbgi4")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_tefeu")
-text = "Go to main menu"
-
 [node name="Fade" type="ColorRect" parent="HUD" unique_id=104757583]
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
@@ -348,32 +239,6 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(5.4147094e-08, 0.14592406, 0.17484528, 1)
 metadata/_edit_lock_ = true
-
-[node name="LoadingScreen" type="ColorRect" parent="HUD" unique_id=612740174]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.99999946, 0.8717093, 0.3915085, 1)
-
-[node name="Label" type="Label" parent="HUD/LoadingScreen" unique_id=1379525633]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -82.5
-offset_top = -25.5
-offset_right = 82.5
-offset_bottom = 25.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "LOADING"
-label_settings = SubResource("LabelSettings_1l4js")
 
 [node name="Parallax" type="Node2D" parent="." unique_id=1804894395]
 z_index = -4000
@@ -474,6 +339,3 @@ position = Vector2(-793.99994, 271)
 scale = Vector2(10.4875, 4.154166)
 texture = ExtResource("11_jbj1t")
 centered = false
-
-[connection signal="pressed" from="HUD/Pause/Pause panel/VBoxContainer/Resume" to="HUD/Pause" method="_on_resume_pressed"]
-[connection signal="pressed" from="HUD/Pause/Pause panel/VBoxContainer/Menu" to="HUD/Pause" method="_on_menu_pressed"]

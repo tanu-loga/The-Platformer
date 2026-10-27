@@ -7,8 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://df8twg4y0j13n" path="res://scenes/apple.tscn" id="5_dywbp"]
 [ext_resource type="Texture2D" uid="uid://dlmpt3na3wkxd" path="res://assets/images/Tilemap/Checkpoint (Flag Idle)(64x64).png" id="6_1seuy"]
 [ext_resource type="Script" uid="uid://78n0bjpr5hte" path="res://scripts/fall_area.gd" id="7_2r1tl"]
-[ext_resource type="Script" uid="uid://cwr5jcdorxqeu" path="res://scripts/pause.gd" id="9_5ntmo"]
-[ext_resource type="FontFile" uid="uid://c0l0neflvct4d" path="res://assets/fonts/Square-Black.ttf" id="10_nkeig"]
 [ext_resource type="PackedScene" uid="uid://co67o1nxiyayo" path="res://scenes/shadow_bee.tscn" id="11_nkeig"]
 [ext_resource type="PackedScene" uid="uid://emqf4e24h48v" path="res://scenes/golem_boss.tscn" id="12_lgguw"]
 [ext_resource type="PackedScene" uid="uid://y388rkmvtwwm" path="res://scenes/button.tscn" id="12_nfihu"]
@@ -309,40 +307,6 @@ size = Vector2(49, 96)
 normal = Vector2(0.0065701604, -0.9999784)
 distance = -759.00336
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nfihu"]
-bg_color = Color(0.21823528, 0.6003449, 0.461464, 0.7607843)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lgguw"]
-bg_color = Color(0.92941177, 0.8235294, 0.29411766, 0.6862745)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-corner_detail = 6
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jprdt"]
-bg_color = Color(1, 0.31575465, 0.32362387, 0.7647059)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ps2vj"]
-bg_color = Color(0.96862745, 0.57254905, 0.31764707, 0.78039217)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-shadow_color = Color(1.1070073e-06, 0, 0.5306759, 0.6)
-shadow_size = 1
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sbmf2"]
-bg_color = Color(0.76862746, 0.54901963, 0.3137255, 0.5411765)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-
 [node name="LevelRoot" type="Node2D" unique_id=596945868]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1476553912]
@@ -426,75 +390,6 @@ metadata/_edit_lock_ = true
 
 [node name="DISPLAY" type="CanvasLayer" parent="." unique_id=1708392258]
 
-[node name="Pause" type="Node" parent="DISPLAY" unique_id=1820811744]
-unique_name_in_owner = true
-script = ExtResource("9_5ntmo")
-
-[node name="Pause panel" type="Panel" parent="DISPLAY/Pause" unique_id=1111311778]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_nfihu")
-
-[node name="Label" type="Label" parent="DISPLAY/Pause/Pause panel" unique_id=1278625912]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -135.0
-offset_top = 200.0
-offset_right = 135.0
-offset_bottom = 251.0
-grow_horizontal = 2
-theme_override_fonts/font = ExtResource("10_nkeig")
-theme_override_font_sizes/font_size = 50
-text = "GAME PAUSED
-Come back!"
-horizontal_alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="DISPLAY/Pause/Pause panel" unique_id=491453249]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.476
-anchor_right = 0.5
-anchor_bottom = 0.476
-offset_left = -163.0
-offset_top = 5.279999
-offset_right = 164.25
-offset_bottom = 159.28
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 10
-
-[node name="Resume" type="Button" parent="DISPLAY/Pause/Pause panel/VBoxContainer" unique_id=1507621268]
-process_mode = 3
-layout_mode = 2
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("10_nkeig")
-theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = SubResource("StyleBoxFlat_lgguw")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jprdt")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ps2vj")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_sbmf2")
-text = "Resume"
-
-[node name="Menu" type="Button" parent="DISPLAY/Pause/Pause panel/VBoxContainer" unique_id=1094998697]
-process_mode = 3
-layout_mode = 2
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("10_nkeig")
-theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = SubResource("StyleBoxFlat_lgguw")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jprdt")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ps2vj")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_sbmf2")
-text = "Go to main menu"
-
 [node name="Shadow-bee" parent="." unique_id=1661676737 instance=ExtResource("11_nkeig")]
 position = Vector2(219, 375)
 scale = Vector2(3, 3)
@@ -507,5 +402,3 @@ position = Vector2(545, 323)
 scale = Vector2(3, 3)
 
 [connection signal="body_entered" from="fall_area_" to="fall_area_" method="_on_body_entered"]
-[connection signal="pressed" from="DISPLAY/Pause/Pause panel/VBoxContainer/Resume" to="DISPLAY/Pause" method="_on_resume_pressed"]
-[connection signal="pressed" from="DISPLAY/Pause/Pause panel/VBoxContainer/Menu" to="DISPLAY/Pause" method="_on_menu_pressed"]

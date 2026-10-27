@@ -5,7 +5,7 @@ extends Node2D
 @export var hearts : Array[Node] = []
 @onready var animated_sprite_2d: AnimatedSprite2D = $LevelRoot/Player/AnimatedSprite2D 
 @onready var player_animated: CharacterBody2D = $LevelRoot/Player
-@onready var loading_screen: ColorRect = $HUD/LoadingScreen
+
 
 
 var max_lives: int = 3
@@ -23,7 +23,7 @@ signal die_animation
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	loading_screen.modulate.a = 0.0
+
 	fade.modulate.a = 1.0
 	current_level_root = get_node("LevelRoot")
 	await _load_level(level, true, false, true, true)

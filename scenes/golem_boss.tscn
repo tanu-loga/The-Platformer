@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://emqf4e24h48v"]
 
+[ext_resource type="Script" uid="uid://7gvhftsr6lss" path="res://scripts/boss_script/golem_boss.gd" id="1_5l412"]
 [ext_resource type="Texture2D" uid="uid://cbxfarf0ey7hi" path="res://assets/images/boss/Mecha-stone Golem 0.1/PNG sheet/Character_sheet.png" id="1_lcmig"]
 [ext_resource type="Texture2D" uid="uid://dg8t8o7e1ukf8" path="res://assets/images/boss/Mecha-stone Golem 0.1/weapon PNG/Laser_sheet.png" id="2_e4c32"]
 [ext_resource type="FontFile" uid="uid://c0l0neflvct4d" path="res://assets/fonts/Square-Black.ttf" id="3_5raa4"]
-[ext_resource type="Script" uid="uid://i4a70nb1kiuf" path="res://scripts/boss/finite_state_machine.gd" id="4_5raa4"]
-[ext_resource type="Script" uid="uid://djo61v0iok2x" path="res://scripts/boss/state.gd" id="5_jidqh"]
-[ext_resource type="Script" uid="uid://fythpom4e45e" path="res://scripts/boss/idle.gd" id="5_jiwok"]
+[ext_resource type="Script" uid="uid://i4a70nb1kiuf" path="res://scripts/boss_script/finite_state_machine.gd" id="4_5raa4"]
+[ext_resource type="Script" uid="uid://djo61v0iok2x" path="res://scripts/boss_script/state.gd" id="5_jidqh"]
+[ext_resource type="Script" uid="uid://fythpom4e45e" path="res://scripts/boss_script/idle.gd" id="5_jiwok"]
+[ext_resource type="Script" uid="uid://dd6qdr0836f1y" path="res://scripts/boss_script/follow.gd" id="6_jiwok"]
 
 [sub_resource type="Animation" id="Animation_wnd63"]
 length = 0.001
@@ -346,6 +348,7 @@ radius = 34.84
 texture_filter = 1
 collision_layer = 2
 collision_mask = 0
+script = ExtResource("1_5l412")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=255726120]
 texture = ExtResource("1_lcmig")
@@ -444,7 +447,7 @@ script = ExtResource("4_5raa4")
 script = ExtResource("5_jiwok")
 
 [node name="Follow" type="Node2D" parent="FiniteStateMachine" unique_id=2020321958]
-script = ExtResource("5_jidqh")
+script = ExtResource("6_jiwok")
 
 [node name="MeleeAttack" type="Node2D" parent="FiniteStateMachine" unique_id=2082436018]
 script = ExtResource("5_jidqh")
