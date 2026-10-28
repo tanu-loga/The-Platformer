@@ -20,13 +20,10 @@ var player_entered: bool = false:
 		print("toggled")
 
 func transition():
-	print("transitioned")
 	if player_entered:
 		print("state changed to follow")
 		get_parent().change_state("Follow")
 		return
-	else:
-		print("didnt transition")
 
 func _on_player_detection_body_entered(body: Node2D) -> void:
 	if body.name == "Player" and body.alive:

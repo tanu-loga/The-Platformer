@@ -26,6 +26,5 @@ func _process(delta):
 		sprite.flip_h = false
 
 func _physics_process(delta):
-	print("moving")
 	velocity = direction.normalized() * 400
 	move_and_collide(velocity * delta)
