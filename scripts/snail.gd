@@ -35,7 +35,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player" and body.alive:
 		var y_delta = position.y - body.position.y
 		print(y_delta)
-		if (y_delta > 38):
+		if (y_delta > 14):
 			print("destroy enemy")
 			hit_snail.emit()
 			call_deferred("_disabled_collision")
@@ -59,6 +59,6 @@ func _enabled_collision() -> void:
 
 #hiding snail for playtesting. if i dont do this, player keeps getting hit by invis snails...
 func hide_snail():
-	var x = 1
+	var x = 0
 	if x == 1:
 		queue_free()

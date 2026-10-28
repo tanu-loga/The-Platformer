@@ -1,22 +1,34 @@
 extends CharacterBody2D
 
-@onready var player = owner.get_parent().find_child("player")
+#@onready var player = owner.get_parent().find_child("Player")
+#@onready var player = get_node("/root/Main/LevelRoot/Player") 
+@onready var player: CharacterBody2D = $"../Player"
 @onready var sprite = $Sprite2D
 
 var direction: Vector2
 
-const SPEED = 300.0
+const speed = 300.0
 const JUMP_VELOCITY = -400.0
 
-func ready():
+func _ready():
 	set_physics_process(false)
+	
 
-func _process(delta: float):
+func _process(delta):
+	if not player:
+		print("player aint found")
+		return
 	direction = player.position - position
 	if direction.x < 0:
 		sprite.flip_h = true
 	else:
 		sprite.flip_h = false
+	velocity.x = direction.x * speed
+	velocity.y = direction.y * speed
+	direction.x = sign(velocity.x)
+	direction.y = sign(velocity.y)
+	if direction.x != 0:
+		sprite.flip_h = (direction.x < 0)
 
 func _physics_process(delta: float):
 	velocity = direction.normalized() * 40

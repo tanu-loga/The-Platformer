@@ -221,6 +221,8 @@ stream = ExtResource("6_tuyoq")
 stream = ExtResource("7_fjrip")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=463353192]
+visible = false
+zoom = Vector2(2.3, 2.3)
 process_callback = 0
 limit_smoothed = true
 position_smoothing_enabled = true

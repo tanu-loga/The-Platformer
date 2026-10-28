@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cjwkof8jkchho" path="res://assets/images/Bee/Attack-Sheet.png" id="2_ll17n"]
 [ext_resource type="Texture2D" uid="uid://du575kmdkhf6h" path="res://assets/images/Bee/Hit-Sheet.png" id="3_5g8hx"]
 [ext_resource type="Texture2D" uid="uid://1a224bjb6g7o" path="res://assets/images/Bee/Fly-Sheet.png" id="4_qomy5"]
+[ext_resource type="FontFile" uid="uid://c0l0neflvct4d" path="res://assets/fonts/Square-Black.ttf" id="5_ll17n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wwgas"]
 atlas = ExtResource("2_ll17n")
@@ -107,6 +108,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="LabelSettings" id="LabelSettings_1l4js"]
+font = ExtResource("5_ll17n")
+font_size = 8
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_1l4js"]
 radius = 14.035668
 
@@ -122,6 +127,17 @@ sprite_frames = SubResource("SpriteFrames_1l4js")
 animation = &"idle-bee"
 autoplay = "idle-bee"
 frame_progress = 0.37505293
+
+[node name="Node2D" type="Node2D" parent="." unique_id=17663048]
+
+[node name="Text" type="Label" parent="Node2D" unique_id=929449763]
+offset_left = -19.0
+offset_top = -34.0
+offset_right = 59.0
+offset_bottom = -11.0
+text = "Hey player!"
+label_settings = SubResource("LabelSettings_1l4js")
+metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" type="Area2D" parent="." unique_id=701403309]
 
