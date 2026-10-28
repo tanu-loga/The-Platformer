@@ -329,17 +329,14 @@ tile_set = SubResource("TileSet_rx0xw")
 
 [node name="Player" parent="." unique_id=666496315 instance=ExtResource("2_dd0lh")]
 position = Vector2(110, 472)
-scale = Vector2(0.6, 0.6)
 
 [node name="Enemies" type="Node2D" parent="." unique_id=938877789]
 
 [node name="Snail" parent="Enemies" unique_id=1896067893 instance=ExtResource("4_bfxgj")]
-position = Vector2(638, 650)
-scale = Vector2(3, 3)
+position = Vector2(648, 649)
 
 [node name="Snail2" parent="Enemies" unique_id=402783668 instance=ExtResource("4_bfxgj")]
-position = Vector2(1044, 648)
-scale = Vector2(3, 3)
+position = Vector2(1041, 649)
 
 [node name="Apples" type="Node2D" parent="." unique_id=372043145]
 
@@ -395,6 +392,7 @@ metadata/_edit_lock_ = true
 
 [node name="Shadow-bee" parent="." unique_id=1661676737 instance=ExtResource("11_nkeig")]
 position = Vector2(219, 375)
+scale = Vector2(3, 3)
 
 [node name="button" parent="." unique_id=1741355629 instance=ExtResource("12_nfihu")]
 position = Vector2(1238, 627)

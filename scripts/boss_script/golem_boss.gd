@@ -3,7 +3,8 @@ extends CharacterBody2D
 #@onready var player = owner.get_parent().find_child("Player")
 #@onready var player = get_node("/root/Main/LevelRoot/Player") 
 @onready var player: CharacterBody2D = $"../Player"
-@onready var sprite = $Sprite2D
+#@onready var sprite = $Sprite2D
+@onready var sprite: Sprite2D = $Sprite2D
 
 var direction: Vector2
 
@@ -23,13 +24,8 @@ func _process(delta):
 		sprite.flip_h = true
 	else:
 		sprite.flip_h = false
-	velocity.x = direction.x * speed
-	velocity.y = direction.y * speed
-	direction.x = sign(velocity.x)
-	direction.y = sign(velocity.y)
-	if direction.x != 0:
-		sprite.flip_h = (direction.x < 0)
 
-func _physics_process(delta: float):
-	velocity = direction.normalized() * 40
+func _physics_process(delta):
+	print("moving")
+	velocity = direction.normalized() * 400
 	move_and_collide(velocity * delta)

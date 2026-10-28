@@ -15,9 +15,14 @@ func _process(delta: float) -> void:
 	pass
 
 func change_state(state):
+	print("changed state %s" %state)
 	current_state = find_child(state) as State
 	current_state.enter()
 	
 	previous_state.exit()
 	previous_state = current_state
+	var new_state = find_child(state) as State
+	if new_state:
+		current_state = new_state
+		current_state.enter()
 	#print(current_state)

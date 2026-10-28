@@ -5,16 +5,20 @@ class_name State
 @onready var animation_player = owner.find_child("AnimationPlayer")
 @onready var player: CharacterBody2D = $"../../../Player"
 
+var is_active: bool = false
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	is_active = false
 	set_physics_process(false)
 
 func enter():
+	is_active = true
 	set_physics_process(true)
 
 func exit():
+	is_active = false
 	set_physics_process(false)
 
 func transition():
@@ -27,5 +31,7 @@ func _process(delta: float) -> void:
 	pass
 
 func _physics_process(_delta):
+	if not is_active:
+		return
 	transition()
 	debug.text = name
