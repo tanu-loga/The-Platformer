@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://fythpom4e45e" path="res://scripts/boss_script/idle.gd" id="5_jiwok"]
 [ext_resource type="Script" uid="uid://dd6qdr0836f1y" path="res://scripts/boss_script/follow.gd" id="6_jiwok"]
 [ext_resource type="Script" uid="uid://5egim2sky3cc" path="res://scripts/boss_script/melee_attack.gd" id="8_isqk6"]
+[ext_resource type="Script" uid="uid://b7mdbgpplas2q" path="res://scripts/boss_script/homing_missle.gd" id="10_dxa6x"]
+[ext_resource type="PackedScene" uid="uid://b32jg43hq7mig" path="res://scenes/bullet.tscn" id="11_egbyw"]
 
 [sub_resource type="Animation" id="Animation_wnd63"]
 length = 0.001
@@ -343,7 +345,7 @@ radius = 15.0
 height = 46.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1l4js"]
-radius = 100.0
+radius = 1024.0
 
 [node name="GolemBoss" type="CharacterBody2D" unique_id=1877823637]
 texture_filter = 1
@@ -460,7 +462,8 @@ script = ExtResource("5_jidqh")
 script = ExtResource("5_jidqh")
 
 [node name="HomingMissle" type="Node2D" parent="FiniteStateMachine" unique_id=620450557]
-script = ExtResource("5_jidqh")
+script = ExtResource("10_dxa6x")
+bullet_node = ExtResource("11_egbyw")
 
 [node name="Dash" type="Node2D" parent="FiniteStateMachine" unique_id=817666489]
 script = ExtResource("5_jidqh")

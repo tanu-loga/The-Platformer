@@ -25,3 +25,7 @@ func transition():
 		print("meleeattack")
 		get_parent().change_state("MeleeAttack")
 		return
+	elif distance > 130:
+		print("homing-missle")
+		get_parent().change_state("HomingMissle")
+		return
