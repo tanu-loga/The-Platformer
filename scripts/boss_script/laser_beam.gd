@@ -24,3 +24,8 @@ func play_animation(anim_name):
 
 func set_target():
 	pivot.rotation = (owner.direction - pivot.position).angle()
+
+func transition():
+	if can_transition:
+		can_transition = false
+		get_parent().change_state("Dash")

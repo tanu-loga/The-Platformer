@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://y4nv0jeo6k0"]
+
+[ext_resource type="Script" uid="uid://dcw8wcwtmktcl" path="res://scripts/player_bullet.gd" id="1_46jqs"]
+[ext_resource type="Texture2D" uid="uid://28thftujvqi6" path="res://assets/images/player/swords/File.png" id="2_0cue5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_552ro"]
+size = Vector2(6.8653555, 40.90938)
+
+[node name="player_bullet" type="Area2D" unique_id=1845636664]
+script = ExtResource("1_46jqs")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1787646998]
+self_modulate = Color(0, 1, 1, 1)
+texture_filter = 1
+texture = ExtResource("2_0cue5")
+hframes = 6
+vframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=598494171]
+position = Vector2(0.06851196, 0.15094888)
+rotation = -0.67718774
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_552ro")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=595138456]
+position = Vector2(-1, -1)

@@ -26,6 +26,13 @@ func transition():
 		get_parent().change_state("MeleeAttack")
 		return
 	elif distance > 130:
-		print("homing-missle")
-		get_parent().change_state("HomingMissle")
-		return
+		var chance = randi() % 2
+		match chance:
+			0:
+				print("homing-missle")
+				get_parent().change_state("HomingMissle")
+				return
+			1:
+				print("LaserBeam")
+				get_parent().change_state("LaserBeam")
+				return
