@@ -127,7 +127,9 @@ func shoot():
 	bullet.position = global_position
 	bullet.direction = (get_global_mouse_position() - global_position).normalized()
 	get_tree().current_scene.call_deferred("add_child", bullet)
-
-func _input(event):
-	if event.is_action("shoot"):
+	
+func _input(event: InputEvent):
+	if event.is_action_pressed("shoot"):
+		print("gonna shoot")
 		shoot()
+		print("shot")

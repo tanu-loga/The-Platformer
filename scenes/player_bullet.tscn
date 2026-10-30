@@ -46,12 +46,12 @@ animations = [{
 "texture": SubResource("AtlasTexture_0y64p")
 }],
 "loop": 1,
-"name": &"default",
+"name": &"fireball",
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_552ro"]
-size = Vector2(6.8653555, 40.90938)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ur7pv"]
+size = Vector2(35.000004, 17.000002)
 
 [node name="player_bullet" type="Area2D" unique_id=1845636664]
 collision_layer = 0
@@ -61,17 +61,18 @@ script = ExtResource("1_46jqs")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=385910871]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_1l4js")
-autoplay = "default"
-frame_progress = 0.17230251
+animation = &"fireball"
+autoplay = "fireball"
+frame_progress = 0.6670688
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=598494171]
-position = Vector2(0.06851196, 0.15094888)
-rotation = -0.67718774
+position = Vector2(3.4999988, -1.5)
 scale = Vector2(0.9999998, 0.9999998)
-shape = SubResource("RectangleShape2D_552ro")
+shape = SubResource("RectangleShape2D_ur7pv")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=595138456]
 position = Vector2(-1, -1)
+rect = Rect2(-13, -9, 35, 17)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
