@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var death_sound: AudioStreamPlayer2D = $DeathSound
 @onready var immune_timer: Timer = $ImmuneTimer
 
+@export var bullet_node: PackedScene
 
 
 #psst, if ur reading this, ur cool
@@ -119,3 +120,14 @@ func hit_animation():
 	
 	#turn it off
 	animated_sprite_2d.material.set_shader_parameter("flash_modifier", 0.0)
+
+func shoot():
+	var bullet = bullet_node.instantiate()
+	
+	bullet.position = global_position
+	bullet.direction = (get_global_mouse_position() - global_position).normalized()
+	get_tree().current_scene.call_deferred("add_child", bullet)
+
+func _input(event):
+	if event.is_action("shoot"):
+		shoot()
