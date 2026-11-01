@@ -1,6 +1,6 @@
 extends Area2D
 
-
+signal player_died
 @onready var player = Global.player
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -29,4 +29,10 @@ func _physics_process(delta: float):
 		print("player not found")
 		return
 func _on_body_entered(body: Node2D) -> void:
-	queue_free()
+	if body.name == "Player":
+		print("hit player")
+		player_died.emit()
+		queue_free()
+	else:
+		print("hit object")
+		queue_free()

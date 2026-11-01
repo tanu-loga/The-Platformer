@@ -7,7 +7,7 @@ extends CharacterBody2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var progress_bar: ProgressBar = $UI/ProgressBar
 
-
+signal player_died_golem
 var direction: Vector2
 var DEF = 0
 

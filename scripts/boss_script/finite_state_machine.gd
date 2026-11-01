@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 	pass
 
 func change_state(state):
-	print("changed state %s" %state)
+	#print("changed state %s" %state)
 	current_state = find_child(state) as State
 	current_state.enter()
 	

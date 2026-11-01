@@ -3,9 +3,12 @@ extends CharacterBody2D
 @onready var jump_sound: AudioStreamPlayer2D = $JumpSound
 @onready var death_sound: AudioStreamPlayer2D = $DeathSound
 @onready var immune_timer: Timer = $ImmuneTimer
+@onready var main: Node2D = $"../.."
 
 @export var bullet_node: PackedScene
 
+#var level_number_for_this = main.level_for_player
+#var level_number_for_this = null
 
 #psst, if ur reading this, ur cool
 #if ur a reviewer, 
@@ -132,7 +135,7 @@ func shoot():
 	get_tree().current_scene.call_deferred("add_child", bullet)
 	
 func _input(event: InputEvent):
-	if event.is_action_pressed("shoot"):
+	if event.is_action_pressed("shoot") and main.level_for_player == 2:
 		#print("gonna shoot")
 		shoot()
 		#print("shot")

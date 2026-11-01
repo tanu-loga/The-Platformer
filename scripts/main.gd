@@ -6,7 +6,7 @@ extends Node2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $LevelRoot/Player/AnimatedSprite2D 
 @onready var player_animated: CharacterBody2D = $LevelRoot/Player
 
-
+var level_for_player = null
 
 var max_lives: int = 3
 var level: int = 1
@@ -57,8 +57,11 @@ func _load_level(level_number: int, first_load: bool, reset_score: bool, reset_l
 	testing = load(level_path)
 	if testing == null:
 		current_level_root = load("res://scenes/levels/level1.tscn").instantiate()
+		reload_scene()
 	else:
 		current_level_root = load(level_path).instantiate()
+		print("This is level ", level_number)
+		level_for_player = level_number
 	add_child(current_level_root)
 	current_level_root.name = "LevelRoot"
 	_setup_level(current_level_root)
@@ -68,7 +71,9 @@ func _load_level(level_number: int, first_load: bool, reset_score: bool, reset_l
 # well, i create a new function for this
 # '-> void' is for making sure it doesnt return anything
 func _setup_level(level_root: Node) -> void:
-	
+	var golem_boss = level_root.get_node_or_null("GolemBoss")
+	if golem_boss:
+		golem_boss.player_died_golem.connect(decrease_health)
 	var area_button = level_root.get_node_or_null("button")
 	if area_button:
 		area_button.player_died_button.connect(decrease_health)

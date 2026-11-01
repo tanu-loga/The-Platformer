@@ -22,17 +22,14 @@ func exit():
 func transition():
 	var distance = owner.direction.length()
 	if distance < 30:
-		print("meleeattack")
 		get_parent().change_state("MeleeAttack")
 		return
 	elif distance > 130:
 		var chance = randi() % 2
 		match chance:
 			0:
-				print("homing-missle")
 				get_parent().change_state("HomingMissle")
 				return
 			1:
-				print("LaserBeam")
 				get_parent().change_state("LaserBeam")
 				return

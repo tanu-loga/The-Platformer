@@ -2,7 +2,7 @@ extends State
 
 @export var bullet_node: PackedScene
 var can_transition: bool = false
-
+#signal player_died
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
