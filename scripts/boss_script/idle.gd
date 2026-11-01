@@ -9,8 +9,8 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-	#pass
+func _process(delta: float) -> void:
+	transition()
 
 var player_entered: bool = false:
 	set(value):
@@ -27,6 +27,6 @@ func transition():
 
 func _on_player_detection_body_entered(body: Node2D) -> void:
 	if body.name == "Player" and body.alive:
-		player_died_golem.emit()
+		owner.player_died_golem.emit()
 		print("decrease health - from golem")
 		player_entered = true

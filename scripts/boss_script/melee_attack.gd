@@ -13,8 +13,6 @@ func _process(delta: float) -> void:
 func enter():
 	super.enter()
 	animation_player.play("melee_attack")
-	get_tree().create_timer(1)
-	get_parent().change_state("Idle")
 
 
 func transition():
