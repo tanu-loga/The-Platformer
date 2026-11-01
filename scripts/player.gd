@@ -124,12 +124,15 @@ func hit_animation():
 func shoot():
 	var bullet = bullet_node.instantiate()
 	
-	bullet.position = global_position
+	bullet.global_position = global_position
 	bullet.direction = (get_global_mouse_position() - global_position).normalized()
+	var horizontal_target = Vector2(get_global_mouse_position().x, global_position.y)
+	bullet.direction = (horizontal_target - global_position).normalized()
+	bullet.global_rotation = bullet.direction.angle()
 	get_tree().current_scene.call_deferred("add_child", bullet)
 	
 func _input(event: InputEvent):
 	if event.is_action_pressed("shoot"):
-		print("gonna shoot")
+		#print("gonna shoot")
 		shoot()
-		print("shot")
+		#print("shot")
