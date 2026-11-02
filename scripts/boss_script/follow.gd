@@ -1,6 +1,6 @@
 extends State
 
-
+var can_transition: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -20,10 +20,11 @@ func exit():
 	owner.set_physics_process(false)
 
 func transition():
+	if can_transition:
+		can_transition = false
 	var distance = owner.direction.length()
 	if distance < 30:
 		get_parent().change_state("MeleeAttack")
-		
 		return
 	elif distance > 130:
 		var chance = randi() % 2

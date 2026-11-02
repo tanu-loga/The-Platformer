@@ -10,7 +10,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	transition()
+	#transition()
+	pass
 
 var player_entered: bool = false:
 	set(value):
@@ -18,15 +19,17 @@ var player_entered: bool = false:
 		collision.set_deferred("disabled", value)
 		progress_bar.set_deferred("visible", value)
 		print("toggled")
+		print(value)
 
 func transition():
 	if player_entered:
+		player_entered = false
 		#print("state changed to follow")
 		get_parent().change_state("Follow")
 		return
 
 func _on_player_detection_body_entered(body: Node2D) -> void:
 	if body.name == "Player" and body.alive:
-		owner.player_died_golem.emit()
-		print("decrease health - from golem")
+		#owner.player_died_golem.emit()
+		#print("decrease health - from golem")
 		player_entered = true

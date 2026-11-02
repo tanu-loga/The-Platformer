@@ -32,7 +32,7 @@ func _physics_process(delta: float):
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		print("hit player")
-		owner.player_died_golem.emit()
+		player_died_golem.emit()
 		queue_free()
 	else:
 		print("hit object")
