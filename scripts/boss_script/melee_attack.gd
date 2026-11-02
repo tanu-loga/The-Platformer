@@ -13,9 +13,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	#transition()
 	pass
 
 func enter():
+	#enter doesnt get called
 	super.enter()
 	attack_finished = false
 	attack_player()
@@ -23,7 +25,7 @@ func enter():
 
 func transition():
 	#if owner.direction.length() > 10 and attack_finished:
-	if attack_finished and can_attack:
+	if attack_finished:
 		get_parent().change_state("Follow")
 		return
 	#else:
@@ -31,8 +33,9 @@ func transition():
 
 
 func attack_player():
+	#if you cant attack, attack finished is true
 	if not can_attack:
-		attack_finished = false
+		attack_finished = true
 		return
 	can_attack = false
 	animation_player.play("melee_attack")
