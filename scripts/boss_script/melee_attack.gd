@@ -43,7 +43,7 @@ func attack_player():
 		return
 	can_attack = false
 	play_animation("melee_attack")
-	player_died_golem.emit()
+	owner.player_died_golem.emit()
 	print("player got hurt by melee attack")
 	await owner.get_tree().create_timer(1.0).timeout
 	
