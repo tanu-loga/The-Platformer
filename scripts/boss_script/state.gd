@@ -30,7 +30,7 @@ func _process(delta: float) -> void:
 		#player = get_node_or_null("Player")
 	pass
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	if not is_active:
 		return
 	transition()

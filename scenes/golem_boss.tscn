@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://dg8t8o7e1ukf8" path="res://assets/images/boss/Mecha-stone Golem 0.1/weapon PNG/Laser_sheet.png" id="2_e4c32"]
 [ext_resource type="FontFile" uid="uid://c0l0neflvct4d" path="res://assets/fonts/Square-Black.ttf" id="3_5raa4"]
 [ext_resource type="Script" uid="uid://i4a70nb1kiuf" path="res://scripts/boss_script/finite_state_machine.gd" id="4_5raa4"]
-[ext_resource type="Script" uid="uid://djo61v0iok2x" path="res://scripts/boss_script/state.gd" id="5_jidqh"]
 [ext_resource type="Script" uid="uid://fythpom4e45e" path="res://scripts/boss_script/idle.gd" id="5_jiwok"]
 [ext_resource type="Script" uid="uid://dd6qdr0836f1y" path="res://scripts/boss_script/follow.gd" id="6_jiwok"]
 [ext_resource type="Script" uid="uid://5egim2sky3cc" path="res://scripts/boss_script/melee_attack.gd" id="8_isqk6"]
@@ -14,6 +13,7 @@
 [ext_resource type="Script" uid="uid://b7mdbgpplas2q" path="res://scripts/boss_script/homing_missle.gd" id="10_dxa6x"]
 [ext_resource type="PackedScene" uid="uid://b32jg43hq7mig" path="res://scenes/bullet.tscn" id="11_egbyw"]
 [ext_resource type="Script" uid="uid://dnemgwkfv6i0t" path="res://scripts/boss_script/dash.gd" id="12_4y8e0"]
+[ext_resource type="Script" uid="uid://bauie15t484u0" path="res://scripts/boss_script/death.gd" id="14_6wojb"]
 
 [sub_resource type="Animation" id="Animation_wnd63"]
 length = 0.001
@@ -333,6 +333,20 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q20sn"]
 _data = {
@@ -486,6 +500,6 @@ bullet_node = ExtResource("11_egbyw")
 script = ExtResource("12_4y8e0")
 
 [node name="Death" type="Node2D" parent="FiniteStateMachine" unique_id=1503511175]
-script = ExtResource("5_jidqh")
+script = ExtResource("14_6wojb")
 
 [connection signal="body_entered" from="PlayerDetection" to="FiniteStateMachine/Idle" method="_on_player_detection_body_entered"]

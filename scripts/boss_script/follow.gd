@@ -1,6 +1,6 @@
 extends State
 
-var can_transition: bool = false
+#var can_transition: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -20,8 +20,8 @@ func exit():
 	owner.set_physics_process(false)
 
 func transition():
-	if can_transition:
-		can_transition = false
+	#if can_transition:
+		#can_transition = false
 	var distance = owner.direction.length()
 	if distance < 30:
 		get_parent().change_state("MeleeAttack")
@@ -31,7 +31,7 @@ func transition():
 		match chance:
 			0:
 				get_parent().change_state("HomingMissle")
-				return
+				#return
 			1:
 				get_parent().change_state("LaserBeam")
-				return
+				#return

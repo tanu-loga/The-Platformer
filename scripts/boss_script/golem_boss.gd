@@ -10,17 +10,20 @@ extends CharacterBody2D
 signal player_died_golem
 var direction: Vector2
 var DEF = 0
-
+var is_dead: bool = false
 const speed = 300.0
 const JUMP_VELOCITY = -400.0
 
 var health = 100:
 	set(value):
+		if is_dead:
+			return
 		health = value
 		progress_bar.value = value
 		if value <= 0:
 			progress_bar.visible = false
 			find_child("FiniteStateMachine").change_state("Death")
+			return
 		elif value <= progress_bar.max_value / 2 and DEF == 0:
 			DEF = 5
 			find_child("FiniteStateMachine").change_state("ArmorBuff")
@@ -46,4 +49,6 @@ func _physics_process(delta):
 	move_and_collide(velocity * delta)
 
 func take_damage():
+	if is_dead:
+		return
 	health -= 10 - DEF

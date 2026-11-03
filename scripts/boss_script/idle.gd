@@ -23,10 +23,10 @@ var player_entered: bool = false:
 
 func transition():
 	if player_entered:
-		player_entered = false
+		#player_entered = false
 		#print("state changed to follow")
 		get_parent().change_state("Follow")
-		return
+		#return
 
 func _on_player_detection_body_entered(body: Node2D) -> void:
 	if body.name == "Player" and body.alive:

@@ -7,6 +7,7 @@ func _ready():
 	current_state = get_child(0) as State
 	previous_state = current_state
 	current_state.enter()
+	print("entered")
 	#print(current_state)
 
 
@@ -15,7 +16,7 @@ func _process(delta: float) -> void:
 	pass
 
 func change_state(state_name):
-	#print("changed state %s" %state)
+	print("changed state %s" %state_name)
 	var new_state = find_child(state_name) as State
 	
 	if new_state and current_state != new_state:
