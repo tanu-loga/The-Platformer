@@ -16,7 +16,7 @@ func _process(delta: float) -> void:
 	pass
 
 func change_state(state_name):
-	print("changed state %s" %state_name)
+	#print("changed state %s" %state_name)
 	var new_state = find_child(state_name) as State
 	
 	if new_state and current_state != new_state:
@@ -25,7 +25,7 @@ func change_state(state_name):
 		
 		current_state = new_state
 		current_state.enter()
-	
+
 
 
 

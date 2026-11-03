@@ -20,7 +20,7 @@ func enter():
 	#enter doesnt get called
 	super.enter()
 	attack_finished = false
-	await attack_player()
+	attack_player()
 	can_transition = true
 	#can_transition = true
 

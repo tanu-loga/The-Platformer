@@ -59,6 +59,6 @@ func _enabled_collision() -> void:
 
 #hiding snail for playtesting. if i dont do this, player keeps getting hit by invis snails...
 func hide_snail():
-	var x = 1
+	var x = 0
 	if x == 1:
 		queue_free()
