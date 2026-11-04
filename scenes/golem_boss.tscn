@@ -228,6 +228,20 @@ tracks/1/keys = {
 "method": &"set_target"
 }]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FiniteStateMachine/LaserBeam")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"laser_damage"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_bdh24"]
 resource_name = "laser_cast"
@@ -378,6 +392,9 @@ height = 46.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_1l4js"]
 radius = 85.32
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1l4js"]
+size = Vector2(247, 18)
+
 [node name="GolemBoss" type="CharacterBody2D" unique_id=1877823637]
 texture_filter = 1
 collision_layer = 2
@@ -502,4 +519,14 @@ script = ExtResource("12_4y8e0")
 [node name="Death" type="Node2D" parent="FiniteStateMachine" unique_id=1503511175]
 script = ExtResource("14_6wojb")
 
+[node name="LaserDetection" type="Area2D" parent="." unique_id=513104194]
+
+[node name="laser_collision" type="CollisionShape2D" parent="LaserDetection" unique_id=276495230]
+visible = false
+position = Vector2(126.5, -16)
+shape = SubResource("RectangleShape2D_1l4js")
+
 [connection signal="body_entered" from="PlayerDetection" to="FiniteStateMachine/Idle" method="_on_player_detection_body_entered"]
+[connection signal="body_entered" from="LaserDetection" to="." method="_on_laser_detection_body_entered"]
+[connection signal="body_entered" from="LaserDetection" to="FiniteStateMachine/LaserBeam" method="_on_laser_detection_body_entered"]
+[connection signal="hidden" from="LaserDetection/laser_collision" to="FiniteStateMachine/LaserBeam" method="_on_laser_collision_hidden"]

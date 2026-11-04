@@ -18,13 +18,14 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float):
 	if player:
-		acceleration = (player.position - position).normalized() * 700
+		acceleration = (player.global_position - global_position).normalized() * 700
 		
 		velocity += acceleration * delta
 		rotation = velocity.angle()
 		velocity = velocity.limit_length(150.0)
 		
 		position += velocity * delta
+		boom_timer()
 	else:
 		print("player not found")
 		return
@@ -37,3 +38,14 @@ func _on_body_entered(body: Node2D) -> void:
 	else:
 		print("hit object")
 		queue_free()
+
+
+func _on_timer_timeout() -> void:
+	pass # Replace with function body.
+
+
+func boom_timer():
+	await get_tree().create_timer(1)
+	print("timer done")
+	queue_free()
+	

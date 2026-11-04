@@ -51,5 +51,6 @@ func attack_player():
 	attack_finished = true
 
 func play_animation(anim_name):
-	animation_player.play(anim_name)
+	animation_player.play("melee_attack")
 	await animation_player.animation_finished
+	print("played aniamtion")
