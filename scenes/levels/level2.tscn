@@ -432,6 +432,6 @@ scale = Vector2(3, 3)
 
 [node name="GolemBoss" parent="." unique_id=1877823637 instance=ExtResource("11_gycjm")]
 position = Vector2(971, 584)
-scale = Vector2(3, 3)
+scale = Vector2(4, 4)
 
 [connection signal="body_entered" from="fall_area_" to="fall_area_" method="_on_body_entered"]

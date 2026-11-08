@@ -41,7 +41,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 
 func _on_timer_timeout() -> void:
-	print("timer is done")
+	queue_free()
 
 
 func boom_timer():

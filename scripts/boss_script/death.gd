@@ -23,6 +23,7 @@ func enter():
 	await animation_player.animation_finished
 	owner.set_physics_process(false)
 	owner.set_process(false)
+	print("died")
 	owner.velocity = Vector2.ZERO 
 	animation_player.play("you_defeated_it")
 	

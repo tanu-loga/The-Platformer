@@ -15,6 +15,9 @@
 [ext_resource type="Script" uid="uid://dnemgwkfv6i0t" path="res://scripts/boss_script/dash.gd" id="12_4y8e0"]
 [ext_resource type="Script" uid="uid://bauie15t484u0" path="res://scripts/boss_script/death.gd" id="14_6wojb"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1l4js"]
+size = Vector2(255, 16)
+
 [sub_resource type="Animation" id="Animation_wnd63"]
 length = 0.001
 tracks/0/type = "value"
@@ -392,11 +395,12 @@ height = 46.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_1l4js"]
 radius = 85.32
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1l4js"]
-size = Vector2(254, 32)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dgdk7"]
+size = Vector2(14.999995, 34)
 
 [node name="GolemBoss" type="CharacterBody2D" unique_id=1877823637]
 texture_filter = 1
+rotation = -6.2831855
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_5l412")
@@ -414,6 +418,13 @@ rotation = 6.2831855
 position = Vector2(100, 17)
 texture = ExtResource("2_e4c32")
 vframes = 15
+
+[node name="LaserDetection" type="Area2D" parent="Pivot" unique_id=513104194]
+position = Vector2(2.9723744e-06, 17)
+
+[node name="laser_collision" type="CollisionShape2D" parent="Pivot/LaserDetection" unique_id=276495230]
+position = Vector2(122.5, -15.999979)
+shape = SubResource("RectangleShape2D_1l4js")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1295483822]
 libraries/ = SubResource("AnimationLibrary_q20sn")
@@ -519,13 +530,15 @@ script = ExtResource("12_4y8e0")
 [node name="Death" type="Node2D" parent="FiniteStateMachine" unique_id=1503511175]
 script = ExtResource("14_6wojb")
 
-[node name="LaserDetection" type="Area2D" parent="." unique_id=513104194]
+[node name="MeleeDetection" type="Area2D" parent="." unique_id=1705807459]
+visible = false
 
-[node name="laser_collision" type="CollisionShape2D" parent="LaserDetection" unique_id=276495230]
-position = Vector2(0, -18)
-shape = SubResource("RectangleShape2D_1l4js")
+[node name="melee_collision" type="CollisionShape2D" parent="MeleeDetection" unique_id=1800212589]
+visible = false
+position = Vector2(28.499996, 6.000005)
+shape = SubResource("RectangleShape2D_dgdk7")
 
+[connection signal="body_entered" from="Pivot/LaserDetection" to="." method="_on_laser_detection_body_entered"]
+[connection signal="body_entered" from="Pivot/LaserDetection" to="FiniteStateMachine/LaserBeam" method="_on_laser_detection_body_entered"]
+[connection signal="hidden" from="Pivot/LaserDetection/laser_collision" to="FiniteStateMachine/LaserBeam" method="_on_laser_collision_hidden"]
 [connection signal="body_entered" from="PlayerDetection" to="FiniteStateMachine/Idle" method="_on_player_detection_body_entered"]
-[connection signal="body_entered" from="LaserDetection" to="." method="_on_laser_detection_body_entered"]
-[connection signal="body_entered" from="LaserDetection" to="FiniteStateMachine/LaserBeam" method="_on_laser_detection_body_entered"]
-[connection signal="hidden" from="LaserDetection/laser_collision" to="FiniteStateMachine/LaserBeam" method="_on_laser_collision_hidden"]
