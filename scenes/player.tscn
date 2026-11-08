@@ -16,7 +16,7 @@ shader_parameter/original_color = Color(0.8352941, 0.9843137, 0.8392157, 1)
 shader_parameter/replace_color = Color(0.88113296, 0.89574534, 0.64217156, 1)
 shader_parameter/tolerance = 0.05
 shader_parameter/flash_modifier = 0.0
-shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_color = Color(1, 0, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ur7pv"]
 atlas = ExtResource("1_dqkch")
@@ -199,7 +199,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1l4js"]
-size = Vector2(35, 74)
+size = Vector2(32, 73)
 
 [node name="Player" type="CharacterBody2D" unique_id=666496315]
 script = ExtResource("1_qlg0r")
@@ -209,11 +209,11 @@ bullet_node = ExtResource("2_ur7pv")
 texture_filter = 1
 material = SubResource("ShaderMaterial_1l4js")
 sprite_frames = SubResource("SpriteFrames_1l4js")
-animation = &"dying"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1091745054]
-position = Vector2(-1.499999, 0)
+position = Vector2(4.7683716e-07, 0.5)
 shape = SubResource("RectangleShape2D_1l4js")
 
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="." unique_id=966528187]

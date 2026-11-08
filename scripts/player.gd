@@ -39,7 +39,8 @@ func _ready():
 		#main.player_declare_global.connect(declare_global)
 	#else:
 		#print("main not found")
-
+	print("game start")
+	animated_sprite_2d.material.set_shader_parameter("flash_modifier", 0.0)
 func _physics_process(delta: float) -> void:
 	
 	#if player aint alive, end this whole function
@@ -123,7 +124,10 @@ func hit_animation():
 	
 	#turn it off
 	animated_sprite_2d.material.set_shader_parameter("flash_modifier", 0.0)
-
+	await get_tree().create_timer(0.15).timeout
+	animated_sprite_2d.material.set_shader_parameter("flash_modifier", 1.0)
+	await get_tree().create_timer(0.1).timeout
+	animated_sprite_2d.material.set_shader_parameter("flash_modifier", 0.0)
 func shoot():
 	var bullet = bullet_node.instantiate()
 	
