@@ -6,8 +6,7 @@ var can_transition: bool = false
 signal player_died_golem
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	laser_collision.disabled = true
-
+	laser_collision.set_deferred("disabled", true)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -35,12 +34,14 @@ func transition():
 func _on_laser_detection_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		owner.player_died_golem.emit()
-		laser_collision.disabled = true
+		laser_collision.set_deferred("disabled", true)
+		laser_collision.rotation = pivot.rotation
 	else:
 		pass
 
 func laser_damage():
-	laser_collision.disabled = false
+	laser_collision.set_deferred("disabled", false)
+	laser_collision.rotation = pivot.rotation
 
 func _on_laser_collision_hidden() -> void:
 	pass # Replace with function body.

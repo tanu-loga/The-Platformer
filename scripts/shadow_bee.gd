@@ -83,7 +83,7 @@ func print_x():
 
 #hide shadow bee for playtesting cuz it interupted my playtest ALOT
 func hide_bee():
-	var x = 0
+	var x = 1
 	if x == 1:
 		queue_free()
 	

@@ -41,11 +41,14 @@ func _on_body_entered(body: Node2D) -> void:
 
 
 func _on_timer_timeout() -> void:
-	pass # Replace with function body.
+	print("timer is done")
 
 
 func boom_timer():
-	await get_tree().create_timer(1)
-	print("timer done")
-	queue_free()
+	pass
+	#await get_tree().create_timer(10)
+	#print("timer is done")
+	#await get_tree().create_timer(1)
+	#print("timer done")
+	#queue_free()
 	

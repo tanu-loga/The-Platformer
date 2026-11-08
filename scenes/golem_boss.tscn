@@ -393,7 +393,7 @@ height = 46.0
 radius = 85.32
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1l4js"]
-size = Vector2(247, 18)
+size = Vector2(254, 32)
 
 [node name="GolemBoss" type="CharacterBody2D" unique_id=1877823637]
 texture_filter = 1
@@ -522,8 +522,7 @@ script = ExtResource("14_6wojb")
 [node name="LaserDetection" type="Area2D" parent="." unique_id=513104194]
 
 [node name="laser_collision" type="CollisionShape2D" parent="LaserDetection" unique_id=276495230]
-visible = false
-position = Vector2(126.5, -16)
+position = Vector2(0, -18)
 shape = SubResource("RectangleShape2D_1l4js")
 
 [connection signal="body_entered" from="PlayerDetection" to="FiniteStateMachine/Idle" method="_on_player_detection_body_entered"]
