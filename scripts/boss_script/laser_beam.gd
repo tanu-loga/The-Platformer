@@ -1,6 +1,5 @@
 extends State
-#@onready var laser_detection: Area2D = $"../../LaserDetection"
-#@onready var laser_collision: CollisionShape2D = $"../../LaserDetection/laser_collision"
+
 @onready var laser_detection: Area2D = $"../../Pivot/LaserDetection"
 @onready var laser_collision: CollisionShape2D = $"../../Pivot/LaserDetection/laser_collision"
 
@@ -44,7 +43,7 @@ func _on_laser_detection_body_entered(body: Node2D) -> void:
 		pass
 
 func laser_damage():
-	#laser_collision.global_rotation = pivot.global_rotation
+	laser_collision.global_rotation = pivot.global_rotation
 	laser_collision.set_deferred("disabled", false)
 
 func _on_laser_collision_hidden() -> void:
