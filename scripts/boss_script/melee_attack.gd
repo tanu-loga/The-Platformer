@@ -1,6 +1,9 @@
 extends State
 
-@onready var melee_collision: CollisionShape2D = $"../../Sprite2D/MeleeDetection/melee_collision"
+#@onready var melee_collision: CollisionShape2D = $"../../Melee/MeleeDetection/melee_collision"
+@onready var melee: Node2D = $"../../Melee"
+@onready var melee_collision: CollisionShape2D = $"../../Melee/MeleeDetection/melee_collision"
+@onready var sprite_2d: Sprite2D = $"../../Sprite2D"
 
 
 var attack_finished: bool = false
@@ -23,7 +26,7 @@ func enter():
 	#enter doesnt get called
 	super.enter()
 	done = false
-	attack_finished = false
+	attack_finished = true
 	can_transition = false
 	can_attack = true
 	play_animation("melee_attack")
@@ -32,7 +35,7 @@ func enter():
 
 func transition():
 	#if owner.direction.length() > 10 and attack_finished:
-	if (owner.direction.length() > 30 and attack_finished) or done:
+	if owner.direction.length() > 10 and attack_finished:
 		if can_transition:
 			can_transition = false
 			get_parent().change_state("Follow")
@@ -46,6 +49,7 @@ func attack_player():
 	if not can_attack:
 		attack_finished = true
 		return
+		
 	can_attack = false
 	play_animation("melee_attack")
 	owner.player_died_golem.emit()
@@ -63,16 +67,21 @@ func play_animation(anim_name):
 
 
 func melee_damage():
-	print("damaged")
+	melee_collision.position.x = -abs(melee_collision.position.x) if sprite_2d.flip_h else abs(melee_collision.position.x)
+
 	melee_collision.set_deferred("disabled", false)
 	await get_tree().create_timer(1).timeout
-	done = true
-	if done:
-		melee_collision.set_deferred("disabled", true)
-		can_transition = true
-		attack_finished = true
-		can_attack = true
-		print("cycle done")
+	
+	melee_collision.set_deferred("disabled", true)
+	can_transition = true
+	attack_finished = true
+	#done = true
+	#if done:
+		#melee_collision.set_deferred("disabled", true)
+		#can_transition = true
+		#attack_finished = true
+		#can_attack = true
+		#print("cycle done")
 
 func _on_melee_detection_body_entered(body: Node2D) -> void:
 	if body.name == "Player":

@@ -62,7 +62,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D/MeleeDetection/melee_collision:disabled")
+tracks/3/path = NodePath("Melee/MeleeDetection/melee_collision:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -326,9 +326,12 @@ tracks/2/path = NodePath("FiniteStateMachine/MeleeAttack")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.875),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.75, 0.875),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"melee_damage"
+}, {
 "args": [],
 "method": &"melee_damage"
 }]
@@ -336,14 +339,14 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D/MeleeDetection/melee_collision:disabled")
+tracks/3/path = NodePath("Melee/MeleeDetection/melee_collision:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.875),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.75, 0.875),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [true, false]
+"values": [true, false, false]
 }
 
 [sub_resource type="Animation" id="Animation_t0xp7"]
@@ -444,13 +447,16 @@ collision_mask = 0
 script = ExtResource("1_5l412")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=255726120]
+rotation = 6.2831855
 texture = ExtResource("1_lcmig")
 hframes = 10
 vframes = 10
 
-[node name="MeleeDetection" type="Area2D" parent="Sprite2D" unique_id=1705807459]
+[node name="Melee" type="Node2D" parent="." unique_id=848458033]
 
-[node name="melee_collision" type="CollisionShape2D" parent="Sprite2D/MeleeDetection" unique_id=1800212589]
+[node name="MeleeDetection" type="Area2D" parent="Melee" unique_id=1705807459]
+
+[node name="melee_collision" type="CollisionShape2D" parent="Melee/MeleeDetection" unique_id=1800212589]
 position = Vector2(28.499996, 6.000005)
 shape = SubResource("RectangleShape2D_dgdk7")
 
@@ -574,7 +580,7 @@ script = ExtResource("12_4y8e0")
 [node name="Death" type="Node2D" parent="FiniteStateMachine" unique_id=1503511175]
 script = ExtResource("14_6wojb")
 
-[connection signal="body_entered" from="Sprite2D/MeleeDetection" to="FiniteStateMachine/MeleeAttack" method="_on_melee_detection_body_entered"]
+[connection signal="body_entered" from="Melee/MeleeDetection" to="FiniteStateMachine/MeleeAttack" method="_on_melee_detection_body_entered"]
 [connection signal="body_entered" from="Pivot/LaserDetection" to="." method="_on_laser_detection_body_entered"]
 [connection signal="body_entered" from="Pivot/LaserDetection" to="FiniteStateMachine/LaserBeam" method="_on_laser_detection_body_entered"]
 [connection signal="hidden" from="Pivot/LaserDetection/laser_collision" to="FiniteStateMachine/LaserBeam" method="_on_laser_collision_hidden"]
