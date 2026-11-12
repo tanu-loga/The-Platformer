@@ -25,8 +25,7 @@ func _process(delta: float) -> void:
 func enter():
 	#enter doesnt get called
 	super.enter()
-	done = false
-	attack_finished = true
+	attack_finished = false
 	can_transition = false
 	can_attack = true
 	play_animation("melee_attack")
@@ -58,12 +57,17 @@ func attack_player():
 	
 	can_attack = true
 	attack_finished = true
+	can_transition = true
 
 func play_animation(anim_name):
+	can_attack = false
 	animation_player.play("melee_attack")
 	print("gonna play")
 	await animation_player.animation_finished
 	print("played aniamtion")
+	can_attack = true
+	attack_finished = true
+	can_transition = true
 
 
 func melee_damage():
