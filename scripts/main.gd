@@ -150,6 +150,9 @@ func decrease_health() -> void:
 				hit = false
 			lives -= 1
 			print(lives)
+			await _fade(1.0)
+			
+			await _fade(0.0)
 			if lives > 0:
 				hit = false
 	if lives == 0:
@@ -187,7 +190,7 @@ func reload_scene():
 
 func _fade(to_alpha: float) -> void:
 	var tween := create_tween()
-	tween.tween_property(fade, "modulate:a", to_alpha, 1.5)
+	tween.tween_property(fade, "modulate:a", to_alpha, 0.2)
 	await tween.finished
 	
 
@@ -209,3 +212,4 @@ func initialise_hearts():
 					count_hearts += 1
 				else:
 					heart.queue_free()
+					
