@@ -51,4 +51,5 @@ func _physics_process(delta):
 func take_damage():
 	if is_dead:
 		return
-	health -= 10 - DEF
+	if entered:
+		health -= 10 - DEF

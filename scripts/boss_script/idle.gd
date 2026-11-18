@@ -2,7 +2,7 @@ extends State
 @onready var collision: CollisionShape2D = $"../../PlayerDetection/CollisionShape2D"
 @onready var progress_bar = owner.find_child("ProgressBar")
 signal player_died_golem
-
+var entered: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -23,6 +23,7 @@ var player_entered: bool = false:
 
 func transition():
 	if player_entered:
+		entered = true
 		#player_entered = false
 		#print("state changed to follow")
 		get_parent().change_state("Follow")

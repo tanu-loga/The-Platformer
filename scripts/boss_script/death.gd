@@ -26,4 +26,6 @@ func enter():
 	print("died")
 	owner.velocity = Vector2.ZERO 
 	animation_player.play("you_defeated_it")
+	await get_tree().create_timer(1.5).timeout
+	return
 	

@@ -8,6 +8,7 @@ extends State
 var attack_finished: bool = false
 var can_attack: bool = true
 var can_transition: bool = true
+var done: bool = false
 
 signal player_died_golem
 # Called when the node enters the scene tree for the first time.
@@ -38,8 +39,8 @@ func transition():
 			can_transition = false
 			get_parent().change_state("Follow")
 			return
-		else:
-			print("player is close")
+	elif done:
+		get_parent().change_state("LaserBeam")
 
 
 func attack_player():
@@ -59,9 +60,11 @@ func attack_player():
 
 func play_animation(anim_name):
 	animation_player.play(anim_name)
-	await animation_player.animation_finished
+	#await animation_player.animation_finished
 	attack_finished = true
 	print("done")
+	done = true
+
 
 
 func _on_melee_detection_body_entered(body: Node2D) -> void:
