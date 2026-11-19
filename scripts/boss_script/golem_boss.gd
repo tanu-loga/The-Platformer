@@ -6,6 +6,7 @@ extends CharacterBody2D
 #@onready var sprite = $Sprite2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var progress_bar: ProgressBar = $UI/ProgressBar
+@onready var idle: State = $FiniteStateMachine/Idle
 
 signal player_died_golem
 var direction: Vector2
@@ -49,7 +50,10 @@ func _physics_process(delta):
 	move_and_collide(velocity * delta)
 
 func take_damage():
+	var entered_collision =  idle.entered_col_idle
 	if is_dead:
 		return
-	if entered:
+	if entered_collision:
 		health -= 10 - DEF
+	else:
+		pass
