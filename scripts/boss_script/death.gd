@@ -1,5 +1,6 @@
 extends State
 
+var is_dead: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,6 +13,7 @@ func _process(delta: float) -> void:
 
 func enter():
 	super.enter()
+	is_dead = true
 	owner.set_physics_process(false)
 	owner.set_process(false)
 	owner.velocity = Vector2.ZERO 

@@ -1,4 +1,5 @@
 extends Node2D
+@onready var death: State = $Death
 
 var current_state: State
 var previous_state: State
@@ -16,6 +17,9 @@ func _process(delta: float) -> void:
 	pass
 
 func change_state(state_name):
+	var dead =  death.is_dead
+	if dead:
+		return
 	#print("changed state %s" %state_name)
 	var new_state = find_child(state_name) as State
 	
