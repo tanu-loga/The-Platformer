@@ -27,6 +27,7 @@ func enter():
 #enter doesnt get called
 	super.enter()
 	attack_finished = false
+	print("abcdddwqdsfddsfa")
 	await play_animation("melee_attack")
 	can_transition = true
 	#can_transition = true
@@ -60,10 +61,10 @@ func attack_player():
 
 func play_animation(anim_name):
 	animation_player.play(anim_name)
-	#await animation_player.animation_finished
-	attack_finished = true
+	await animation_player.animation_finished
 	print("done")
 	done = true
+	attack_finished = true
 
 
 
