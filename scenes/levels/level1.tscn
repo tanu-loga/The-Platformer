@@ -407,18 +407,22 @@ scale = Vector2(3, 3)
 [node name="button" parent="." unique_id=1741355629 instance=ExtResource("12_nfihu")]
 position = Vector2(1238, 627)
 
-[node name="PhantomCamera2D" type="Node2D" parent="." unique_id=2007003169 node_paths=PackedStringArray("follow_target")]
+[node name="PhantomCamera2D" type="Node2D" parent="." unique_id=2007003169 node_paths=PackedStringArray("follow_target", "follow_path")]
 top_level = true
 position = Vector2(110, 458)
 script = ExtResource("10_nkeig")
 follow_mode = 2
 follow_target = NodePath("../Player")
+follow_path = NodePath("")
 tween_resource = SubResource("Resource_nkeig")
 follow_offset = Vector2(0, -14)
 follow_damping = true
 follow_damping_value = Vector2(0.5, 0.5)
 follow_axis_lock = 2
 rotate_with_target = true
+lookahead = true
+lookahead_acceleration = 0.011
+lookahead_deceleration = 0.042
 noise = SubResource("Resource_nfihu")
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
