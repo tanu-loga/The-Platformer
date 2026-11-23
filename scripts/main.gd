@@ -179,7 +179,7 @@ func decrease_health() -> void:
 
 
 func reload_scene():
-	await _load_level(level, false, true, true, false)
+	await _load_level(level, false, true, true, true)
 # ---------------
 # fade
 #----------------

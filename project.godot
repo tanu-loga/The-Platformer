@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.7", "Mobile")
 [autoload]
 
 Global="*uid://8dmlag582sql"
+PhantomCameraManager="*uid://duq6jhf6unyis"
 
 [display]
 
@@ -27,7 +28,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
 
 [input]
 

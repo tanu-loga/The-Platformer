@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bashg6ykybanl" path="res://assets/images/player/running animation.png" id="4_tuyoq"]
 [ext_resource type="AudioStream" uid="uid://b6s7kv2kbkoly" path="res://assets/sounds/jump.wav" id="6_tuyoq"]
 [ext_resource type="AudioStream" uid="uid://dwr2i1q2r1q5j" path="res://assets/sounds/death.wav" id="7_fjrip"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="10_y4r1p"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1l4js"]
 shader = ExtResource("2_smehm")
@@ -212,6 +213,15 @@ sprite_frames = SubResource("SpriteFrames_1l4js")
 animation = &"idle"
 autoplay = "idle"
 
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2047981610]
+top_level = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D" unique_id=233646323]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("10_y4r1p")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1091745054]
 position = Vector2(4.7683716e-07, 0.5)
 shape = SubResource("RectangleShape2D_1l4js")
@@ -221,11 +231,6 @@ stream = ExtResource("6_tuyoq")
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=1378570908]
 stream = ExtResource("7_fjrip")
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=463353192]
-process_callback = 0
-limit_smoothed = true
-position_smoothing_enabled = true
 
 [node name="ImmuneTimer" type="Timer" parent="." unique_id=742627192]
 one_shot = true

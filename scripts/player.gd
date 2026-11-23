@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var death_sound: AudioStreamPlayer2D = $DeathSound
 @onready var immune_timer: Timer = $ImmuneTimer
 @onready var main: Node2D = $"../.."
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 @export var bullet_node: PackedScene
 
