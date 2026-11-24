@@ -28,6 +28,7 @@ var alive = true
 var can_move = true
 var invincible = false
 func _ready():
+	add_to_group("player")
 	Global.player = self
 	var main_guy = get_node_or_null("/root/Main")
 
