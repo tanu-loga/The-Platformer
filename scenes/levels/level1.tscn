@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://co67o1nxiyayo" path="res://scenes/shadow_bee.tscn" id="11_nkeig"]
 [ext_resource type="Script" uid="uid://dimvdouy8g0sv" path="res://addons/phantom_camera/scripts/resources/phantom_camera_noise_2d.gd" id="12_lgguw"]
 [ext_resource type="PackedScene" uid="uid://y388rkmvtwwm" path="res://scenes/button.tscn" id="12_nfihu"]
+[ext_resource type="Script" uid="uid://b6jgxjq7o24ec" path="res://scripts/camera/camera_manager.gd" id="13_lgguw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ypoqj"]
 texture = ExtResource("1_4tcl0")
@@ -323,6 +324,15 @@ size = Vector2(969, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r7lwj"]
 size = Vector2(16, 269.5)
 
+[sub_resource type="Resource" id="Resource_lgguw"]
+script = ExtResource("11_nfihu")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dgdk7"]
+size = Vector2(9, 266)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eo0xc"]
+size = Vector2(981, 22)
+
 [node name="LevelRoot" type="Node2D" unique_id=596945868]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1476553912]
@@ -423,6 +433,7 @@ tween_resource = SubResource("Resource_nkeig")
 follow_offset = Vector2(0, -14)
 follow_damping = true
 follow_damping_value = Vector2(0.5, 1)
+follow_axis_lock = 2
 rotate_with_target = true
 lookahead = true
 lookahead_acceleration = 0.011
@@ -431,8 +442,9 @@ noise = SubResource("Resource_nfihu")
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
 [node name="CameraManager" type="Node" parent="." unique_id=1610229630]
+script = ExtResource("13_lgguw")
 
-[node name="CameraNodes" type="StaticBody2D" parent="CameraManager" unique_id=1209927504]
+[node name="CameraNodes" type="Node2D" parent="CameraManager" unique_id=1482179680]
 
 [node name="zone0" type="Area2D" parent="CameraManager/CameraNodes" unique_id=568640706]
 
@@ -444,4 +456,31 @@ shape = SubResource("RectangleShape2D_tkqf4")
 position = Vector2(490, 555.75)
 shape = SubResource("RectangleShape2D_r7lwj")
 
+[node name="PhantomCamera2D" type="Node2D" parent="CameraManager/CameraNodes/zone0" unique_id=608982427]
+position = Vector2(811, 528)
+script = ExtResource("10_nkeig")
+zoom = Vector2(2, 2)
+tween_resource = SubResource("Resource_lgguw")
+metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
+
+[node name="zone1" type="Area2D" parent="CameraManager/CameraNodes" unique_id=894919701]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraManager/CameraNodes/zone1" unique_id=1218051580]
+position = Vector2(477.5, 558)
+shape = SubResource("RectangleShape2D_dgdk7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CameraManager/CameraNodes/zone1" unique_id=1504195020]
+position = Vector2(1089.5, 423)
+shape = SubResource("RectangleShape2D_eo0xc")
+
+[node name="PhantomCamera2D2" type="Node2D" parent="CameraManager/CameraNodes/zone1" unique_id=1026994939]
+position = Vector2(632, 395)
+script = ExtResource("10_nkeig")
+tween_resource = SubResource("Resource_lgguw")
+metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
+
 [connection signal="body_entered" from="fall_area_" to="fall_area_" method="_on_body_entered"]
+[connection signal="body_entered" from="CameraManager/CameraNodes/zone0" to="CameraManager" method="_on_zone_0_body_entered"]
+[connection signal="body_exited" from="CameraManager/CameraNodes/zone0" to="CameraManager" method="_on_zone_0_body_exited"]
+[connection signal="body_entered" from="CameraManager/CameraNodes/zone1" to="CameraManager" method="_on_zone_1_body_entered"]
+[connection signal="body_exited" from="CameraManager/CameraNodes/zone1" to="CameraManager" method="_on_zone_1_body_exited"]
