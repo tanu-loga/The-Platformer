@@ -310,14 +310,6 @@ size = Vector2(49, 96)
 normal = Vector2(0.0065701604, -0.9999784)
 distance = -759.00336
 
-[sub_resource type="Resource" id="Resource_nkeig"]
-script = ExtResource("11_nfihu")
-
-[sub_resource type="Resource" id="Resource_nfihu"]
-script = ExtResource("12_lgguw")
-amplitude = 5.0
-metadata/_custom_type_script = "uid://dimvdouy8g0sv"
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tkqf4"]
 size = Vector2(969, 20)
 
@@ -332,6 +324,14 @@ size = Vector2(9, 266)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eo0xc"]
 size = Vector2(981, 22)
+
+[sub_resource type="Resource" id="Resource_nkeig"]
+script = ExtResource("11_nfihu")
+
+[sub_resource type="Resource" id="Resource_nfihu"]
+script = ExtResource("12_lgguw")
+amplitude = 5.0
+metadata/_custom_type_script = "uid://dimvdouy8g0sv"
 
 [node name="LevelRoot" type="Node2D" unique_id=596945868]
 
@@ -423,24 +423,6 @@ scale = Vector2(3, 3)
 [node name="button" parent="." unique_id=1741355629 instance=ExtResource("12_nfihu")]
 position = Vector2(1238, 627)
 
-[node name="PhantomCamera2D" type="Node2D" parent="." unique_id=2007003169 node_paths=PackedStringArray("follow_target")]
-top_level = true
-position = Vector2(110, 458)
-script = ExtResource("10_nkeig")
-follow_mode = 2
-follow_target = NodePath("../Player")
-tween_resource = SubResource("Resource_nkeig")
-follow_offset = Vector2(0, -14)
-follow_damping = true
-follow_damping_value = Vector2(0.5, 1)
-follow_axis_lock = 2
-rotate_with_target = true
-lookahead = true
-lookahead_acceleration = 0.011
-lookahead_deceleration = 0.042
-noise = SubResource("Resource_nfihu")
-metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
-
 [node name="CameraManager" type="Node" parent="." unique_id=1610229630]
 script = ExtResource("13_lgguw")
 
@@ -457,9 +439,9 @@ position = Vector2(490, 555.75)
 shape = SubResource("RectangleShape2D_r7lwj")
 
 [node name="PhantomCamera2D" type="Node2D" parent="CameraManager/CameraNodes/zone0" unique_id=608982427]
-position = Vector2(811, 528)
+position = Vector2(957, 608)
 script = ExtResource("10_nkeig")
-zoom = Vector2(2, 2)
+zoom = Vector2(1.3, 1.3)
 tween_resource = SubResource("Resource_lgguw")
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
@@ -473,10 +455,22 @@ shape = SubResource("RectangleShape2D_dgdk7")
 position = Vector2(1089.5, 423)
 shape = SubResource("RectangleShape2D_eo0xc")
 
-[node name="PhantomCamera2D2" type="Node2D" parent="CameraManager/CameraNodes/zone1" unique_id=1026994939]
-position = Vector2(632, 395)
+[node name="PhantomCamera2D" type="Node2D" parent="CameraManager/CameraNodes/zone1" unique_id=2007003169 node_paths=PackedStringArray("follow_target")]
+top_level = true
+position = Vector2(110, 458)
 script = ExtResource("10_nkeig")
-tween_resource = SubResource("Resource_lgguw")
+follow_mode = 2
+follow_target = NodePath("../../../../Player")
+tween_resource = SubResource("Resource_nkeig")
+follow_offset = Vector2(0, -14)
+follow_damping = true
+follow_damping_value = Vector2(0.5, 1)
+follow_axis_lock = 2
+rotate_with_target = true
+lookahead = true
+lookahead_acceleration = 0.011
+lookahead_deceleration = 0.042
+noise = SubResource("Resource_nfihu")
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
 [connection signal="body_entered" from="fall_area_" to="fall_area_" method="_on_body_entered"]
